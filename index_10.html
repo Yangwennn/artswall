@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arts Wall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@144,500,100,1&family=Yeseva+One&family=Gloock&family=Rozha+One&family=Instrument+Serif:ital@0;1&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --wall:#DCDED6; --label:#FBFAF7; --ink:#16191A; --dim:#6B7069;
+  --frame:#2C3B31; --pigment:#A83E22; --amber:#CE7C10; --rule:rgba(22,25,26,.14);
+  --serif:'Instrument Serif','Noto Serif TC',serif;
+  /* 標題字體。想換就改下面這行的第一個名字，四個選項都已載入：
+     'Yeseva One'    新藝術風，圓潤有裝飾性（目前使用）
+     'Fraunces'      歪扭高對比，筆畫柔軟
+     'Gloock'        對比極端，粗細落差最大，最銳利
+     'Rozha One'     厚重有力，襯線收得很尖，氣勢強          */
+  --display:'Yeseva One','Instrument Serif','Noto Serif TC',serif;
+  --sans:'Noto Sans TC','Helvetica Neue',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--wall);
+  background-image:radial-gradient(rgba(255,255,255,.35) 1px,transparent 1px),radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);
+  background-size:4px 4px,4px 4px;background-position:0 0,2px 2px;
+  color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.75;
+}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:28px;padding-right:28px}
+
+.masthead{padding-top:60px;padding-bottom:30px;display:grid;grid-template-columns:auto 1fr;gap:0 26px;align-items:end}
+.markbar{width:5px;background:var(--pigment);align-self:stretch;min-height:92px}
+.masthead h1{color:var(--amber);font-family:var(--display);font-weight:500;font-size:clamp(52px,8.4vw,96px);line-height:.86;letter-spacing:-.01em;margin:0 0 10px;word-spacing:.04em}
+.stamp{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--dim);margin:16px 0 0;
+  display:inline-block;border-top:1px solid var(--rule);padding-top:9px}
+.stamp b{color:var(--frame);font-weight:500}
+.stamp .sg{white-space:nowrap}
+.stamp .dot{margin:0 14px;opacity:.45}
+
+.heat{padding-bottom:32px}
+.heat-in{border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);padding:20px 0 18px}
+.heat h2{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pigment);font-weight:500;margin:0 0 14px;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.heat .formula{text-transform:none;letter-spacing:.02em;color:var(--dim);font-size:10.5px}
+.heat ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.heat li{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;font-size:14px}
+.heat .cnt{font-family:var(--mono);font-size:11px;color:#F2F3EE;background:var(--frame);padding:2px 7px;letter-spacing:.04em;align-self:center;min-width:30px;text-align:center}
+.heat .who{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.04em;text-align:right}
+.heat button{background:none;border:0;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer;font-family:var(--serif);font-size:17px;font-weight:600}
+.heat button:hover{color:var(--pigment)}
+
+#fairlist{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.fair{background:var(--label);padding:16px 18px}
+.fair.pending{background:transparent}
+.fair-top{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin-bottom:6px}
+.fair-name{font-family:var(--serif);font-size:18px;font-weight:600}
+.fair-when{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--dim)}
+.fair-scale{font-size:12.5px;line-height:1.7;color:var(--dim);margin:0 0 8px}
+.fair-tw{margin:0 0 8px}
+.twn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;background:var(--pigment);color:#F2F3EE;padding:2px 8px}
+.twn.none{background:transparent;border:1px dashed var(--rule);color:var(--dim)}
+.twchips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.twchip{font-size:11.5px;line-height:1.5;border:1px solid var(--rule);padding:3px 8px;color:#2A2E2C;background:rgba(255,255,255,.55)}
+.fair-note{font-size:12.5px;line-height:1.8;color:#2A2E2C;margin:0 0 9px;max-width:80ch}
+.fair-src{font-family:var(--mono);font-size:10px;letter-spacing:.05em;margin:0}
+.fair-src a{color:var(--frame);text-decoration:none}
+.fair-src a:hover{color:var(--pigment)}
+.galhead{margin:26px 0 14px!important;padding-top:20px;border-top:1px dashed var(--rule);color:var(--frame)!important}
+#gallist li{grid-template-columns:auto 1fr auto}
+.galname{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:#F2F3EE;background:var(--pigment);
+  padding:2px 8px;align-self:center;white-space:nowrap}
+#gallist a{font-family:var(--serif);font-size:17px;font-weight:600;text-decoration:none}
+#gallist a:hover{color:var(--pigment)}
+.badge.gal{border-color:var(--pigment);color:#F2F3EE;background:var(--pigment)}
+.controls{position:sticky;top:0;z-index:20;background:rgba(220,222,214,.94);backdrop-filter:blur(8px);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.controls-in{padding-top:12px;padding-bottom:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row2{border-top:1px dashed var(--rule);padding-top:10px;margin-top:2px;width:100%;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;padding:5px 11px;border:1px solid var(--rule);background:transparent;color:var(--dim);cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--frame);border-color:var(--frame);color:#F2F3EE}
+.chip.pig[aria-pressed="true"]{background:var(--pigment);border-color:var(--pigment)}
+.chip .n{opacity:.55;margin-left:6px}
+.dd{position:relative;display:inline-block}
+
+.dd.open .ddbtn{background:var(--frame);border-color:var(--frame);color:#F2F3EE}
+
+.ddn{font-family:var(--mono);margin-left:5px;opacity:.75}
+.ddpanel{display:none;position:absolute;top:calc(100% + 7px);left:0;z-index:30;
+  background:var(--label);border:1px solid var(--ink);padding:11px;
+  box-shadow:4px 5px 0 rgba(22,25,26,.14);min-width:150px}
+.ddpanel.wide{width:330px;display:none}
+.dd.open .ddpanel{display:flex;flex-wrap:wrap;gap:6px}
+.ddpanel .chip{border-color:var(--rule)}
+.chip.clr{border-style:dashed;color:var(--pigment);border-color:var(--pigment)}
+.chip.clr:hover{background:var(--pigment);color:#F2F3EE}
+.sep{width:1px;height:20px;background:var(--rule);margin:0 3px}
+#q{font-family:var(--sans);font-size:13px;font-weight:300;padding:5px 10px;min-width:150px;flex:1 1 150px;max-width:250px;border:1px solid var(--rule);background:var(--label);color:var(--ink)}
+#q:focus,.chip:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--pigment);outline-offset:2px}
+.count{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-left:auto;letter-spacing:.06em}
+
+.wall{padding-top:32px;padding-bottom:80px;display:grid;gap:22px;align-items:start;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.card{background:var(--label);border-top:3px solid var(--frame);padding:20px 22px 18px;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,3px 4px 0 rgba(22,25,26,.07);display:flex;flex-direction:column;gap:11px;scroll-margin-top:90px}
+.card.tw{border-top-color:var(--pigment)}
+.card.read{opacity:.42}
+.card.read:hover{opacity:.72}
+.card.flash{box-shadow:0 0 0 2px var(--pigment),3px 4px 0 rgba(22,25,26,.07)}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;gap:10px}
+.eyebrow .src{color:var(--frame);font-weight:500}
+.card.tw .eyebrow .src{color:var(--pigment)}
+.card h2{font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.38;letter-spacing:.01em;margin:0}
+.card h2 a{text-decoration:none}
+.card h2 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.orig{font-family:var(--serif);font-style:italic;font-size:13.5px;line-height:1.45;color:var(--dim);margin:-4px 0 0}
+.bodytext{font-size:13.5px;line-height:1.85;margin:0;color:#2A2E2C}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;padding:2px 7px;border:1px solid var(--rule);color:var(--dim)}
+.badge.co{border-color:var(--frame);color:var(--frame)}
+.badge.lead{border-color:var(--pigment);color:var(--pigment)}
+.credit{margin-top:auto;padding-top:12px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--dim)}
+.credit a{text-decoration:none;color:var(--frame);white-space:nowrap}
+.credit a:hover{color:var(--pigment)}
+.mark{border:0;background:none;padding:0;cursor:pointer;color:var(--dim);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
+.mark:hover{color:var(--pigment)}
+.empty{grid-column:1/-1;padding:60px 0;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--dim)}
+
+.notes{padding-bottom:80px}
+.notes-in{background:var(--frame);color:#DDE2DA;padding:34px 32px}
+.notes h3{font-family:var(--serif);font-size:22px;font-weight:400;margin:0 0 6px;color:#F2F3EE}
+.notes p{font-size:13.5px;line-height:1.9;margin:0 0 14px;max-width:72ch}
+.notes p:last-child{margin-bottom:0}
+.notes .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9FB3A2}
+
+.srclist{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.srcrow{display:grid;grid-template-columns:88px 1fr auto;gap:12px;align-items:baseline;
+  padding:12px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.srcrow:hover .srow-t{color:var(--pigment)}
+.srow-n{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim)}
+.srow-t{font-size:13.5px;line-height:1.6;color:var(--ink)}
+.srow-d{font-family:var(--mono);font-size:10px;color:var(--frame);white-space:nowrap}
+.hasum{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;border:1px solid var(--pigment);
+  color:var(--pigment);padding:1px 5px;margin-left:8px;vertical-align:2px;font-weight:400}
+/* 重點整理面板 */
+.scrim{position:fixed;inset:0;background:rgba(22,25,26,.55);z-index:40;display:none}
+.scrim.on{display:block}
+.panel{position:fixed;z-index:41;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--label);
+  display:none;flex-direction:column;box-shadow:-6px 0 0 rgba(22,25,26,.1)}
+.panel.on{display:flex}
+.panel-top{padding:22px 30px 18px;border-top:4px solid var(--frame);display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.panel-top.tw{border-top-color:var(--pigment)}
+.panel-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.panel-meta b{color:var(--frame);font-weight:500}
+.panel-top.tw .panel-meta b{color:var(--pigment)}
+.closex{border:1px solid var(--rule);background:none;cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--dim);padding:4px 9px;line-height:1}
+.closex:hover{border-color:var(--ink);color:var(--ink)}
+.panel-body{padding:0 30px 30px;overflow-y:auto;flex:1}
+.panel-body h2{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.34;margin:0 0 8px}
+.panel-body .orig{font-size:15px;margin:0 0 22px}
+.plabel{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--pigment);margin:26px 0 8px;display:block}
+.plabel:first-of-type{margin-top:0}
+.panel-body p.txt{font-size:14.5px;line-height:1.92;margin:0;color:#232725}
+.panel-body ul{margin:0;padding-left:0;list-style:none}
+.panel-body li{font-size:14px;line-height:1.8;margin-bottom:9px;padding-left:18px;position:relative;color:#232725}
+.panel-body li:before{content:'';position:absolute;left:0;top:11px;width:8px;height:1px;background:var(--pigment)}
+.thin{font-size:12.5px;color:var(--dim);line-height:1.8;margin:0}
+.srcbtn{display:inline-block;margin-top:26px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  border:1px solid var(--frame);color:var(--frame);padding:9px 15px;text-decoration:none}
+.srcbtn:hover{background:var(--frame);color:#F2F3EE}
+@media (max-width:640px){
+  .panel{width:100%;top:auto;height:88vh;border-top:1px solid var(--rule)}
+  .panel-top{padding:18px 20px 14px}
+  .panel-body{padding:0 20px 26px}
+  .panel-body h2{font-size:22px}
+}
+@media (max-width:640px){
+  .wrap{padding-left:20px;padding-right:20px}
+  .masthead{padding-top:38px;gap:0 16px}
+  .wall{grid-template-columns:1fr;gap:16px}
+  .heat li{grid-template-columns:auto 1fr;gap:10px}
+  .heat .who{grid-column:2;text-align:left}
+  .notes-in{padding:26px 22px}
+  .count{width:100%;margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="masthead wrap">
+  <div class="markbar"></div>
+  <div>
+    <h1>arts wall</h1>
+    <p class="stamp"><span class="sg">收錄　<b id="span"></b></span><span class="dot">·</span><span class="sg">最後更新　<b id="built"></b></span><span class="dot">·</span><span class="sg">本批新增 <span id="newcount">0</span> 則</span><span class="dot">·</span><span class="sg">累計 <span id="total">0</span> 則</span></p>
+  </div>
+</header>
+
+<section class="heat wrap" id="heat" hidden>
+  <div class="heat-in">
+    <h2>熱度榜 <span class="formula">計分：跨媒體家數 ×3　＋　總篇數 ×1　＋　首頁頭條 ×2　＋　台灣國際同報 +3</span></h2>
+    <ol id="heatlist"></ol>
+    <div id="fairrail" hidden>
+      <h2 class="galhead">藝博會 · 台灣畫廊參展 <span class="formula">逐屆比對誰進誰退</span></h2>
+      <div id="fairlist"></div>
+    </div>
+    <div id="galrail" hidden>
+      <h2 class="galhead">台灣藝廊線 <span class="formula">具名提及台灣藝廊或藝術空間的報導，累積追蹤各家動向</span></h2>
+      <ol id="gallist"></ol>
+    </div>
+  </div>
+</section>
+
+<nav class="controls" aria-label="篩選">
+  <div class="controls-in wrap">
+    <button class="chip" id="latest" aria-pressed="false">最新一批</button>
+    <span class="sep"></span>
+    <button class="chip pig" data-region="tw" aria-pressed="false">台灣</button>
+    <button class="chip" data-region="intl" aria-pressed="false">國際</button>
+    <span class="sep"></span>
+    <span id="srcchips" style="display:contents"></span>
+    <span class="sep"></span>
+    <button class="chip pig" id="onlygal" aria-pressed="false">台灣藝廊</button>
+    <button class="chip" id="hideread" aria-pressed="false">隱藏已讀</button>
+    <input id="q" type="search" placeholder="搜尋關鍵字…" aria-label="搜尋">
+    <span class="count" id="count"></span>
+    <div class="row2">
+      <div class="dd"><button class="chip ddbtn" data-dd="y" aria-expanded="false">年份<span class="ddn" id="ny"></span></button>
+        <div class="ddpanel" id="yearchips"></div></div>
+      <div class="dd"><button class="chip ddbtn" data-dd="m" aria-expanded="false">月份<span class="ddn" id="nm"></span></button>
+        <div class="ddpanel" id="monthchips"></div></div>
+      <div class="dd"><button class="chip ddbtn" data-dd="c" aria-expanded="false">類別<span class="ddn" id="nc"></span></button>
+        <div class="ddpanel wide" id="catchips"></div></div>
+      <button class="chip clr" id="clrall" hidden>清除篩選</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wall wrap" id="wall"></main>
+
+<section class="notes wrap">
+  <div class="notes-in">
+    <p class="k">使用說明</p>
+    <h3>一個檔，放著就好</h3>
+    <p>整個網站就是這一個 <code>index.html</code>，資料也在裡面。每天更新時我會給你一份新的 <code>index.html</code>，下載後放進 <b>桌面／藝訊</b> 覆蓋舊的即可。檔名固定不變，所以書籤永遠有效；更新時間看頁首那行。舊資料不會消失，新的一批會加在最前面並標上「本批新增」。</p>
+    <p><b>兩家以上媒體同報的事件</b>，卡片右下角會出現「重點整理」，點開是我整合各家報導後的一句話重點、細節條列、我的判斷，最下面列出全部來源連結。<b>其餘各則</b>點標題直接開原文，不繞路。</p>
+    <p><b>色條分區</b>：紅土色是台灣媒體，深綠是國際。<b>熱度榜</b>不是點閱數（各家不公開），而是加權計分：跨媒體家數、總篇數、當天是否在該站首頁頭條、台灣與國際是否同時報。標了「重點整理」的可以點開，其餘直接開原文。</p>
+    <p><b>收錄範圍</b>：藝術、設計、建築三線全收，含考古發現、修復技術、私人收藏與名人藏家、徵件與職缺。<b>標記已讀</b>存在瀏覽器本機，覆蓋檔案不會清掉。</p>
+  </div>
+</section>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-label="重點整理">
+  <div class="panel-top" id="ptop">
+    <p class="panel-meta" id="pmeta"></p>
+    <button class="closex" id="pclose" aria-label="關閉">關閉</button>
+  </div>
+  <div class="panel-body" id="pbody"></div>
+</aside>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   Arts Wall · 資料區
+   更新方式：把新的一批貼在 ITEMS 陣列最前面，舊的保留。
+   欄位 s來源 d發佈日 batch收錄日 t中文標題 e原文標題 b摘要 u網址
+        k事件代碼（同事件共用） c類別陣列 L是否首頁頭條
+   ══════════════════════════════════════════════════════════ */
+
+const SHOW_FAIRS=false;   /* 藝博會軌道開關：改成 true 就會顯示 */
+
+const BUILT='2026.08.11　14:53　台北';
+
+const SOURCES={
+  artouch :{name:'典藏 ARTouch',      region:'tw',   domain:'artouch.com'},
+  emperor :{name:'非池中藝術網',       region:'tw',   domain:'artemperor.tw'},
+  verse   :{name:'VERSE',             region:'tw',   domain:'verse.com.tw'},
+  artnet  :{name:'Artnet News',       region:'intl', domain:'news.artnet.com'},
+  tan     :{name:'The Art Newspaper', region:'intl', domain:'theartnewspaper.com'},
+  artforum:{name:'Artforum',          region:'intl', domain:'artforum.com'},
+  eflux   :{name:'e-flux',            region:'intl', domain:'e-flux.com'},
+  frieze  :{name:'Frieze',            region:'intl', domain:'frieze.com'}
+};
+
+const TOPICS={
+  mingwei:'第二屆明維藝新獎',
+  gugg:'古根漢阿布達比任命首任館長 Valerie Hillings',
+  rausch:'勞森伯格基金會出售紐約故居',
+  tfam:'北美館 2027 年度個展徵件結果',
+  expo:'2026 臺灣文博會',
+  seoul:'九月首爾藝術週（Kiaf × Frieze Seoul）',
+  whitecube:'White Cube 紐約三位資深總監離職'
+};
+
+/* ══════════════════════════════════════════════════════════
+   台灣藝廊線
+   只收「內容明確提到具名台灣藝廊或藝術空間」的報導。
+   累積下來可以看出哪幾家持續被寫、在做什麼路線。
+   ══════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════
+   藝博會 · 台灣畫廊參展追蹤
+   逐年比對誰進誰退，比任何報導都誠實。
+   tw = 該屆確認參展的台灣畫廊（含展位號）
+   ══════════════════════════════════════════════════════════ */
+const FAIRS=[
+{name:'Art Basel Hong Kong 2026', when:'2026.03.27–29（預展 3/25–26）', where:'香港會議展覽中心',
+ scale:'240 家畫廊 · 41 國 · 32 家首度參展 · 逾半數在亞太設有空間',
+ twn:'12 家（歷年最多）',
+ tw:['耿畫廊 Tina Keng Gallery｜1D27','TKG+｜1D27','亞洲藝術中心 Asia Art Center｜3E19','丹之寶 TANSBAO｜3D30（首度）','索卡藝術 SOKA ART｜1B01','安卓藝術 Mind Set Art Center｜1D34','尊彩藝術中心 Liang Gallery｜3E15','誠品畫廊 Eslite Gallery｜3D14','采泥藝術 CHINI Gallery｜3D27','大未來林舍畫廊 Lin & Lin｜3E03','亞紀畫廊 Each Modern｜3C35','PTT Space｜1C46（藝術探新）'],
+ note:'耿畫廊與 TKG+ 聯合使用 1D27 展位，以「複調」為題聯展。丹之寶首度入選，推出尼泊爾現代藝術之父 Lain Singh Bangdel 的首次亞洲藝博會個展。PTT Space 在「藝術探新」推出泰雅族藝術家林安琪個展。',
+ src:[{n:'典藏 ARTouch · 展前指南',u:'https://artouch.com/art-market/content-203925.html'},{n:'典藏 ARTouch · 參展名單公布',u:'https://artouch.com/art-market/art-fair/content-194867.html'}]},
+
+{name:'Art Central 2026', when:'2026.03.25–29', where:'香港中環海濱活動空間',
+ scale:'香港藝術三月的第二現場',
+ twn:'6 家具名',
+ tw:['丁丁藝術空間 TING TING｜C35','首都藝術中心 Capital Art Center｜C12','藝星藝術中心 ASTAR｜A5','凱奧藝術 KAI\'S Gallery｜C17','藝術時代畫廊 ARTAGE｜D4（首度）','名典畫廊 Ming Dian｜C06'],
+ note:'典藏原文寫「四家畫廊將於 Art Central 登場」，但內文實際列出六家，總計也寫成 16 家（12＋4）。這裡照實際列出的家數記錄，數字待該刊自行更正。',
+ src:[{n:'典藏 ARTouch · 展前指南',u:'https://artouch.com/art-market/content-203925.html'}]},
+
+{name:'Kiaf SEOUL 2026', when:'2026.09.02–06', where:'首爾 COEX',
+ scale:'175 家畫廊 · 18 國 · 第 25 屆 · Kiaf Plus 收 19 家年輕畫廊',
+ twn:'名單未見台灣畫廊揭露',
+ tw:[],
+ note:'首度設外部創意總監，由設計師 Kuho Jung 操刀。主題「Coexistence」。已公布名單以韓國本地與日、港、歐美畫廊為主，台灣參與情形待進一步查證。',
+ src:[{n:'非池中藝術網 · 完整參展名單',u:'https://artemperor.tw/focus/7301'}]},
+
+{name:'Frieze Seoul 2026', when:'2026.09.02–05', where:'首爾 COEX',
+ scale:'125＋家畫廊 · 30 國 · 逾七成在亞太 · 50＋家在首爾設常設空間',
+ twn:'名單未見台灣畫廊揭露',
+ tw:[],
+ note:'與 Kiaf 同場同期。新增 Material Practice 與 Spotlight 兩個策展單元；Focus 收 16 家新銳畫廊。日本畫廊陣容強（Anomaly、Nanzuka、SCAI The Bathhouse、Taka Ishii 等逾 20 家），台灣缺席與否值得對照。',
+ src:[{n:'Frieze · 首波公布',u:'https://www.frieze.com/article/first-details-frieze-seoul-2026'},{n:'Frieze · 個展單元精選',u:'https://www.frieze.com/article/karin-kneffel-do-ho-suh-solo-presentations-frieze-seoul-2026'}]},
+
+{name:'Frieze London & Frieze Masters 2026', when:'2026.10（Frieze Sculpture 9/16–11/1）', where:'倫敦攝政公園',
+ scale:'策展單元 50 個展位；Frieze Sculpture 11 位藝術家',
+ twn:'待公布',
+ tw:[],
+ note:'Gray Wielebinski 現地委託、與 ICA 合作影像單元、非營利組織接管 Reading Room。Masters Talks 主題「Breaking the Mould」，講者含 Es Devlin、Grayson Perry、Danh Vō。',
+ src:[{n:'Frieze · 節目公布',u:'https://www.frieze.com/article/frieze-london-masters-2026-programming-announcement'}]},
+
+{name:'The Armory Show 2026', when:'2026.09 下旬（移至九月底）', where:'紐約 Javits Center',
+ scale:'230 家畫廊',
+ twn:'待公布',
+ tw:[],
+ note:'展期由原本的九月初移到九月下旬，避開首爾檔期。',
+ src:[{n:'The Art Newspaper',u:'https://www.theartnewspaper.com/2026/07/20/armory-show-unveils-230-gallery-line-up-after-moving-fair-to-late-september'}]}
+];
+
+const TWG={
+'https://artemperor.tw/focus/7299':'阿波羅畫廊',
+'https://artemperor.tw/focus/7276':'形狀藝術',
+'https://artemperor.tw/focus/7292':'TAO ART',
+'https://www.verse.com.tw/article/hong-kong-artist-li-chi-tak-exhibition-taiwan':'陋室五月小風景'
+};
+
+const CATS=['市場','機構','人事','展覽','評論','設計','建築','考古','修復','收藏','徵件','文資','政策'];
+
+const ITEMS=[
+
+/* ═════ BATCH 2026-08-11（首批，回溯 8/1–8/11）═════ */
+
+/* ── 典藏 ARTouch ── */
+{s:'artouch',batch:'2026-08-11',d:'2026-08-10',L:1,c:['展覽','收藏','市場'],t:'重訪 1935：佳士得重構中國藝術的國際展覽史',b:'佳士得與 Daniel Eskenazi 合作，在香港 The Henderson 亞太區總部推出「英國皇家藝術學院『1935–36 中國藝術國際展覽會』：紀念獻禮」，由安偉達（Marco Almeida）解說展覽亮點。',u:'https://artouch.com/art-news/content-213020.html'},
+{s:'artouch',batch:'2026-08-11',d:'2026-08-06',c:['文資','建築','展覽'],t:'板橋林家尋寶記：林家花園限定分享會開放報名',b:'典藏古美術 8 月號專題，循人物、文物與園林空間重訪板橋林家，現場有集章兌禮。',u:'https://artouch.com/art-news/content-212870.html'},
+{s:'artouch',batch:'2026-08-11',d:'2026-08-05',c:['展覽','機構'],t:'南都佛畫，千年流轉：奈良國立博物館特別展',b:'奈良國博與波士頓美術博物館合作推出「南都佛畫：奈良天平之美」，從法隆寺壁畫一路梳理到天平時期的佛畫系譜。',u:'https://artouch.com/gumeishu/content-212807.html'},
+{s:'artouch',batch:'2026-08-11',d:'2026-08-05',k:'tfam',c:['機構','徵件','展覽'],t:'北美館年度個展徵件結果揭曉：從傳統出發，重思形制轉化',b:'臺北市立美術館 116 年申請展公開徵件選出四位創作者：洪瑄《驚燕》、劉文瑄《將就園》、謝牧岐《成為那幅畫》，以及羅懿君。',u:'https://artouch.com/art-news/content-212797.html'},
+{s:'artouch',batch:'2026-08-11',d:'2026-08-03',c:['市場','機構','人事','政策'],t:'藝聞摘要：關稅、軍械庫、竊案、人事（7/21–8/3）',b:'一次收攏六則：美國新關稅多數國家藝術品不加稅、2026 軍械庫藝博會內容公布、法國維克斯寶藏博物館失竊、Betye Saar 99 歲辭世、泰特任命 Jessica Morgan 為新任總館長、Shabbir Hussain Mustafa 接掌 2028 愛知三年展。',u:'https://artouch.com/art-news/content-212618.html'},
+{s:'artouch',batch:'2026-08-11',d:'2026-08-03',k:'mingwei',c:['展覽','評論'],t:'科技退場之後？明維藝新獎得主余承倧、陳伯軒專訪',b:'金獎余承倧《Body as Algorithm》把網路影像轉為身體演算，明雄獎陳伯軒則從編織與生態缸切入人機共感。',u:'https://artouch.com/art-news/content-212636.html'},
+{s:'artouch',batch:'2026-08-11',d:'2026-08-01',k:'mingwei',c:['徵件','展覽'],t:'第二屆明維藝新獎揭曉：當 AI 成為時代命題',b:'金獎余承倧《Body as Algorithm》、銀獎陳岳宏《煙花》。獎項把「藝術如何重新理解共感」直接放上檯面。',u:'https://artouch.com/art-news/content-212586.html'},
+
+/* ── 非池中藝術網 ── */
+{s:'emperor',batch:'2026-08-11',d:'2026-08-10',L:1,c:['展覽'],t:'2026 桃園地景藝術節：以八種看海的方式走進珍珠海岸',b:'藝術串聯計畫公布，把桃園沿海一線納入夏日展演路徑。',u:'https://artemperor.tw/focus/7300'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-10',L:1,c:['設計','市場'],t:'一顆胡椒樹灌溉成「黑川」：胡縉祥的十年',b:'從一棵樹到一套技術系統，訪談梳理他如何用科技調配出所謂的「藝術黑金」。',u:'https://artemperor.tw/focus/7266'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-08',c:['展覽'],t:'形狀藝術《形之形》：佐藤公聰個展',b:'在生成與失控之間尋找新的平衡點。',u:'https://artemperor.tw/focus/7276'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-07',k:'seoul',c:['市場'],t:'Kiaf SEOUL 2026 完整參展畫廊名單與亮點作品',b:'9 月 2 日登場，適逢 25 週年，韓國規模最大的國際藝博會。與 Frieze Seoul 同週，九月重心明確在首爾。',u:'https://artemperor.tw/focus/7301'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-07',c:['展覽'],t:'劉默霖《墨日重生》：海龜、珊瑚與文明遺跡的後自然山水',b:'阿波羅畫廊呈現，把生態符號編進山水語彙。',u:'https://artemperor.tw/focus/7299'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-07',c:['徵件','機構'],t:'「2027 臺南新藝獎」徵件啟動，紀柏豪策展',b:'臺南市政府文化局主辦，本屆由跨域聲音藝術家紀柏豪擔綱策展。',u:'https://artemperor.tw/focus/7297'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-07',c:['展覽','建築'],t:'重啟對話：台大醫院健康大樓公共藝術計畫',b:'帝門藝術教育基金會以參與式創作介入醫療場域。',u:'https://artemperor.tw/focus/7296'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-07',c:['評論','展覽'],t:'柔性迴路：臺灣女性當代新媒體藝術展評論',b:'論林珮淳《夏娃克隆巴別塔》的反迷思文件詮釋，與曾鈺涓《Jane》系列數位符碼中虛擬個體的在與不在。',u:'https://artemperor.tw/focus/7294'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-07',c:['評論','展覽'],t:'當代身體的展演與游牧：「被觀看的親密」中的觀看與凝視',b:'展評，處理觀看關係如何在當代身體展演中被重新分配。',u:'https://artemperor.tw/focus/7287'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-06',k:'expo',c:['設計','市場','展覽'],t:'尋找「未來日常式」：2026 臺灣文博會商展南港開展',b:'品牌商展規模創歷年新高，聚焦 IP 授權與文創品牌。',u:'https://artemperor.tw/focus/7295'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-06',c:['展覽','建築'],t:'空總「晴空季 2026」與 C-LAB FUTURE VISION LAB',b:'16 件戶外地景藝術作品加上穹頂沉浸式展映，8 月同步登場。',u:'https://artemperor.tw/focus/7293'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-05',c:['展覽','設計'],t:'吳季剛致敬勞森伯格百年誕辰：臺北 TAO ART 首展',b:'服裝設計師與 Rauschenberg 原作同台對話，是今年台北少見的國際級對照展。',u:'https://artemperor.tw/focus/7292'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-05',k:'mingwei',c:['徵件','展覽'],t:'第二屆明維藝新獎得主揭曉，8/2–8/12 北科大藝文中心展出',b:'以「人機共感」串聯藝術、科技與社會。',u:'https://artemperor.tw/focus/7291'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-04',c:['建築','展覽','機構'],t:'高美館首屆園區空間藝術徵件《2026 縫隙計畫》開展',b:'展期到 2027 年 4 月 6 日。以建築體作為界定內外的皮膜為觀察起點，重新看待這座與森林、埤塘共生的美術館。',u:'https://artemperor.tw/focus/7290'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-04',c:['機構','收藏'],t:'《典藏庫房的竊竊私語》：從藝術庫房到城市空間',b:'臺灣美術基金會揭開收藏機制幕後，也讓作品走進高雄日常。',u:'https://artemperor.tw/focus/7289'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-04',c:['收藏','展覽','市場'],t:'國巨基金會典藏首度公開：培根、畢卡索、霍克尼 11 月登場',b:'展名《蠍子與青蛙》，臺中市立美術館。台灣企業級私人收藏首度成規模公開。',u:'https://artemperor.tw/focus/7288'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-03',k:'tfam',c:['機構','徵件'],t:'北美館 2027 年度個展徵件結果：洪瑄、劉文瑄、謝牧岐、羅懿君獲選',b:'四組藝術家出線。',u:'https://artemperor.tw/focus/7286'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-03',k:'mingwei',c:['徵件'],t:'第二屆明維藝新獎 20 件入圍作品出爐',b:'青年創作者以藝術回應 AI 時代。',u:'https://artemperor.tw/focus/7285'},
+{s:'emperor',batch:'2026-08-11',d:'2026-08-03',c:['展覽','評論','機構'],t:'【直擊台灣館】李亦凡談《鬱卒的平面》如何回應「台灣館」',b:'2026 威尼斯雙年展台灣館，北美館主辦、馮希卡策展。訪談處理那組「令人相視而笑的臺味通關密語」怎麼翻譯給國際觀眾。',u:'https://artemperor.tw/focus/7271'},
+
+/* ── VERSE ── */
+{s:'verse',batch:'2026-08-11',d:'2026-08-10',c:['設計'],t:'浪琴表征服者復刻系列：旋轉圓盤工藝與中央動力儲存指示',b:'1954 年問世的 Conquest 系列再度延伸，把半世紀前的製錶結構重新做成當代復古款。',u:'https://www.verse.com.tw/article/longines-conques-heritage'},
+{s:'verse',batch:'2026-08-11',d:'2026-08-07',c:['展覽','機構','文資'],t:'空總「GOOD LUCK! 骨力臺灣——終戰八十特展」',b:'文化部於空總國家文化基地推出，8 月 1 日開幕。用空總自身的歷史連結國家、城市與個人記憶。',u:'https://www.verse.com.tw/article/good-luck-c-lab'},
+{s:'verse',batch:'2026-08-11',d:'2026-08-06',c:['展覽','設計'],t:'香港漫畫大師利志達《二度刺秦宇宙》8/29 登台',b:'台北「陋室五月小風景」展出《刺秦》手稿、原畫、雕塑與首度公開新作，港台當代藝術與漫畫文化的一次交會。',u:'https://www.verse.com.tw/article/hong-kong-artist-li-chi-tak-exhibition-taiwan'},
+{s:'verse',batch:'2026-08-11',d:'2026-08-06',k:'expo',c:['設計','市場'],t:'2026 臺灣文博會品牌商展開幕：黑潮星樂園集結台灣原創 IP',b:'南港展覽館，規模創歷年新高。含 HTC VIVERSE 虛擬展區與首次亮相的黑潮商店。',u:'https://www.verse.com.tw/article/2026-reative-expo-taiwan-exhibition'},
+{s:'verse',batch:'2026-08-11',d:'2026-08-06',c:['建築','設計'],t:'愛馬仕高雄漢神專門店煥新：RDAI 如何用紅磚與海浪光影重構城市記憶',b:'巴黎建築事務所 RDAI 操刀兩層樓空間，把「打狗英國領事館」的紅磚意象、碼頭貨櫃與海浪光影轉化為牆面立體紋理，而不是直接複製海洋符號。',u:'https://www.verse.com.tw/article/hermes-kaohsiung-hanshin'},
+{s:'verse',batch:'2026-08-11',d:'2026-08-06',c:['建築','設計'],t:'0km 山物所：BREAD, ESPRESSO & 永康森庭，本事設計如何讓老屋呼吸',b:'日本表參道烘焙咖啡品牌落腳台北百年老屋庭園，再度由本事設計操刀，把日式職人麵包工藝、台灣風土食材與山林老屋揉在一起。',u:'https://www.verse.com.tw/article/0km-bread-espresso'},
+{s:'verse',batch:'2026-08-11',d:'2026-08-06',c:['設計'],t:'從 GR8 到 Dover Street Market：7 間東京的世界級時尚選品店',b:'BoF 評選名單，從前衛設計、街頭文化到工藝美學，是看東京零售空間設計語彙的切片。',u:'https://www.verse.com.tw/article/2026-tokyo-best-select-shops'},
+
+/* ── Artnet News ── */
+{s:'artnet',batch:'2026-08-11',d:'2026-08-07',k:'whitecube',L:1,c:['市場','人事'],t:'White Cube 紐約一口氣失去三位資深總監',e:'White Cube Loses Three Star Directors in New York',b:'三位資深總監同時離開，正值紐約藍籌畫廊圈人事大洗牌。搭配 Gagosian 收掉巴塞爾與倫敦兩處空間看，一級市場正在同步瘦身。',u:'https://news.artnet.com/market/white-cube-directors-depart-new-york-2792669'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-06',k:'rausch',L:1,c:['機構','建築','市場'],t:'勞森伯格基金會要賣掉它的紐約老家嗎？',e:'Is the Rauschenberg Foundation Selling Its Storied New York Home?',b:'Robert Rauschenberg 位於 NoHo 的故居、現為同名基金會總部，已委託 Newmark 掛牌。',u:'https://news.artnet.com/art-world/robert-rauschenberg-foundation-building-listing-2794288'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-05',L:1,c:['機構','收藏','市場'],t:'美術館為什麼開始聯手買作品',e:'Why Museums Are Teaming Up to Buy Art',b:'多館合購、分攤成本與鑑定專業，扭轉數十年來的競爭式收藏邏輯。這是預算壓力下的結構性轉變，不是個案。',u:'https://news.artnet.com/art-world/why-museums-are-teaming-up-to-buy-art-2790092'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-05',k:'gugg',c:['機構','人事','建築'],t:'古根漢阿布達比任命首任館長 Valerie Hillings',e:'Guggenheim Abu Dhabi Appoints Inaugural Director',b:'現任北卡羅來納美術館館長，2009 至 2018 年就參與過阿布達比案。館舍為 Frank Gehry 遺作，開館訂在 12 月。',u:'https://news.artnet.com/art-world/guggenheim-abu-dhabi-first-director-2793701'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-05',c:['機構','建築'],t:'東京宮找臨時館舍，惹惱了法國藝術團體',e:'Palais de Tokyo’s Hunt for a Temporary Home Rankles French Art Collective',b:'整修期間的遷址方案與既有的 Le Générale 進駐團體衝突。',u:'https://news.artnet.com/art-world/palais-de-tokyo-renovation-relocation-le-generale-2793713'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-06',c:['機構','政策'],t:'倫敦國家藝廊開了場「公民大會」決定未來，結果一堆人不爽',e:'London’s National Gallery Convened a Citizens Assembly to Help Chart Its Future. It Made People Mad',b:'把館務方向交給隨機抽樣的公民審議，程序正當性與專業判斷之間的拉扯浮上檯面。',u:'https://news.artnet.com/art-world/london-national-gallery-citizens-assembly-2794057'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-07',c:['展覽','機構'],t:'長期未公開的莫利索與布拉克蒙作品首度亮相',e:'Long-Hidden Morisot and Bracquemond Paintings Make Public Debut',b:'兩位女性印象派畫家的作品在聖路易美術館（SLAM）首次公開。',u:'https://news.artnet.com/art-world/morisot-bracquemond-women-impressionists-slam-2791575'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-07',c:['評論'],t:'波洛克與羅斯科的畫，協助解開一個數十年的科學謎團',e:'Pollock and Rothko Works Help Explain a Decades-Long Scientific Mystery',b:'藝術與科技線的少見交叉：畫面的統計特徵被拿來當作物理現象的比對模型。',u:'https://news.artnet.com/art-world/pollock-rothko-physics-space-2794181'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-07',c:['機構','建築'],t:'翠西．艾敏在 Margate 布局下一步',e:'Tracey Emin Plots Her Next Big Move in Margate',b:'她在英國海邊小鎮持續擴張自己的機構版圖（Westbrook Loggia）。',u:'https://news.artnet.com/art-world/tracey-emin-margate-westbrook-loggia-2794445'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-07',c:['設計','市場'],t:'Salon Art + Design 邁入第 15 屆，收藏級設計正熱',e:'Salon Art and Design Returns for Its 15th Year as Collectible Design Booms',b:'收藏級設計（collectible design）是這兩年少數還在成長的區塊。',u:'https://news.artnet.com/market/salon-art-design-15th-edition-2794751'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-07',c:['市場','人事'],t:'Industry Intel：Ryan Presley 獲 10 萬美元原住民藝術獎',e:'Ryan Presley Wins $100,000 Award for Indigenous Art—and More Industry Intel',b:'每週產業快訊彙整，適合一次掃完人事與獎項。',u:'https://news.artnet.com/market/industry-intel-august-7-2793652'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-07',c:['展覽','評論'],t:'Artnet Bulletin：長達 640 年的凱吉作品換和弦了',e:'640-Year-Long John Cage Piece Changes Chord! And Other Art World Matters',b:'德國 Halberstadt 的 ORGAN²/ASLSP 演奏又推進一步，加上其他藝術界雜訊。',u:'https://news.artnet.com/artnet-bulletin/john-cage-aug-7-2026-2794796'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-06',c:['展覽','機構'],t:'Artnet Bulletin：已故畫家 Sarah Cunningham 首度美術館個展',e:'Late Painter Sarah Cunningham Gets First Museum Show—and Other Art World Matters',u:'https://news.artnet.com/artnet-bulletin/sarah-cunningham-aug-6-2026-2793214'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-05',c:['機構','建築'],t:'Artnet Bulletin：赫希洪雕塑花園重新綻放',e:'The Hirshhorn Sculpture Garden Blooms Again—and Other Art World Matters',b:'整修後的雕塑花園重新開放。',u:'https://news.artnet.com/artnet-bulletin/hirshhorn-sculpture-garden-aug-5-2026-2793846'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-04',c:['評論'],t:'Artnet Bulletin：我們正面臨一次文化「翻轉脈衝」嗎？',e:'Are We Facing a Cultural ‘Turnover Pulse’? And Other Art World Matters',b:'Ben Davis 借用演化生物學的 turnover pulse 概念，談文化生產週期是否正在整體換代。',u:'https://news.artnet.com/artnet-bulletin/turnover-pulse-aug-4-2026-2793290'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-04',c:['市場','人事'],t:'Lubov 畫廊創辦人 Francisco Correa Cordero 逝世，享年 37 歲',e:'Francisco Correa Cordero, Founder of Lubov Gallery, Dies at 37',u:'https://news.artnet.com/art-world/francisco-correa-cordero-lubov-gallery-founder-dead-2792229'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-03',c:['市場','收藏'],t:'亞斯本藝博會：大件作品、私人飛機，和一棟 6,250 萬美元的房子',e:'Amid Aspen Fairs, Collectors Peruse Big-Ticket Art, Private Jets, $62.5M House',b:'夏季度假型藝博會的現場報導。',u:'https://news.artnet.com/market/aspen-art-fair-2026-2793233'},
+{s:'artnet',batch:'2026-08-11',d:'2026-08-03',c:['市場','收藏'],t:'Art Market Minute：動畫原畫價格為何飆升',e:'Why Animation Art Prices Are Soaring',b:'另類收藏品類的價格動能，值得跟 collectible design 一起看。',u:'https://news.artnet.com/multimedia/art-market-minute-august-3-2793060'},
+
+/* ── The Art Newspaper ── */
+{s:'tan',batch:'2026-08-11',d:'2026-08-07',L:1,c:['考古','文資'],t:'土耳其世界遺產出土 2,500 年前巨型雕像',e:'‘We’re astounded and a bit perplexed by it’: colossal 2,500-year-old sculpture discovered at Unesco site in Turkey',b:'土耳其文化部表示，這件雕像改寫了學界對古呂底亞（Lydian）文明的理解。',u:'https://www.theartnewspaper.com/2026/08/07/colossal-2500-year-old-sculpture-discovered-turkey-unesco-site'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-07',L:1,c:['收藏','展覽','機構'],t:'梵谷《塔拉斯孔的驛馬車》將在紐約展出',e:'Van Gogh’s exuberant ‘Tarascon Stagecoach’ will go on show in New York',b:'連同 Pearlman 家族捐贈的另外 62 件作品，從洛杉磯巡迴而來。',u:'https://www.theartnewspaper.com/2026/08/07/van-goghs-exuberant-tarascon-stagecoach-is-donated-to-los-angeles'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-07',L:1,c:['修復'],t:'乾杯：德霍赫畫中被抹去的士兵，回來了',e:'Raise a glass: long-hidden image of soldier returns to Pieter de Hooch painting',b:'莫瑞泰斯美術館把歷史上某階段被塗掉的人物重新畫回畫面。修復倫理的有趣個案。',u:'https://www.theartnewspaper.com/2026/08/07/raise-a-glass-long-hidden-image-of-soldier-returns-to-pieter-de-hooch-painting'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-07',L:1,c:['政策'],t:'「對地球好的，就是對藝術家好的」：新版綠色宣言發表',e:'‘What’s good for the planet is good for artists’: group launches new Green Manifesto',b:'剛更名的英國藝術家會員組織 Artists Now 推出創作實踐的環境指南。',u:'https://www.theartnewspaper.com/2026/08/07/whats-good-for-the-planet-is-good-for-artists-group-launches-new-green-manifesto'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-06',L:1,c:['機構','建築'],t:'史密森尼七座博物館因冷卻系統故障關閉',e:'Seven Smithsonian museums shut down due to cooling system failure',b:'影響國家廣場南側多棟建築。硬體老化正在變成美國公立館舍的系統性風險。',u:'https://www.theartnewspaper.com/2026/08/06/smithsonian-museums-washington-dc-close-cooling-system-failure'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-06',c:['考古','建築'],t:'光達掃描在亞馬遜雨林下發現超過 2 萬處前殖民時期土方工程',e:'Lidar analysis reveals more than 20,000 pre-colonial earthworks under Amazonian rainforest',b:'新研究指出前哥倫布時期的 Aquiry 文明，發展程度與分布範圍都遠超過去認知。',u:'https://www.theartnewspaper.com/2026/08/06/ancient-earthworks-amazonian-earthworks-aquiry-civilisation-lidar-brazil'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-06',c:['機構','政策'],t:'英國地方博物館面臨關門，政府承諾伸援',e:'As local museums in the UK face closure, government promises help',b:'報告顯示 2000 至 2025 年間英國有 524 家博物館關閉。政府端出短期協助，結構問題未解。',u:'https://www.theartnewspaper.com/2026/08/06/as-local-museums-in-the-uk-face-closure-government-promises-help'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-06',c:['建築','機構','文資'],t:'義大利巨型核子碉堡將改建為冷戰博物館',e:'Huge nuclear bunker in Italy is set to become a Cold War museum',b:'維洛納附近的前北約指揮部 West Star，預計年接待 10 萬人次。',u:'https://www.theartnewspaper.com/2026/08/06/huge-nuclear-bunker-in-italy-is-set-to-become-a-cold-war-museum'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-05',c:['文資','建築'],t:'俄軍無人機摧毀烏克蘭 300 年木造哥薩克教堂',e:'Russian drone destroys unique 300-year-old wooden Cossack church in Ukraine',b:'官方稱聖母獻堂教堂是該類型 18 世紀建築最後一棟倖存者。',u:'https://www.theartnewspaper.com/2026/08/05/russian-drone-destroys-unique-300-year-old-wooden-cossack-church-in-ukraine'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-05',k:'gugg',c:['機構','人事'],t:'Valerie Hillings 出任古根漢阿布達比首任館長',e:'Valerie Hillings appointed inaugural director of Guggenheim Abu Dhabi',b:'與 Artnet 同日報導，可互相對照細節。',u:'https://www.theartnewspaper.com/2026/08/05/valerie-hillings-appointed-inaugural-director-of-guggenheim-abu-dhabi'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-05',c:['機構','展覽'],t:'羅浮宮出借伊斯蘭藝術珍品給史密森尼',e:'Louvre to lend Islamic art treasures to the Smithsonian',b:'展於史密森尼國立亞洲藝術博物館。',u:'https://www.theartnewspaper.com/2026/08/05/louvre-loans-islamic-art-treasures-smithsonian-national-museum-asian-art'},
+{s:'tan',batch:'2026-08-11',d:'2026-08-05',c:['文資','機構','政策'],t:'澳洲博物館歸還拉帕努伊祖先遺骸給復活節島',e:'The Australian Museum returns remains of Rapa Nui ancestors to Easter Island',b:'返還（repatriation）議題持續推進。',u:'https://www.theartnewspaper.com/2026/08/05/australian-museum-repatriates-rapa-nui-remains-easter-island'},
+
+/* ── Artforum ── */
+{s:'artforum',batch:'2026-08-11',d:'2026-08-07',L:1,c:['機構','建築','修復'],t:'烏菲茲公布 5,800 萬美元改造計畫',e:'Uffizi Unveils Plans for $58 Million Transformation',b:'館長 Simone Verde 於 8 月 5 日記者會宣布，兩年期程涵蓋主館、碧提宮與波波里花園：新展區、動線重整、照明與說明牌更新，以及空調系統大修（含兩座新冷卻塔）。',u:'https://www.artforum.com/news/uffizi-reveals-plans-for-58-million-transformation-1234756664/'},
+{s:'artforum',batch:'2026-08-11',d:'2026-08-07',k:'whitecube',c:['市場','人事'],t:'White Cube 紐約失去三位頂尖總監',e:'White Cube New York Loses Three Top Directors',b:'Courtney Willis Blair、Sukanya Rajaratnam、Jessie Washburne-Harris 三人同時與 White Cube 紐約切割。Artforum 指出同期 David Zwirner、Pace 及一批中小型畫廊也在關據點、裁人與砍藝術家名單。',u:'https://www.artforum.com/news/white-cube-new-york-loses-three-star-directors-1234756678/'},
+{s:'artforum',batch:'2026-08-11',d:'2026-08-10',c:['建築','政策'],t:'法院裁定：川普要蓋白宮宴會廳，得先過國會',e:'Court Ruling Says Trump Needs Congressional Approval for New White House Ballroom',b:'聯邦上訴法院法官 Patricia Millett 與 Bradley Garcia 在意見書中寫道，每位總統都只是白宮的暫時租客，不是擁有者。',u:'https://www.artforum.com/news/court-ruling-trump-needs-approval-for-new-ballroom-1234756708/'},
+{s:'artforum',batch:'2026-08-11',d:'2026-08-10',c:['人事','機構'],t:'Storm King 延攬赫希洪的 Anne Reeve 任資深策展人',e:'Storm King Art Center Taps Hirshhorn’s Anne Reeve for Senior Curator Role',b:'哈德遜河谷的雕塑公園補上策展主力。',u:'https://www.artforum.com/news/storm-king-art-center-names-anne-reeve-senior-curator-1234756698/'},
+{s:'artforum',batch:'2026-08-11',d:'2026-08-06',k:'rausch',c:['機構','建築','市場'],t:'勞森伯格基金會計畫出售藝術家長年的紐約居所',e:'Robert Rauschenberg Foundation Plans to Sell the Artist’s Longtime NYC Home',b:'與 Artnet 的報導互為佐證。',u:'https://www.artforum.com/news/robert-rauschenberg-foundation-selling-the-artists-nyc-home-1234756526/'},
+{s:'artforum',batch:'2026-08-11',d:'2026-08-05',c:['修復','文資'],t:'安基利軻最早的祭壇畫修復完成，回到菲耶索萊',e:'Fra Angelico’s Earliest Altarpiece Returns to Fiesole after Repair and Cleaning',b:'1420–23 年間的《菲耶索萊祭壇畫》歷經兩年修復回到聖多明我修道院原位，由 Friends of Florence 出資，同時處理了 16 世紀一次舊修復留下的問題。',u:'https://www.artforum.com/news/fra-angelico-altarpiece-returns-to-fiesole-after-repair-1234756473/'},
+{s:'artforum',batch:'2026-08-11',d:'2026-08-04',c:['收藏','機構','建築'],t:'巴西藏家 Bernardo Paz 要在 Inhotim 旁邊再蓋一座美術館',e:'Vindicated Collector Bernardo Paz is Developing a New Museum in Brazil',b:'Instituto Inhotim 創辦人自行主導與出資，新館將以非營利形式運作，並附設植物園。',u:'https://www.artforum.com/news/collector-bernardo-paz-developing-new-museum-in-brazil-1234756249/'},
+
+/* ── e-flux ── */
+{s:'eflux',batch:'2026-08-11',d:'2026-08-11',c:['建築','展覽'],t:'柏林畫廊：Josef Kaiser《為東德而建》',e:'Berlinische Galerie — Josef Kaiser: Building for the GDR',b:'東德現代主義建築師的回顧，社會主義時期公共建築的設計語言檔案。',u:'https://www.e-flux.com/announcements/6787769/josef-kaiserbuilding-for-the-gdr'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-07',c:['展覽','機構'],t:'亞當．密茨凱維奇學院《Rites of Passage》',e:'Adam Mickiewicz Institute — Rites of Passage',b:'波蘭官方文化機構的國際展演計畫公告。',u:'https://www.e-flux.com/announcements/6787323/rites-of-passage'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-06',c:['建築','徵件'],t:'密斯凡德羅基金會：Lilly Reich 建築平權獎助開放申請',e:'Fundació Mies van der Rohe — Lilly Reich Grant for Equality in Architecture',b:'以密斯長年合作者 Lilly Reich 命名的獎助，針對建築領域的平權研究與實踐。',u:'https://www.e-flux.com/announcements/6787914/lilly-reich-grant-for-equality-in-architecture'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-06',c:['展覽','機構'],t:'首爾 Arko Art Center《學習的藝術：成為彼此的學校》',e:'Arko Art Center — The Art of Learning: Becoming Each Other’s School',b:'把「教育」本身當成展覽方法論的韓國案例。',u:'https://www.e-flux.com/announcements/6785670/the-art-of-learning-becoming-each-other-s-school'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-05',c:['建築','徵件'],t:'鹿特丹 Independent School for the City：2026 秋冬課程',e:'Independent School for the City — Fall and winter programme 2026',b:'以城市與建築為核心的獨立學程，適合想補建築理論訓練的人。',u:'https://www.e-flux.com/announcements/6787858/fall-and-winter-programme-2026'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-05',c:['徵件','人事','機構'],t:'佛羅倫斯 Villa Romana 徵求館長',e:'Villa Romana — Seeking Director',b:'德國在義大利歷史最悠久的藝術家之家開出總監職缺。',u:'https://www.e-flux.com/announcements/6787911/seeking-director'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-05',c:['展覽','機構'],t:'韓國國立現代美術館果川館 40 週年《光的想像》',e:'MMCA Gwacheon 40th Anniversary: Imaginations in Light',b:'九月首爾藝術週前後可順道排入的機構大展。',u:'https://www.e-flux.com/announcements/6787607/40th-anniversary-imaginations-in-light'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-03',c:['評論','建築','市場'],t:'e-flux Notes：城市是誰的？藝術與不動產經濟',e:'Who owns the city? Art and the property economy',b:'把畫廊收縮、藝術家外移、機構租金問題放在同一個框架下談。今年這一串新聞的理論註腳。',u:'https://www.e-flux.com/announcements/6785844/who-owns-the-city-art-and-the-property-economy'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-01',c:['展覽'],t:'米蘭 MUDEC：鹽田千春《雪融的瞬間》',e:'MUDEC — Chiharu Shiota: The Moment the Snow Melts',b:'刊登於 7 月底、檔期延續至 8 月。',u:'https://www.e-flux.com/announcements/6787882/chiharu-shiotathe-moment-the-snow-melts'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-01',c:['展覽','機構'],t:'新北市美術館《民間／攝影：紀實視野及其寫實轉折》',e:'New Taipei City Art Museum — Minjian / Photography: Documentary Vision and Its Realist Inflection',b:'台灣機構少數登上 e-flux 的檔期。7 月底刊出、8 月持續展出，國際能見度值得留意。',u:'https://www.e-flux.com/announcements/6787789/minjian-photography-documentary-vision-and-its-realist-inflection'},
+{s:'eflux',batch:'2026-08-11',d:'2026-08-01',c:['徵件'],t:'新加坡美術館：2027/2028 第四期駐村徵件',e:'Singapore Art Museum — Open call: Residencies Cycle 4 (2027/2028)',b:'東南亞重要駐村機會，申請期橫跨 8 月。',u:'https://www.e-flux.com/announcements/6787456/open-call-residencies-cycle-4-2027-2028'},
+
+/* ── Frieze ── */
+{s:'frieze',batch:'2026-08-11',d:'2026-08-07',L:1,c:['市場','展覽'],t:'廁所方塊與葛雷森．培里：Frieze London 與 Masters 2026 節目公布',e:'Toilet Cubes and Grayson Perry: Programming at Frieze London and Masters 2026',b:'今年有 Gray Wielebinski 的現地委託、與 ICA 合作的影像單元，以及非營利組織接管 Frieze Reading Room。',u:'https://www.frieze.com/article/frieze-london-masters-2026-programming-announcement'},
+{s:'frieze',batch:'2026-08-11',d:'2026-08-07',c:['市場','設計','評論'],t:'Es Devlin、Grayson Perry、Danh Vō 領銜 Frieze Masters Talks 2026',e:'Es Devlin, Grayson Perry and Danh Vō Headline Frieze Masters Talks 2026',b:'主題「Breaking the Mould」，談陶瓷、藝術史正典的擴張，以及機構展覽的未來。Es Devlin 是舞台設計出身，這場對設計線的人特別值得看。',u:'https://www.frieze.com/article/frieze-masters-2026-talks-programme'},
+{s:'frieze',batch:'2026-08-11',d:'2026-08-07',k:'seoul',c:['市場','展覽'],t:'從 Karin Kneffel 到徐道獲：Frieze Seoul 個展單元精選',e:'Karin Kneffel to Do Ho Suh – Solo Presentations at Frieze Seoul',b:'今年單一藝術家展位的重點名單，主題集中在身分、歷史與環境。',u:'https://www.frieze.com/article/karin-kneffel-do-ho-suh-solo-presentations-frieze-seoul-2026'},
+{s:'frieze',batch:'2026-08-11',d:'2026-08-07',c:['評論','展覽'],t:'評論：Leah Dixon 重新發明輪子',e:'Leah Dixon Reinvents the Wheel',b:'在西班牙 Espinavessa 的 Spiritvessel，藝術家兼酒吧經營者把她的後 911 經驗改寫成一則以雕塑實現的女性主義寓言。',u:'https://www.frieze.com/article/leah-dixon-tartan-tartana-2026-review'},
+{s:'frieze',batch:'2026-08-11',d:'2026-08-07',c:['評論'],t:'Calla Henkel 的影響書單',e:'The Books That Influence Calla Henkel',b:'第三本小說《Four Terrible Parents》出版之際，她列出讓自己想寫作的那些書。',u:'https://www.frieze.com/article/books-influence-calla-henkel'},
+{s:'frieze',batch:'2026-08-11',d:'2026-08-07',c:['展覽','市場'],t:'Meet Me in London：Ella Fleck（影片）',e:'Meet Me in London: Ella Fleck',b:'OnlyFans 和蝴蝶有什麼共通點？在 Frieze London 2026 Focus 單元推出個展的她自己說明。',u:'https://www.frieze.com/video/meet-me-london-ella-fleck-frieze-london-2026'},
+{s:'frieze',batch:'2026-08-11',d:'2026-08-05',c:['評論','展覽'],t:'評論：Elisa Giardina Papa 與那座消失的島',e:'Elisa Giardina Papa and the Island That Vanished',b:'倫敦 ICA，新作影片重訪 1831 年在西西里外海隆起、又被海浪侵蝕消失的一塊爭議陸地。',u:'https://www.frieze.com/article/elisa-giardina-papa-she-flickered-2026-review'},
+{s:'frieze',batch:'2026-08-11',d:'2026-08-05',c:['評論','建築'],t:'Alan Ruiz 與光的政治',e:'Alan Ruiz and the Politics of Light',b:'在 Dia Bridgehampton，他把光重新界定為勞動、監控與權力的一種形式，而不是中性的物理現象。',u:'https://www.frieze.com/article/alan-ruiz-profile'}
+
+];
+
+/* ══════════════════════════════════════════════════════════
+   事件重點整理
+   只做「兩家以上媒體同時報導」的事件。key 對應 ITEMS 的 k。
+   ══════════════════════════════════════════════════════════ */
+const EVENTS={
+
+seoul:{
+t:'九月首爾藝術週：Kiaf 25 週年，與 Frieze Seoul 同場同期',
+lead:'9 月 2 至 6 日，Kiaf SEOUL 與 Frieze Seoul 同時在首爾 COEX 開展。Kiaf 邁入第 25 屆，175 家畫廊來自 18 個國家與地區。',
+x:['Kiaf SEOUL 2026：9/2–9/6，COEX，175 家畫廊、18 國，第 25 屆；主辦為韓國畫廊協會',
+'首度設立外部創意總監，由設計師 Kuho Jung（鄭久澔）操刀品牌、空間設計與特展策劃',
+'本屆主題「Coexistence」，處理人與科技的關係；特展之一「HUMAL」（human＋animal）集結七位跨領域藝術家',
+'Kiaf Plus 單元納入 19 家年輕畫廊與實驗計畫，含 Gallery Hesed（首爾）、Arma Gallery（馬德里）、Mizusai（東京）',
+'Frieze Seoul 2026：9/2–9/5，同在 COEX。個展單元重點包含 Karin Kneffel 與徐道獲（Do Ho Suh），主題集中在身分、歷史與環境',
+'8/31–9/3 有四晚 Neighborhood Nights，分別在乙支路、漢南、清潭、三清'],
+w:'兩個藝博會同場同期，這在其他城市會是災難，在首爾變成綜效。真正的訊號是 Kiaf 找了時尚與展演背景的設計師當創意總監——藝博會開始把自己當品牌與空間體驗經營，不再只是攤位租賃。對台灣畫廊來說，九月首爾比十月倫敦更值得排。'},
+
+whitecube:{
+t:'White Cube 紐約三位資深總監同時離職',
+lead:'Courtney Willis Blair、Sukanya Rajaratnam、Jessie Washburne-Harris 三人同時與 White Cube 紐約切割，離職理由各異。',
+x:['Willis Blair 2023 年加入，畫廊方說法是「回歸長年以來想投入的學術工作」',
+'Rajaratnam 同年到任，職稱為全球策略市場計畫總監，離職為「專注個人事業」',
+'Washburne-Harris 不到一年前才到任，負責美國市場的長期成長，畫廊未說明原因。她曾自營 Harris Lieberman 畫廊，後任職 Pace 與 Marian Goodman 高層',
+'White Cube 1993 年於倫敦創立，2023 年進軍紐約，旗艦位於麥迪遜大道 1002 號，鄰近 Gagosian 與 Acquavella；另有香港、巴黎、首爾據點',
+'Artforum 指出，同期 David Zwirner、Pace 及一批中小型畫廊也在關閉據點、裁減人員與藝術家名單'],
+w:'這是這批最重要的市場新聞。畫廊裁的不是行政職，是帶客戶的高薪業務層——比任何拍賣總額都更能說明一級市場的溫度。把它跟 Gagosian 退出巴塞爾與倫敦 Burlington Arcade、Andrew Kreps 合夥人 Elizabeth Mulholland 轉投 David Zwirner 放在一起，是同一條收縮曲線。特別值得注意的是三人任期都很短，最長不過三年——2023 年那波藍籌擴張砸下去的人事投資，現在正在被回收。'},
+
+rausch:{
+t:'勞森伯格基金會出售藝術家的紐約故居',
+lead:'Robert Rauschenberg 位於紐約 NoHo 拉法葉街 381 號的故居，已委託 Newmark 掛牌出售。',
+x:['地址：381 Lafayette Street，紐約 NoHo',
+'Rauschenberg 1965 年買下這棟 19 世紀初的連棟房屋；建物早年曾作為孤兒院與修道院',
+'2008 年他過世後，此處成為 Robert Rauschenberg Foundation 總部',
+'委託商用不動產公司 Newmark 掛牌'],
+w:'藝術家基金會賣掉創作現場，通常代表兩件事之一：資產配置調整，或營運壓力。這棟的象徵成本很高，賣掉會有輿論代價，他們仍然做。跟同期「美術館開始聯手買作品」「英國 25 年關掉 524 家博物館」放在一起看，非營利藝術機構的財務結構正在全面承壓。後續要追的是：賣掉之後基金會的補助規模是擴大還是縮小——那才會透露這筆錢是為了擴張還是為了止血。'},
+
+gugg:{
+t:'古根漢阿布達比任命首任館長，12 月 11 日開幕',
+lead:'阿布達比文化與觀光部宣布，由 Valerie Hillings 出任古根漢阿布達比首任館長。這座 Frank Gehry 設計的館舍將於 12 月 11 日開幕。',
+x:['Hillings 2009 至 2018 年即擔任古根漢阿布達比計畫的策展人暨策展事務副總監，負責收藏策略、收購與開館前規劃',
+'更早她在紐約古根漢策展團隊任職五年；14 年間於四大洲策劃超過 15 檔展覽',
+'2018 年起任北卡羅來納美術館館長，任內藏品增加約 400 件、年觀眾數倍增至約 120 萬，並完成該館史上最大規模私人募款',
+'館舍為 Frank Gehry 設計，30 個展廳，室內展區 11,600 平方公尺、戶外展區 23,000 平方公尺',
+'收藏定位為 1960 年代至今的現當代藝術，早期收購策略聚焦西亞、北非與南亞',
+'計畫最早於 2006 年公布，造價未公開；位於薩迪亞特文化區，與羅浮宮阿布達比、扎耶德國家博物館並列'],
+w:'找一個 2009 年就在的人回來收尾，代表他們要的是穩定交付而非重新定義。真正該注意的是規模——11,600 平方公尺室內展區，開館即為全球最大的現當代美術館之一。波灣的機構資本仍在擴張，跟歐美同時發生的收縮完全反向，這是今年最清楚的結構性對比。另外，這座館的興建過程長期有移工勞動條件爭議，開幕前後會再被翻出來。'},
+
+mingwei:{
+t:'第二屆明維藝新獎：當 AI 成為命題',
+lead:'以「人機共感——科技與藝術的交融」為題，金獎由余承倧《Body as Algorithm》獲得。',
+x:['8 月 1 日揭曉。金獎余承倧《Body as Algorithm》，將網路影像轉譯為身體演算',
+'銀獎陳岳宏《煙花》；明雄獎陳伯軒，從編織與生態缸切入人機關係',
+'初審自全國徵件選出 20 件入圍',
+'主辦：明維教育基金會；指導：教育部終身教育司',
+'得主展 8/2–8/12 於北科大藝文中心'],
+w:'兩位主要得主的路徑剛好相反——余承倧把身體變成演算法，陳伯軒讓科技退回背景，用編織與生態缸談共感。這組對照比獎項本身有意思。獎項命題直接押 AI 也是產業訊號：台灣的教育型基金會認為這是接下來幾年必須處理的問題。典藏做了得主專訪談創作邏輯，非池中做的是名單與展期，兩邊互補，要看內容讀典藏、要看資訊讀非池中。'},
+
+tfam:{
+t:'北美館 116 年度申請展獲選四案，2027 下半年登場',
+lead:'洪瑄、劉文瑄、謝牧岐、羅懿君四位獲選，預計 2027 年下半年於北美館三樓展出。',
+x:['洪瑄《驚燕》：從書畫裝裱的「驚燕帶」切入，該構件兼具保護作品與驅鳥功能，藉此談日常中人為劃分的內外界線、標語與規訓',
+'劉文瑄《將就園》：以歷史文人筆下的虛構園林為發想，把創作過程的未完成狀態納入展覽，轉換傳統造景的命名與觀看方式',
+'謝牧岐《成為那幅畫》：以台灣前輩畫家的經典風景構圖為敘事核心，將畫作場景延伸至展場空間',
+'羅懿君《線與線、島與島：從這裡出發的風景之間》：以琉球弧島鏈的地理脈絡為線索，結合香蕉皮、芭蕉布與香蕉絲等島嶼植物纖維與工藝',
+'評審團 7 人，主席為藝術家姚瑞中，委員含張元茜、王品驊、簡子傑、林昆穎、雷逸婷、高子衿',
+'獲選者可獲上限 40 萬元展覽製作費與 10 萬元專輯印製費'],
+w:'四案有一條共同軸線：都在處理「既有形制怎麼被重新使用」——裝裱構件、園林、前輩畫家構圖、島嶼工藝纖維。這不是巧合，是評審團的選擇，姚瑞中當主席讓這個結果更好讀。如果你在追台灣中生代的機構軌跡，這四位 2027 下半年的檔期現在就可以先標起來。羅懿君那案把琉球弧當方法，跟近年台灣談島鏈的地緣論述扣得很緊，可能是四案裡討論度最高的。'},
+
+expo:{
+t:'2026 臺灣文博會：文化策展在空總，品牌商展在南港',
+lead:'今年分兩展區進行，規模創歷年新高。文化策展 7/31 於空總開幕，品牌商展 8/6 於南港展覽館揭幕。',
+x:['文化策展《第零位元 Bit Zero》於空總國家文化基地，7 月 31 日開幕，空總古蹟大樓首度開放',
+'品牌商展 8 月 6 日於南港展覽館揭幕，主題「未來日常式 Future Everyday」',
+'商展聚焦 IP 授權與文創品牌，含「黑潮星樂園－幻奇星劇院」、HTC VIVERSE 虛擬展區，以及首次亮相的黑潮商店'],
+w:'重心從「賣商品」轉向「賣 IP 與世界觀」，這跟日韓文創的路徑一致。非池中談的是策展論述，VERSE 談的是品牌與授權，兩篇合看才完整——這也剛好說明文博會這幾年的雙軌性格：一邊要當文化政策的展示櫥窗，一邊要當實質商展。兩邊的評價標準不同，混在一起辦的張力每年都在。'}
+
+};
+
+/* ══════════════════════ 以下為程式，不用改 ══════════════════════ */
+
+const state={regions:new Set(),sources:new Set(),cats:new Set(),years:new Set(),months:new Set(),q:'',hideRead:false,latestOnly:false,onlyGal:false};
+let read=new Set(), storageOK=false;
+const batches=[...new Set(ITEMS.map(i=>i.batch))].sort().reverse();
+const latestBatch=batches[0];
+
+async function loadRead(){
+  try{
+    if(window.storage&&typeof window.storage.get==='function'){
+      storageOK=true;
+      const r=await window.storage.get('artwall:read');
+      if(r&&r.value){read=new Set(JSON.parse(r.value));return;}
+    }
+  }catch(e){}
+  try{const raw=localStorage.getItem('artwall:read');if(raw)read=new Set(JSON.parse(raw));}catch(e){}
+}
+async function saveRead(){
+  const arr=JSON.stringify([...read]);
+  if(storageOK){try{await window.storage.set('artwall:read',arr);return;}catch(e){}}
+  try{localStorage.setItem('artwall:read',arr);}catch(e){}
+}
+
+const dates=ITEMS.map(i=>i.d).sort();
+const mA=dates[0].slice(0,7).replace('-','.'), mB=dates[dates.length-1].slice(0,7).replace('-','.');
+document.getElementById('built').textContent=BUILT;
+document.getElementById('span').textContent=(mA===mB?mA:mA+'–'+mB);
+document.getElementById('total').textContent=ITEMS.length;
+document.getElementById('newcount').textContent=ITEMS.filter(i=>i.batch===latestBatch).length;
+
+const chipHost=document.getElementById('srcchips');
+Object.entries(SOURCES).forEach(([k,v])=>{
+  const n=ITEMS.filter(i=>i.s===k).length; if(!n) return;
+  const b=document.createElement('button');
+  b.className='chip'+(v.region==='tw'?' pig':'');
+  b.dataset.source=k; b.setAttribute('aria-pressed','false');
+  b.innerHTML=v.name+'<span class="n">'+n+'</span>';
+  chipHost.appendChild(b);
+});
+const YEARS=[...new Set(ITEMS.map(i=>i.d.slice(0,4)))].sort().reverse();
+const MONTHS=[...new Set(ITEMS.map(i=>i.d.slice(5,7)))].sort();
+const yHost=document.getElementById('yearchips'), mHost=document.getElementById('monthchips');
+YEARS.forEach(y=>{
+  const n=ITEMS.filter(i=>i.d.slice(0,4)===y).length;
+  const b=document.createElement('button');
+  b.className='chip'; b.dataset.year=y; b.setAttribute('aria-pressed','false');
+  b.innerHTML=y+'<span class="n">'+n+'</span>';
+  yHost.appendChild(b);
+});
+MONTHS.forEach(m=>{
+  const n=ITEMS.filter(i=>i.d.slice(5,7)===m).length;
+  const b=document.createElement('button');
+  b.className='chip'; b.dataset.month=m; b.setAttribute('aria-pressed','false');
+  b.innerHTML=parseInt(m,10)+' 月<span class="n">'+n+'</span>';
+  mHost.appendChild(b);
+});
+const catHost=document.getElementById('catchips');
+CATS.forEach(c=>{
+  const n=ITEMS.filter(i=>(i.c||[]).includes(c)).length; if(!n) return;
+  const b=document.createElement('button');
+  b.className='chip'; b.dataset.cat=c; b.setAttribute('aria-pressed','false');
+  b.innerHTML=c+'<span class="n">'+n+'</span>';
+  catHost.appendChild(b);
+});
+
+/* 群集與加權計分 */
+const clusters={};
+ITEMS.forEach(i=>{const key=i.k||('_'+i.u);(clusters[key]=clusters[key]||[]).push(i);});
+const hot=Object.entries(clusters).map(([k,arr])=>{
+  const outlets=new Set(arr.map(x=>x.s));
+  const regions=new Set([...outlets].map(s=>(SOURCES[s]||{}).region));
+  const leads=arr.filter(x=>x.L).length;
+  const cross=regions.size>1;
+  const gal=arr.some(x=>TWG[x.u]);
+  return{k,arr,outlets,leads,cross,gal,score:outlets.size*3+arr.length+leads*2+(cross?3:0)+(gal?3:0)};
+}).filter(o=>o.score>=6).sort((a,b)=>b.score-a.score||(a.arr[0].d<b.arr[0].d?1:-1));
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmt(d){const p=d.split('-');return p[1]+'.'+p[2];}
+function slug(u){return 'c'+u.replace(/[^a-z0-9]/gi,'').slice(-24);}
+
+if(hot.length){
+  document.getElementById('heat').hidden=false;
+  document.getElementById('heatlist').innerHTML=hot.slice(0,8).map(o=>{
+    const names=[...o.outlets].map(s=>SOURCES[s]?SOURCES[s].name:s).join('、');
+    const label=TOPICS[o.k]||o.arr[0].t;
+    const why=[o.outlets.size+' 家'];
+    if(o.arr.length>o.outlets.size) why.push(o.arr.length+' 篇');
+    if(o.leads) why.push('頭條');
+    if(o.cross) why.push('跨區');
+    if(o.gal) why.push('台灣藝廊');
+    return '<li><span class="cnt">'+o.score+'</span><button data-k="'+esc(o.k)+'">'+esc(label)+(EVENTS[o.k]?' <span class="hasum">重點整理</span>':'')+'</button>'
+      +'<span class="who">'+esc(why.join(' · '))+' — '+esc(names)+'</span></li>';
+  }).join('');
+}
+
+function resetChips(sel){document.querySelectorAll('.controls '+sel).forEach(x=>x.setAttribute('aria-pressed','false'));}
+function syncClears(){
+  const n=(x)=>x.size?' '+x.size:'';
+  document.getElementById('ny').textContent=n(state.years);
+  document.getElementById('nm').textContent=n(state.months);
+  document.getElementById('nc').textContent=n(state.cats);
+  document.querySelector('[data-dd="y"]').setAttribute('aria-pressed',state.years.size?'true':'false');
+  document.querySelector('[data-dd="m"]').setAttribute('aria-pressed',state.months.size?'true':'false');
+  document.querySelector('[data-dd="c"]').setAttribute('aria-pressed',state.cats.size?'true':'false');
+  document.getElementById('clrall').hidden=!(state.years.size||state.months.size||state.cats.size);
+}
+/* 台灣藝廊線：依藝廊分組，出現次數多的排前面 */
+const galGroups={};
+ITEMS.forEach(i=>{ const g=TWG[i.u]; if(g){ (galGroups[g]=galGroups[g]||[]).push(i); } });
+const galList=Object.entries(galGroups)
+  .map(([g,arr])=>({g,arr:arr.slice().sort((a,b)=>a.d<b.d?1:-1)}))
+  .sort((a,b)=> b.arr.length-a.arr.length || (a.arr[0].d<b.arr[0].d?1:-1));
+if(galList.length){
+  document.getElementById('galrail').hidden=false;
+  document.getElementById('gallist').innerHTML=galList.map(o=>{
+    const top=o.arr[0], src=SOURCES[top.s];
+    return '<li><span class="galname">'+esc(o.g)+'</span>'
+      +'<a href="'+esc(top.u)+'" target="_blank" rel="noopener">'+esc(top.t)+'</a>'
+      +'<span class="who">'+(o.arr.length>1?o.arr.length+' 則 · ':'')+esc(src.name)+' · '+top.d.slice(5).replace('-','.')+'</span></li>';
+  }).join('');
+}
+
+/* 藝博會軌道 */
+if(SHOW_FAIRS&&FAIRS.length){
+  document.getElementById('fairrail').hidden=false;
+  document.getElementById('fairlist').innerHTML=FAIRS.map(f=>{
+    const has=f.tw&&f.tw.length;
+    return '<div class="fair'+(has?'':' pending')+'">'
+      +'<div class="fair-top"><span class="fair-name">'+esc(f.name)+'</span>'
+      +'<span class="fair-when">'+esc(f.when)+'　·　'+esc(f.where)+'</span></div>'
+      +'<p class="fair-scale">'+esc(f.scale)+'</p>'
+      +'<p class="fair-tw"><span class="twn'+(has?'':' none')+'">台灣 '+esc(f.twn)+'</span></p>'
+      +(has?'<div class="twchips">'+f.tw.map(g=>'<span class="twchip">'+esc(g)+'</span>').join('')+'</div>':'')
+      +(f.note?'<p class="fair-note">'+esc(f.note)+'</p>':'')
+      +'<p class="fair-src">'+f.src.map(x=>'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.n)+'</a>').join('　')+'</p>'
+      +'</div>';
+  }).join('');
+}
+
+const wall=document.getElementById('wall');
+function visible(){
+  return ITEMS.filter(i=>{
+    const src=SOURCES[i.s]||{region:'intl',name:i.s,domain:''};
+    if(state.latestOnly&&i.batch!==latestBatch) return false;
+    if(state.onlyGal&&!TWG[i.u]) return false;
+    if(state.regions.size&&!state.regions.has(src.region)) return false;
+    if(state.sources.size&&!state.sources.has(i.s)) return false;
+    if(state.years.size&&!state.years.has(i.d.slice(0,4))) return false;
+    if(state.months.size&&!state.months.has(i.d.slice(5,7))) return false;
+    if(state.cats.size&&!(i.c||[]).some(c=>state.cats.has(c))) return false;
+    if(state.hideRead&&read.has(i.u)) return false;
+    if(state.q){
+      const hay=(i.t+' '+(i.e||'')+' '+(i.b||'')+' '+src.name+' '+(i.c||[]).join(' ')).toLowerCase();
+      if(!hay.includes(state.q)) return false;
+    }
+    return true;
+  }).sort((a,b)=>a.d===b.d?0:(a.d<b.d?1:-1));
+}
+function render(){
+  syncClears();
+  const list=visible();
+  document.getElementById('count').textContent='顯示 '+list.length+' / '+ITEMS.length;
+  if(!list.length){wall.innerHTML='<p class="empty">沒有符合的項目。放寬篩選或清空搜尋。</p>';return;}
+  wall.innerHTML=list.map(i=>{
+    const src=SOURCES[i.s]||{region:'intl',name:i.s,domain:''};
+    const isRead=read.has(i.u);
+    const key=i.k||('_'+i.u);
+    const co=new Set((clusters[key]||[]).map(x=>x.s)).size;
+    const badges=[];
+    if(co>1) badges.push('<span class="badge co">'+co+' 家同報</span>');
+    if(i.L) badges.push('<span class="badge lead">首頁頭條</span>');
+    if(TWG[i.u]) badges.push('<span class="badge gal">'+esc(TWG[i.u])+'</span>');
+    (i.c||[]).forEach(c=>badges.push('<span class="badge">'+esc(c)+'</span>'));
+    if(batches.length>1&&i.batch===latestBatch) badges.push('<span class="badge lead">本批新增</span>');
+    const ev=(i.k&&EVENTS[i.k])?i.k:null;
+    const titleA = ev
+      ? '<a href="#" class="open" data-k="'+esc(ev)+'">'+esc(i.t)+'</a>'
+      : '<a href="'+esc(i.u)+'" target="_blank" rel="noopener">'+esc(i.t)+'</a>';
+    const footA = ev
+      ? '<a href="#" class="open" data-k="'+esc(ev)+'">重點整理</a>'
+      : '<a href="'+esc(i.u)+'" target="_blank" rel="noopener">'+esc(src.domain)+'</a>';
+    return '<article class="card '+src.region+(isRead?' read':'')+'" id="'+slug(i.u)+'">'
+      +'<p class="eyebrow"><span class="src">'+esc(src.name)+'</span><span>'+fmt(i.d)+'</span></p>'
+      +'<h2>'+titleA+'</h2>'
+      +(i.e?'<p class="orig">'+esc(i.e)+'</p>':'')
+      +(i.b?'<p class="bodytext">'+esc(i.b)+'</p>':'')
+      +(badges.length?'<div class="badges">'+badges.join('')+'</div>':'')
+      +'<div class="credit"><button class="mark" data-u="'+esc(i.u)+'">'+(isRead?'已讀':'標記已讀')+'</button>'
+      +footA+'</div>'
+      +'</article>';
+  }).join('');
+}
+
+/* ── 重點整理面板 ── */
+const panel=document.getElementById('panel'), scrim=document.getElementById('scrim');
+function openPanel(k){
+  const ev=EVENTS[k]; if(!ev) return;
+  const arr=(clusters[k]||[]);
+  const outlets=[...new Set(arr.map(x=>x.s))];
+  const tw=arr.some(x=>(SOURCES[x.s]||{}).region==='tw');
+  document.getElementById('ptop').className='panel-top '+(tw?'tw':'intl');
+  document.getElementById('pmeta').innerHTML='<b>'+outlets.length+' 家媒體同報</b>　'+esc(outlets.map(s=>SOURCES[s].name).join('、'));
+  let h='<h2>'+esc(ev.t)+'</h2>';
+  h+='<span class="plabel">重點</span><p class="txt">'+esc(ev.lead)+'</p>';
+  if(ev.x&&ev.x.length) h+='<span class="plabel">細節</span><ul>'+ev.x.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul>';
+  if(ev.w) h+='<span class="plabel">為什麼值得注意</span><p class="txt">'+esc(ev.w)+'</p>';
+  h+='<span class="plabel">來源（'+arr.length+' 篇）</span><div class="srclist">';
+  arr.slice().sort((a,b)=>a.d<b.d?1:-1).forEach(it=>{
+    const sc=SOURCES[it.s];
+    h+='<a class="srcrow" href="'+esc(it.u)+'" target="_blank" rel="noopener">'
+      +'<span class="srow-n">'+esc(sc.name)+'</span>'
+      +'<span class="srow-t">'+esc(it.t)+'</span>'
+      +'<span class="srow-d">'+it.d.slice(5).replace('-','.')+'</span></a>';
+    if(!read.has(it.u)) read.add(it.u);
+  });
+  h+='</div>';
+  saveRead();
+  document.getElementById('pbody').innerHTML=h;
+  document.getElementById('pbody').scrollTop=0;
+  panel.classList.add('on'); scrim.classList.add('on');
+  document.body.style.overflow='hidden';
+  document.getElementById('pclose').focus();
+}
+function closePanel(){
+  panel.classList.remove('on'); scrim.classList.remove('on');
+  document.body.style.overflow=''; render();
+}
+document.getElementById('pclose').addEventListener('click',closePanel);
+scrim.addEventListener('click',closePanel);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('on'))closePanel();});
+
+document.querySelector('.controls').addEventListener('click',e=>{
+  const dd=e.target.closest('.ddbtn');
+  if(dd){
+    const box=dd.parentElement, willOpen=!box.classList.contains('open');
+    document.querySelectorAll('.dd').forEach(d=>d.classList.remove('open'));
+    document.querySelectorAll('.ddbtn').forEach(x=>x.setAttribute('aria-expanded','false'));
+    if(willOpen){box.classList.add('open');dd.setAttribute('aria-expanded','true');}
+    return;
+  }
+  const b=e.target.closest('.chip'); if(!b) return;
+  const on=b.getAttribute('aria-pressed')==='true';
+  b.setAttribute('aria-pressed',String(!on));
+  if(b.dataset.region){on?state.regions.delete(b.dataset.region):state.regions.add(b.dataset.region);}
+  else if(b.dataset.source){on?state.sources.delete(b.dataset.source):state.sources.add(b.dataset.source);}
+  else if(b.dataset.cat){on?state.cats.delete(b.dataset.cat):state.cats.add(b.dataset.cat);}
+  else if(b.dataset.year){on?state.years.delete(b.dataset.year):state.years.add(b.dataset.year);}
+  else if(b.dataset.month){on?state.months.delete(b.dataset.month):state.months.add(b.dataset.month);}
+  else if(b.id==='clrall'){state.years.clear();state.months.clear();state.cats.clear();
+    resetChips('[data-year],[data-month],[data-cat]');
+    document.querySelectorAll('.dd').forEach(d=>d.classList.remove('open'));}
+  else if(b.id==='onlygal'){state.onlyGal=!on;}
+  else if(b.id==='hideread'){state.hideRead=!on;}
+  else if(b.id==='latest'){state.latestOnly=!on;}
+  render();
+});
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.dd')){
+    document.querySelectorAll('.dd').forEach(d=>d.classList.remove('open'));
+    document.querySelectorAll('.ddbtn').forEach(x=>x.setAttribute('aria-expanded','false'));
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){document.querySelectorAll('.dd').forEach(d=>d.classList.remove('open'));}
+});
+document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value.trim().toLowerCase();render();});
+wall.addEventListener('click',e=>{
+  const o=e.target.closest('.open');
+  if(o){ e.preventDefault(); openPanel(o.dataset.k); return; }
+  const b=e.target.closest('.mark'); if(!b) return;
+  const u=b.dataset.u;
+  read.has(u)?read.delete(u):read.add(u);
+  saveRead(); render();
+});
+document.getElementById('heatlist').addEventListener('click',e=>{
+  const b=e.target.closest('[data-k]'); if(!b) return;
+  const k=b.dataset.k;
+  if(EVENTS[k]){ openPanel(k); return; }
+  const it=(clusters[k]||[])[0];
+  if(it) window.open(it.u,'_blank','noopener');
+});
+
+loadRead().then(render);
+</script>
+</html>
