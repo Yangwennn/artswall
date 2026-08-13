@@ -331,7 +331,9 @@ a{color:inherit}
     <p>整個網站就是這一個 <code>index.html</code>，資料也在裡面。每天更新時我會給你一份新的 <code>index.html</code>，下載後放進 <b>桌面／藝訊</b> 覆蓋舊的即可。檔名固定不變，所以書籤永遠有效；更新時間看頁首那行。舊資料不會消失，新的一批會加在最前面並標上「本批新增」。</p>
     <p><b>兩家以上媒體同報的事件</b>，卡片右下角會出現「重點整理」，點開是我整合各家報導後的一句話重點、細節條列、我的判斷，最下面列出全部來源連結。<b>其餘各則</b>點標題直接開原文，不繞路。</p>
     <p><b>色條分區</b>：紅土色是台灣媒體，深綠是國際。<b>熱度榜</b>不是點閱數（各家不公開），而是加權計分：跨媒體家數、總篇數、當天是否在該站首頁頭條、台灣與國際是否同時報，以及是否具名台灣藝廊（+1，只作同分時的排序依據，單一來源不會因此進榜）。標了「重點整理」的可以點開，其餘直接開原文。</p>
-    <p><b>兩條線、兩種節奏</b>：藝術線八家每日更新；設計線五家（Designboom、Sight Unseen、Dezeen Furniture、MOT TIMES、Shopping Design）每週更新一次。用篩選列最左邊的「藝術／設計」切換，或用「媒體」下拉單選某一家。設計線卡片是藍灰色條，台灣媒體為赭色。</p>
+    <p><b>Art Spell 是雷達，不是來源</b>：它是一份免費的每日藝術新聞彙整電子報，把 Artnet、ARTnews、The Art Newspaper、Artforum、Hyperallergic、ArtReview 等十餘家掃成一份連結清單。我用它找出漏掉或未追蹤的媒體，但收錄時一律回歸原出處標示，不會掛在 Art Spell 名下。經此管道新增了 ARTnews、ArtReview、Hyperallergic 三家。</p>
+    <p><b>Sotheby’s 抓的是 Articles 編輯線，不是新聞稿</b>：它的「新聞稿」專區跟著拍賣季走，8 月幾乎空白（唯一一則是 8/12 的紐約酒類拍賣 NIGHTCAP，不符合篩選條件）。真正有內容的是編輯線，本期收錄 2 則。要注意這些文章都綁定即將上拍的標的，本質是賣方觀點，我在判斷欄會標明哪些該照單全收、哪些要打折。</p>
+    <p><b>兩條線、兩種節奏</b>：藝術線十家（含每週更新的 Art Basel 與 Sotheby’s）；設計線五家（Designboom、Sight Unseen、Dezeen Furniture、MOT TIMES、Shopping Design）每週更新一次。用篩選列最左邊的「藝術／設計」切換，或用「媒體」下拉單選某一家。設計線卡片是藍灰色條，台灣媒體為赭色。</p>
     <p><b>點左上角的「arts wall」標題可以一鍵重設</b>：清掉所有篩選、搜尋與熱度依據，同時把已讀過的卡片全部恢復成未讀的原色，回到近一週的預設畫面並捲回頂端。</p>
     <p><b>預設只顯示近一週</b>：卡片區預設濾掉七天前的內容，按一下「近一週」即可看全部；用「日期」下拉挑年、月、日時會自動解除。下拉鈕上顯示的是你目前選了什麼（例如「日期　2026.8月.7日」）；選單裡每個選項後面的小數字，是該選項有幾則。上方三條軌道（藝術線熱度榜、設計線熱度榜、台灣藝廊線）永遠顯示全部區間，不受這個篩選影響，點進去一定開得了。</p>
     <p><b>每一則都有重點整理</b>：點卡片標題或右下角「重點整理」開側欄。面板依序是重點、技術與材料、我的判斷、原文連結；兩家以上同報的事件另有細節條列與全部來源。有材料或工法可談的則會在卡片標上「技術・材料」徽章，沒有的就不會硬寫。開過即自動標為已讀。</p>
@@ -360,7 +362,7 @@ a{color:inherit}
 
 const SHOW_FAIRS=false;   /* 藝博會軌道開關：改成 true 就會顯示 */
 
-const BUILT='2026.08.11　14:53　台北';
+const BUILT='2026.08.13　18:20　台北';
 
 const SOURCES={
   artouch :{name:'典藏 ARTouch',      region:'tw',   domain:'artouch.com'},
@@ -371,6 +373,11 @@ const SOURCES={
   artforum:{name:'Artforum',          region:'intl', domain:'artforum.com'},
   eflux   :{name:'e-flux',            region:'intl', domain:'e-flux.com'},
   frieze  :{name:'Frieze',            region:'intl', domain:'frieze.com'},
+  abasel  :{name:'Art Basel',         region:'intl', domain:'artbasel.com'},
+  sothebys:{name:'Sotheby’s',         region:'intl', domain:'sothebys.com'},
+  artnews :{name:'ARTnews',           region:'intl', domain:'artnews.com'},
+  artreview:{name:'ArtReview',        region:'intl', domain:'artreview.com'},
+  hyper   :{name:'Hyperallergic',     region:'intl', domain:'hyperallergic.com'},
   /* ── 設計線 ── */
   dboom   :{name:'Designboom',        region:'intl', domain:'designboom.com',    g:'design'},
   sunseen :{name:'Sight Unseen',      region:'intl', domain:'sightunseen.com',   g:'design'},
@@ -513,6 +520,62 @@ const ITEMS=[
 
 /* ═════ BATCH 2026-08-11（首批，回溯 8/1–8/11）═════ */
 
+/* ═════ 8/11–8/13 增補（經 Art Spell 雷達發現，回歸原出處收錄）═════ */
+
+/* 拍賣・市場 */
+{s:'artnet',batch:'2026-08-13',d:'2026-08-12',c:['市場','收藏'],t:'蘇富比拿下 4.5 億美元阿根廷收藏，含梵谷、塞尚、竇加',e:'Sotheby’s Lands $450M Argentine Art Collection With Van Gogh, Cézanne, Degas',b:'Katya Kazakina 獨家。Blaquier 家族收藏整批交由蘇富比處理，是今年最大宗的單一收藏委託之一。梵谷、塞尚、竇加同時現身一批私人收藏，這種規模在拉美藏家圈極罕見。',u:'https://news.artnet.com/market/blaquier-art-collection-sothebys-2795536'},
+{s:'artnews',batch:'2026-08-13',d:'2026-08-11',c:['市場','收藏','工藝'],t:'史上最重要的廣重私人收藏之一將上佳士得',e:'One of the Greatest Private Hiroshige Collections Ever Assembled Is Heading to Christie’s',b:'Alan Medaugh 收藏。歌川廣重的浮世繪版畫收藏成規模釋出，對日本版畫市場的價格結構會有直接影響——這類收藏一旦分批進場，等於重設整個品類的參考價。',u:'https://www.artnews.com/art-news/news/christies-alan-medaugh-hiroshige-collection-auction-1234794665/'},
+
+/* 畫廊收縮：三家同報 */
+{s:'artnet',batch:'2026-08-13',d:'2026-08-12',k:'galclose',c:['市場'],t:'兩家倫敦資深畫廊同時收攤',e:'Two Veteran London Galleries Call It Quits',b:'Sid Motion 與 Beers 兩家同時宣布結束營業。Margaret Carrigan 報導，把它放進倫敦畫廊生態的整體壓力來談。',u:'https://news.artnet.com/market/sid-motion-beers-gallery-closures-2796536'},
+{s:'artforum',batch:'2026-08-13',d:'2026-08-12',k:'galclose',c:['市場'],t:'倫敦 Sid Motion 畫廊今秋結束營業',e:'London’s Sid Motion Gallery To Close Down This Fall',b:'2016 年創立，支持新銳與中生代藝術家，做過 85 檔展覽。創辦人稱這是在節目與財務都still健康時主動收手，而非被迫妥協。',u:'https://www.artforum.com/news/londons-sid-motion-gallery-to-close-this-fall-1234756740/'},
+{s:'artnews',batch:'2026-08-13',d:'2026-08-12',k:'galclose',c:['市場'],t:'倫敦 Sid Motion 與 Beers 畫廊雙雙結束，直指經濟壓力',e:'Both London’s Sid Motion and Beers Galleries Are Closing, Citing Economic Pressures',b:'Brian Boucher 報導。兩家都把原因指向成本結構，而非個別經營問題——這是判斷「個案」還是「趨勢」的關鍵差別。',u:'https://www.artnews.com/art-news/market/london-sid-motion-gallery-close-after-decade-1234794692/'},
+
+/* Zeitz MOCAA 人事：三家同報 */
+{s:'artnet',batch:'2026-08-13',d:'2026-08-12',k:'zeitz',c:['人事','機構'],t:'Zeitz MOCAA 延攬 Elvira Dyangani Ose 出任藝術總監',e:'Zeitz MOCAA Taps Elvira Dyangani Ose as Artistic Director',b:'接替 2025 年辭世的 Koyo Kouoh。Dyangani Ose 曾任巴塞隆納當代美術館 MACBA 館長，是當代非洲藝術策展最重要的名字之一。',u:'https://news.artnet.com/art-world/zeitz-mocaa-elvira-dyangani-ose-2796853'},
+{s:'artnews',batch:'2026-08-13',d:'2026-08-12',k:'zeitz',c:['人事','機構'],t:'Zeitz MOCAA 任命 Elvira Dyangani Ose 為下任藝術總監',e:'Zeitz MOCAA Names Elvira Dyangani Ose as Next Artistic Director',b:'Maximilíano Durón 報導。開普敦這座由舊穀倉改建的美術館是非洲當代藝術的旗艦機構，館長換人牽動整個大陸的策展版圖。',u:'https://www.artnews.com/art-news/news/zeitz-mocaa-elvira-dyangani-ose-artistic-director-1234794757/'},
+{s:'artreview',batch:'2026-08-13',d:'2026-08-12',k:'zeitz',c:['人事','機構'],t:'Elvira Dyangani Ose 出任 Zeitz MOCAA 藝術總監',e:'Elvira Dyangani Ose named artistic director of Zeitz MOCAA',b:'ArtReview 版本，歐洲視角。三家同日報導同一人事案，是本期跨媒體覆蓋最高的事件之一。',u:'https://artreview.com/elvira-dyangani-ose-named-artistic-director-of-zeitz-mocaa/'},
+
+/* 貝葉掛毯外借：兩家同報 */
+{s:'artforum',batch:'2026-08-13',d:'2026-08-12',k:'bayeux',c:['文資','政策'],t:'法國文化部長要英國同僚為貝葉掛毯外借「下跪」',e:'French Culture Minister Asked British Counterpart to Get on His Knees for Bayeux Tapestry Loan',b:'外借談判的內幕曝光。文化外交的實際樣貌往往比官方說法難看得多，這則揭露的是談判桌上的權力關係。',u:'https://www.artforum.com/news/british-culture-official-proposed-for-bayeux-tapestry-loan-1234756775/'},
+{s:'tan',batch:'2026-08-13',d:'2026-08-12',k:'bayeux',c:['文資','展覽'],t:'貝葉掛毯外借期間，諾曼第十件必看作品',e:'Ten essential works to see in Normandy while the Bayeux Tapestry is on loan',b:'Nick Trend 撰文。掛毯離開期間，原地留下的空缺反而讓周邊的中世紀文物被重新看見——這是外借展的隱性效益。',u:'https://www.theartnewspaper.com/2026/08/12/10-essential-works-to-see-in-normandy-while-the-bayeux-tapestry-is-on-loan'},
+
+/* 西西里野火：兩家同報 */
+{s:'artforum',batch:'2026-08-13',d:'2026-08-12',k:'sicily',c:['展覽','文資'],t:'西西里的野火攝影展，差點被野火燒毀',e:'Sicily Exhibition of Wildfire Photographs Nearly Destroyed by Wildfire',b:'一場以野火為主題的攝影展，展場本身險遭真實野火吞噬。氣候議題的藝術實踐正在被它所描述的現象追上。',u:'https://www.artforum.com/news/exhibition-of-wildfire-photos-nearly-destroyed-by-fire-1234756736/'},
+{s:'artnews',batch:'2026-08-13',d:'2026-08-12',k:'sicily',c:['展覽','文資'],t:'野火攝影展在西西里險被真實野火吞沒',e:'Photography Exhibit on Wildfires Nearly Engulfed by Real Wildfire in Sicily',b:'Devorah Lauter 報導，細節較 Artforum 完整。展場位置與火勢距離、作品是否受損等資訊在此篇。',u:'https://www.artnews.com/art-news/news/photography-exhibit-on-wildfires-nearly-burned-by-real-wildfire-sicily-1234794633/'},
+
+/* 烏菲茲：Artnet 補上，與 Artforum 形成雙來源 */
+{s:'artnet',batch:'2026-08-13',d:'2026-08-11',k:'uffizi',c:['機構','建築','修復'],t:'烏菲茲 5,800 萬美元改造：疏散人潮、為展廳降溫',e:'Uffizi’s $58 Million Revamp Aims to Ease Crowds, Cool Galleries',b:'Richard Whiddington 報導，重點放在動線與環境控制兩個實際問題。與 Artforum 8/7 的版本互補：Artforum 談預算與範圍，Artnet 談要解決什麼。',u:'https://news.artnet.com/art-world/uffizi-announces-major-renovations-2796365'},
+
+/* 機構・政策 */
+{s:'artforum',batch:'2026-08-13',d:'2026-08-12',c:['機構','政策'],t:'美國國家藝廊前高層指控館方「軟性審查」',e:'Former National Gallery Of Art Executive Accuses Museum Of “Soft Censorship”',b:'「軟性審查」指的不是明令禁止，而是透過預算、排程與人事讓某些內容自然消失。這種形式最難舉證，也最難對抗。',u:'https://www.artforum.com/news/former-natl-gallery-exec-accuses-museum-of-soft-censorship-1234756810/'},
+{s:'artnews',batch:'2026-08-13',d:'2026-08-12',c:['機構','人事'],t:'V&A 修改給薪休息政策，東倉庫罷工陰影未散',e:'V&A Changes Paid Break Policy as East Storehouse Strike Looms',b:'Harrison Jacobs 報導。V&A East Storehouse 是去年開幕的開放式庫房，勞資爭議浮上檯面，反映的是新型態館舍的人力配置壓力。',u:'https://www.artnews.com/art-news/news/victoria-albert-museum-east-storehouse-strike-paid-breaks-1234794682/'},
+{s:'hyper',batch:'2026-08-13',d:'2026-08-12',L:1,c:['文資','政策'],t:'俄羅斯已破壞或摧毀烏克蘭逾 4,500 處文化場址',e:'Russia Has Damaged or Destroyed Over 4,500 Cultural Sites in Ukraine',b:'Anna Lee 報導，Art Spell 當日首選。受影響的 141 座博物館與畫廊中包括烏克蘭國家藝術博物館與敖德薩國立美術館。',u:'https://hyperallergic.com/russia-has-damaged-or-destroyed-over-4-500-cultural-sites-in-ukraine/'},
+{s:'hyper',batch:'2026-08-13',d:'2026-08-12',c:['機構','人事'],t:'聖地牙哥藝術博物館裁員 11 人',e:'San Diego Museum of Art Lays Off 11 Workers',b:'美國中型館舍的財務壓力持續浮現。跟同期史密森尼預算、SF Camerawork 結束營業放在一起看，是同一條收縮曲線。',u:'https://hyperallergic.com/san-diego-museum-of-art-lays-off-11-workers/'},
+{s:'artnews',batch:'2026-08-13',d:'2026-08-11',c:['機構','政策'],t:'紐約視覺藝術學院註冊人數較 2019 年減三分之一，面臨史上最大赤字',e:'New York’s School of Visual Arts Reports One-Third Drop in Enrollment Since 2019, Faces Largest Budget Deficit Ever',b:'藝術教育的需求端正在萎縮。SVA 是美國最重要的私立藝術學院之一，它的招生曲線通常領先整個產業的人才供給三到五年。',u:'https://www.artnews.com/art-news/news/school-of-visual-arts-drop-enrollment-budget-deficit-1234794611/'},
+
+/* 考古・技術 */
+{s:'artnews',batch:'2026-08-13',d:'2026-08-12',c:['考古','建築'],t:'雷射掃描揭露馬丘比丘隱藏的前西班牙時期道路',e:'Laser Technology Reveals Hidden Pre-Hispanic Roads at Machu Picchu',b:'又一次光達成果。與同期亞馬遜雨林 2 萬處土方工程的發現同屬一條技術線——雷射正在系統性重寫美洲前殖民史。',u:'https://www.artnews.com/art-news/news/lidar-reveals-hidden-pre-hispanic-roads-at-machu-picchu-1234794724/'},
+{s:'artnews',batch:'2026-08-13',d:'2026-08-11',c:['考古','修復'],t:'古代洞穴壁上的 DNA，能解開藝術史最古老的來源之謎嗎',e:'Could DNA on Ancient Cave Walls Help Solve Art History’s Oldest Provenance Mystery?',b:'科學家從洞穴壁面回收古人類 DNA，可望指認史前壁畫的創作者身分。這是把「作者歸屬」這個藝術史核心問題推到四萬年前。',u:'https://www.artnews.com/art-news/news/dna-study-prehistoric-cave-paintings-artists-1234794687/'},
+{s:'tan',batch:'2026-08-13',d:'2026-08-12',c:['考古'],t:'法國新發現立石群，揭示古代巨石建造者的樣貌',e:'Newly discovered standing stones in France shed light on the ancient megalith builders',b:'Garry Shaw 報導。巨石文化的建造技術與社會組織長期缺乏實證，新發現的立石群提供了直接材料。',u:'https://www.theartnewspaper.com/2026/08/12/newly-discovered-standing-stones-in-france-shed-light-on-the-ancient-megalith-builders'},
+
+/* 機構・展覽 */
+{s:'tan',batch:'2026-08-13',d:'2026-08-12',c:['機構','展覽'],t:'阿根廷新美術館向女性雕塑先驅 Lola Mora 致敬',e:'New museum in Argentina honours Lola Mora, a pioneering female sculptor',b:'Lola Mora 是十九世紀末至二十世紀初的阿根廷雕塑家，生前作品因裸體題材屢遭移置。為她建館，等於為一段被壓抑的藝術史平反。',u:'https://www.theartnewspaper.com/2026/08/12/lola-mora-argentine-sculptor-museum-opens'},
+{s:'tan',batch:'2026-08-13',d:'2026-08-11',c:['建築','文資'],t:'地震損毀哥倫比亞最高的教堂',e:'Earthquake damages Colombia’s tallest church',b:'Manizales 主教座堂受損。這座教堂是南美最高的教堂建築之一，結構為鋼筋混凝土仿哥德式，震損評估與修復方案都有難度。',u:'https://www.theartnewspaper.com/2026/08/11/colombia-earthquake-damages-manizales-cathedral'},
+{s:'artreview',batch:'2026-08-13',d:'2026-08-12',c:['人事','機構'],t:'Michael J. Anderson 出任波特蘭藝術博物館館長',e:'Michael J. Anderson appointed director of Portland Art Museum',b:'美國西北部主要館舍的人事更替。這波美國館長異動的密度是近年少見的，多半與後疫情的財務重整同步。',u:'https://artreview.com/michael-j-anderson-appointed-director-of-portland-art-museum/'},
+{s:'frieze',batch:'2026-08-13',d:'2026-08-12',c:['評論','展覽'],t:'Tom of Finland 依然引人側目',e:'Tom of Finland Is Still Turning Heads',b:'Logan Lockner 評論。芬蘭湯姆的情色素描從地下刊物走進美術館，這條正典化路徑本身就是二十世紀酷兒藝術史的縮影。',u:'https://www.frieze.com/article/toms-stretch-2026-review'},
+{s:'hyper',batch:'2026-08-13',d:'2026-08-12',c:['徵件'],t:'15 位藝術家獲選 2026 年 Joan Mitchell 獎助',e:'15 Artists Named 2026 Joan Mitchell Fellows',b:'美國最重要的藝術家個人獎助之一，每位可獲得多年期的無指定用途資金。獲選名單通常是美國中生代創作光譜的年度取樣。',u:'https://hyperallergic.com/15-artists-named-2026-joan-mitchell-fellows/'},
+
+/* ── Sotheby’s（每週）── */
+{s:'sothebys',batch:'2026-08-13',d:'2026-08-07',c:['展覽','收藏','市場'],t:'波特羅的紐約：野心、拒絕，與一位大師的養成',e:'Botero’s New York: Ambition, Rejection, and the Making of a Master',b:'1960 年他帶著 200 美元從哥倫比亞抵達曼哈頓，戶頭一度只剩十美元。子女首度打開父親的倉儲，配合蘇富比在 Breuer 大樓與波特羅基金會合辦的展售會，談他在紐約那段被評論界痛擊卻定型了風格的歲月。',u:'https://www.sothebys.com/en/articles/editorial-boteros-new-york-ambition-rejection-and-the-making-of-a-master'},
+{s:'sothebys',batch:'2026-08-13',d:'2026-08-04',c:['工藝','收藏','展覽'],t:'岡田美術館亞洲藝術 20 件精選',e:'20 Extraordinary Asian Art Highlights From the Okada Museum of Art',b:'橫跨古墳時代埴輪、唐三彩、明清官窯到江戶琳派。該館收藏由古董商廣田松繁 1924 年創立的壺中居指導、歷時三十年集成，9 月 4 日於香港上拍。中日工藝史對話的難得一次公開梳理。',u:'https://www.sothebys.com/en/articles/20-extraordinary-asian-art-highlights-from-the-okada-museum-of-art'},
+
+/* ── Art Basel（每週）── */
+{s:'abasel',batch:'2026-08-13',d:'2026-08-12',c:['展覽','機構'],t:'帶著孩子看藝術：今夏最值得去的親子展覽',e:'Down with the kids: the best family-friendly summer art shows',b:'Laura Allsop 選出一批可動手參與的展覽、委託創作與特別企劃。親子取向的當代藝術策展這幾年明顯增加，反映的是美術館在爭取下一代觀眾，而不只是把兒童區當附屬設施。',u:'https://www.artbasel.com/stories/kids-family-summer-art-shows'},
+{s:'abasel',batch:'2026-08-13',d:'2026-08-07',c:['評論','機構'],t:'為什麼藝術場館都在請 DJ？',e:'Why art venues can’t stop booking DJs',b:'Sofia Hallström 在蘇黎世 Street Parade 前夕梳理藝術與夜店文化一世紀的交錯，並追問這一波 DJ 檯熱潮背後真正的原因。機構用夜間活動換觀眾與贊助，是全球美術館的共同解法。',u:'https://www.artbasel.com/stories/artists-dj-dancefloor-music'},
+{s:'abasel',batch:'2026-08-13',d:'2026-08-05',c:['建築','空間','收藏'],t:'藝術圈的人都住哪裡：藝術飯店指南',e:'Where the art world checks in',b:'從私人收藏到閉館後的獨家導覽，這些飯店對藝術的投入遠超過大廳擺一件雕塑。Mahoro Seward 撰文。飯店做藝術收藏已從裝飾升級為策展，也是私人收藏公開展示的另一條路徑。',u:'https://www.artbasel.com/stories/art-hotels-luxury-destinations'},
+{s:'abasel',batch:'2026-08-13',d:'2026-08-03',rank:1,c:['評論','展覽'],t:'Art Basel 編輯群的夏日文化選單',e:'Art Basel editors share their summer culture picks',b:'執行編輯 Coline Milliard 等六位編輯各自推薦。含 Camille Henrot 談氣候危機下生育問題的新片《In the Veins》，以及法國布列塔尼的 Kerguéhennec 雕塑公園。站內熱門第一名。',u:'https://www.artbasel.com/stories/summer-events-sounds-books-festivals-editors'},
+
 /* ── 典藏 ARTouch ── */
 {s:'artouch',batch:'2026-08-11',d:'2026-08-10',L:1,c:['展覽','收藏','市場'],t:'重訪 1935：佳士得重構中國藝術的國際展覽史',b:'佳士得與倫敦中國藝術世家 Eskenazi 合作，在香港新總部重現 1935 年倫敦皇家藝術學院那場讓西方認識中國藝術的關鍵展覽。拍賣行用學術史替品類鋪墊價格正當性的標準動作。',u:'https://artouch.com/art-news/content-213020.html'},
 {s:'artouch',batch:'2026-08-11',d:'2026-08-06',c:['文資','建築','展覽'],t:'板橋林家尋寶記：林家花園限定分享會開放報名',b:'典藏古美術 8 月號專題，循人物、文物與園林空間三條線索重訪板橋林家。這種在地文資深度報導少見，因為沒人有商業誘因做。現場有限定分享會與集章兌禮。',u:'https://artouch.com/art-news/content-212870.html'},
@@ -625,6 +688,11 @@ const ITEMS=[
    只做「兩家以上媒體同時報導」的事件。key 對應 ITEMS 的 k。
    ══════════════════════════════════════════════════════════ */
 const TECH={
+'https://www.theartnewspaper.com/2026/08/11/colombia-earthquake-damages-manizales-cathedral':'鋼筋混凝土仿哥德式的震損評估比石造更麻煩：混凝土內部的鋼筋鏽蝕肉眼看不見，裂縫寬度也不能直接反映結構受損程度，通常得靠超音波與鋼筋掃描才能判定。修復材料的相容性又是另一關。',
+'https://www.artnews.com/art-news/news/dna-study-prehistoric-cave-paintings-artists-1234794687/':'從洞穴壁面回收古人類 DNA（沉積物 DNA 分析）近年才成熟——不需人骨，直接從岩面附著的皮屑與體液殘留提取。難點在污染控制與定年：如何證明那些 DNA 與繪製行為同時期，而不是後來的訪客留下的。',
+'https://www.artnews.com/art-news/news/christies-alan-medaugh-hiroshige-collection-auction-1234794665/':'浮世繪的鑑價高度依賴技術判定：初摺（早印）與後摺的色彩飽和度差異、雲母摺與空摺等特殊技法的有無、以及紙張的老化與修補痕跡。同一版畫因印次不同價差可達十倍以上，這也是版畫市場最難標準化的原因。',
+'https://www.sothebys.com/en/articles/20-extraordinary-asian-art-highlights-from-the-okada-museum-of-art':'這批的工藝技法密度極高：耀州窯刻花青瓷、磁州窯剔黑（劃透黑色化粧土露出白胎）、宣德白釉暗花、萬曆五彩、雍正鬥彩加粉彩、乾隆仿哥釉。日本端則有琳派的「たらしこみ」（濕染滲色）與金銀砂子、鍋島燒的釉下青花加紅綠黃釉上彩。想理解東亞陶瓷工序，這份清單比教科書具體。',
+'https://www.artbasel.com/stories/art-hotels-luxury-destinations':'飯店空間掛真跡的技術門檻比想像高：公共區域的光照強度、溫溼度波動與保全條件都遠比美術館差，所以多數飯店只能放版畫、雕塑或耐候性高的媒材。看報導時留意它們掛的是什麼材質，就知道是認真收藏還是裝飾。',
 'https://www.dezeen.com/2026/08/02/pca-stream-la-source-vive/':'外覆銅皮，會隨年份氧化由亮轉褐再轉綠，等於把時間寫進立面。銅在建築上的另一個現實理由是耐候與聲學表現穩定，但初期造價高、氧化不可逆——選它就是接受建築外觀不由設計者最終決定。',
 'https://www.designboom.com/design/red-craft-collection-four-japanese-traditional-techniques-sculptural-domestic-objects-kenta-yoshizawa/':'四種工法：竹籬編法（Nagaoka Meichiku 製作）、組紐、和紙、漆。關鍵在最後一道——漆層同時扮演塗裝與結構補強，塗在和紙上讓紙本身獲得剛性，形成可承重的容器，表面則呈現漆特有的光澤。這是把裝飾層當結構用的典型日本邏輯。',
 'https://www.designboom.com/design/yinka-ilori-book-chair-vessel-memory-identity-oro-editions-chairman/':'工法核心是「取得—修復—上色」三步：從二手管道蒐集被丟棄的椅子，修補框架，再以高彩度圖案重新上漆與換布。原木框架多半保留，只換坐面與靠背布料，所以每件的結構年代與表面年代是分開的。',
@@ -674,6 +742,28 @@ const TECH={
 };
 
 const NOTES={
+'https://hyperallergic.com/15-artists-named-2026-joan-mitchell-fellows/':'美國最重要的藝術家個人獎助之一，多年期、無指定用途——這種「給錢不管你做什麼」的形式在補助體系裡越來越少見。獲選名單通常是美國中生代創作光譜的年度取樣，比任何策展更接近實況。',
+'https://www.frieze.com/article/toms-stretch-2026-review':'芬蘭湯姆的情色素描從地下刊物走進美術館，這條正典化路徑本身就是二十世紀酷兒藝術史的縮影。值得問的是：當作品被機構收編，它原本的顛覆性還剩多少——這是所有次文化進入正典時的共同難題。',
+'https://artreview.com/michael-j-anderson-appointed-director-of-portland-art-museum/':'這波美國館長異動的密度是近年少見的，多半與後疫情的財務重整同步。單看一則沒有意義，累積成名單才能看出董事會現在要的是募款型還是策展型館長。',
+'https://www.theartnewspaper.com/2026/08/11/colombia-earthquake-damages-manizales-cathedral':'Manizales 主教座堂是南美最高的教堂建築之一。震損評估的難處在於它是鋼筋混凝土仿哥德式——結構材料是現代的，形式卻是歷史的，修復到底該依循結構安全還是外觀真實，兩套標準會打架。',
+'https://www.theartnewspaper.com/2026/08/12/lola-mora-argentine-sculptor-museum-opens':'Lola Mora 生前作品因裸體題材屢遭移置與遮蔽，是十九世紀末女性雕塑家處境的極端案例。為她建館等於為一段被壓抑的藝術史平反——這種「補建館」的模式在拉美近年增加，值得跟台灣的前輩女性藝術家研究對照。',
+'https://www.theartnewspaper.com/2026/08/12/newly-discovered-standing-stones-in-france-shed-light-on-the-ancient-megalith-builders':'巨石文化的建造技術與社會組織長期缺乏實證，多數推論建立在少數幾個遺址上。新發現的立石群提供直接材料，尤其是排列方式與加工痕跡，能反推當時的測量能力與勞動組織規模。',
+'https://www.artnews.com/art-news/news/dna-study-prehistoric-cave-paintings-artists-1234794687/':'把「作者是誰」這個藝術史核心問題推到四萬年前。過去談史前壁畫只能談風格與功能，一旦能指認創作者的生物身分，性別、年齡、族群關係全部進入討論範圍——這可能改寫整個史前藝術的敘事框架。',
+'https://www.artnews.com/art-news/news/lidar-reveals-hidden-pre-hispanic-roads-at-machu-picchu-1234794724/':'與同期亞馬遜雨林 2 萬處土方工程的發現同屬一條技術線——光達正在系統性重寫美洲前殖民史。兩則放一起看的重點是：這些遺跡一直都在，只是過去看不見。技術改變的不是歷史，是我們能問的問題。',
+'https://www.artnews.com/art-news/news/school-of-visual-arts-drop-enrollment-budget-deficit-1234794611/':'SVA 的招生曲線通常領先整個產業的人才供給三到五年。註冊人數掉三分之一，代表 2029 年前後進入市場的年輕創作者會明顯變少。這對畫廊的新人來源、機構的展覽名單都有連鎖效應，是這批新聞裡時間跨度最長的一則。',
+'https://hyperallergic.com/san-diego-museum-of-art-lays-off-11-workers/':'美國中型館舍的財務壓力持續浮現。跟同期史密森尼預算、SF Camerawork 結束營業放在一起看，是同一條收縮曲線——資源正在往頂端的大館集中，中間層被擠壓。',
+'https://hyperallergic.com/russia-has-damaged-or-destroyed-over-4-500-cultural-sites-in-ukraine/':'4,500 這個數字的意義在於它把個案累積成系統性證據。先前那則 300 年木造哥薩克教堂被摧毀是單點，這份統計則指向蓄意破壞文化認同的整體模式——這在國際法上是可追訴的層次，統計本身就是未來訴訟的材料。',
+'https://www.artnews.com/art-news/news/victoria-albert-museum-east-storehouse-strike-paid-breaks-1234794682/':'V&A East Storehouse 是去年開幕的開放式庫房，把藏品管理直接變成展示。這種新型態館舍的人力配置沒有前例可循，勞資爭議浮現其實是預料中的事——當庫房變展場，工作人員的角色也從典藏管理變成第一線服務。',
+'https://www.artforum.com/news/former-natl-gallery-exec-accuses-museum-of-soft-censorship-1234756810/':'「軟性審查」最難的地方在於它不留證據——沒有禁令，只有預算被砍、檔期被延、負責人被調走。這類指控通常只有離職者敢說，也因此很難查證。放在美國文化機構近年的政治壓力脈絡下看，這不會是最後一起。',
+'https://news.artnet.com/art-world/uffizi-announces-major-renovations-2796365':'Artforum 談預算與範圍，Artnet 談要解決什麼問題（人潮與降溫）。同一件事兩種切法，合看才知道這 5,800 萬花在哪、為什麼非花不可。',
+'https://www.artnews.com/art-news/news/christies-alan-medaugh-hiroshige-collection-auction-1234794665/':'重要收藏一旦成規模釋出，等於重設整個品類的參考價。浮世繪版畫因為存世量大、版次複雜，價格高度依賴品相與早印判定——這批的成交結果會成為往後幾年的定價錨。日本版畫在台灣藏家間有一定基礎，值得盯。',
+'https://news.artnet.com/market/blaquier-art-collection-sothebys-2795536':'4.5 億美元的單一收藏委託，在拍賣行的年度營收裡是能改變財報的量級。真正該追的是它怎麼上拍——整批專場、拆進不同季度，還是部分私洽。這個決定會透露蘇富比對當前市場承接力的實際判斷，比任何市場評論都誠實。',
+'https://www.sothebys.com/en/articles/20-extraordinary-asian-art-highlights-from-the-okada-museum-of-art':'日本私人美術館的中日藝術收藏成規模釋出，本身就是一個訊號——這類戰後累積的收藏正進入世代交替的處分期。對台灣藏家而言，9 月香港這一場是近期少數能一次比對中日工藝脈絡的機會，估價區間也偏親民（多數落在 10 萬至 300 萬港幣）。',
+'https://www.sothebys.com/en/articles/editorial-boteros-new-york-ambition-rejection-and-the-making-of-a-master':'這是拍賣行的展售會宣傳，但材料本身有價值——藝術家的倉儲筆記與家屬口述是一手史料。要注意的是敘事框架：把「被評論界拒絕」寫成成就大師的必經之路，是替作品加值的標準修辭。讀它的史料，別買它的結論。',
+'https://www.artbasel.com/stories/summer-events-sounds-books-festivals-editors':'編輯選單這種格式的價值在於它洩漏了編輯台的關注方向。今年的共同關鍵字是氣候與生態，這通常領先展覽檔期一到兩年——想預判 2027 到 2028 的策展主題，這類文章比新聞有用。',
+'https://www.artbasel.com/stories/art-hotels-luxury-destinations':'飯店收藏從裝飾升級為策展，實質上是私人收藏公開展示的另一條路徑——不用蓋美術館、不用非營利登記，就能讓作品被看見。跟同期 Artforum 那則巴西藏家自建美術館對照，是兩種相反的資本邏輯。',
+'https://www.artbasel.com/stories/artists-dj-dancefloor-music':'機構用夜間活動換觀眾與贊助，是全球美術館在補助縮減下的共同解法。但這篇追問的是更根本的問題：當展場變成舞池，藝術是內容還是背景。台灣的 C-LAB、空總這幾年也走同一條路。',
+'https://www.artbasel.com/stories/kids-family-summer-art-shows':'親子策展從「附屬設施」升格為主檔期，是機構在做長線的觀眾培養。值得對照台灣：北美館兒藝中心與高美館的做法屬同一路線，但論述深度與國際案例仍有落差，這篇可以當參照庫。',
 'https://www.dezeen.com/design/':'該則我只取得標題與導言，沒抓到文章直連，連結會開到 Dezeen 設計版首頁。自我設限的生產半徑在談永續時很常見，但真的連工具都算進去的少，因此結果比一般的在地化宣言有說服力。',
 'https://www.designboom.com/design/red-craft-collection-four-japanese-traditional-techniques-sculptural-domestic-objects-kenta-yoshizawa/':'工藝進入日常物件的難處在於：保留製程痕跡容易變成觀光紀念品，磨掉痕跡又失去意義。這件用統一的紅色把四種工藝拉到同一個視覺系統下，讓材料差異成為細節而非賣點，是解法之一。',
 'https://www.designboom.com/design/yinka-ilori-book-chair-vessel-memory-identity-oro-editions-chairman/':'切入去殖民設計史與材料再用兩個當前討論。把被丟棄的舊椅視為社會史載體，這個框架讓「upcycling」從環保議題變成敘事方法——這是它跟一般再生設計的差別。',
@@ -798,6 +888,42 @@ const NOTES={
 };
 
 const EVENTS={
+galclose:{
+t:'倫敦兩家資深畫廊同時收攤：Sid Motion 與 Beers',
+lead:'Sid Motion 與 Beers 兩家倫敦畫廊在同一週宣布結束營業，都把原因指向成本結構。三家媒體同日報導。',
+x:['Sid Motion Gallery 於 2016 年創立，支持新銳與中生代藝術家，累計做過 85 檔展覽',
+'創辦人 Sid Motion 稱這是在節目與財務都仍健康時主動收手，而非被迫妥協',
+'Beers Gallery 同期宣布結束，兩家都指向經濟壓力而非個別經營問題',
+'Artforum、Artnet、ARTnews 三家同日報導，是本期跨媒體覆蓋最高的事件'],
+w:'兩家獨立畫廊同週收攤，而且都說是成本結構而非經營失敗——這是判斷「個案」與「趨勢」的關鍵差別。把它接到八月初的那條線上看：Gagosian 退出巴塞爾與倫敦兩處空間、White Cube 紐約三位總監離職、James Cohan 改組。藍籌在裁人，中型畫廊在關門，兩端同時發生。中型畫廊是新銳藝術家進入市場的主要入口，這一層萎縮的後果會在三到五年後才顯現。'},
+
+zeitz:{
+t:'Zeitz MOCAA 任命 Elvira Dyangani Ose 為藝術總監',
+lead:'開普敦 Zeitz 當代非洲藝術博物館宣布由 Elvira Dyangani Ose 出任藝術總監，接替 2025 年辭世的 Koyo Kouoh。',
+x:['Dyangani Ose 曾任巴塞隆納當代美術館 MACBA 館長',
+'她是當代非洲藝術策展最重要的名字之一',
+'前任 Koyo Kouoh 於 2025 年辭世，該職位懸缺至今',
+'Zeitz MOCAA 由開普敦舊穀倉改建，是非洲當代藝術的旗艦機構',
+'Artnet、ARTnews、ArtReview 三家同日報導，紐約時報亦跟進'],
+w:'這個位子的重量在於它幾乎單方面定義了「當代非洲藝術」在國際上的能見度——誰被選進展覽，誰就進入全球畫廊與雙年展的視野。Kouoh 辭世後懸缺一年多，找一位歐洲機構出身的西班牙裔策展人接手，會引發「誰有資格詮釋非洲藝術」的老問題。值得追的是她的第一份展覽名單。'},
+
+bayeux:{
+t:'貝葉掛毯外借英國：談判內幕與諾曼第的空缺',
+lead:'法國文化部長被爆要英國同僚為外借「下跪」；同時掛毯離開期間，諾曼第當地留下的中世紀文物反而被重新看見。',
+x:['貝葉掛毯外借大英博物館，是英法文化外交的指標案',
+'Artforum 揭露談判過程中法方對英方提出的姿態要求',
+'The Art Newspaper 另做諾曼第十件必看作品導覽',
+'有評論者認為此案可作為帕德嫩神廟大理石雕歸還的參照模式'],
+w:'兩家的角度剛好相反：Artforum 拆的是權力關係，TAN 談的是文化效益。合看才完整。真正的關鍵在第四點——如果貝葉模式成立，英國就有了「長期外借取代永久歸還」的先例，而這正是希臘一直不接受的方案。文物返還的談判邏輯可能因此轉向。'},
+
+sicily:{
+t:'西西里野火攝影展，差點被真實野火燒毀',
+lead:'一場以野火為主題的攝影展，展場本身險遭真實野火吞噬。兩家媒體同日報導。',
+x:['展覽以野火為主題，位於西西里',
+'實際火勢逼近展場，作品險遭損毀',
+'ARTnews 版本細節較完整，含展場位置與火勢距離'],
+w:'氣候議題的藝術實踐正在被它所描述的現象追上——這件事的荒謬性本身比展覽內容更有說服力。實務層面也值得注意：戶外與非典型場域的展覽，火險與氣候風險評估已經不能當成例行公事。台灣的戶外地景藝術節同樣面對颱風季，邏輯相同。'},
+
 sourcevive:{
 tm:'銅皮外殼會隨年份氧化由亮轉褐再轉綠，等於把時間寫進立面；銅同時具備耐候與聲學穩定性。音樂廳的技術核心是殘響時間控制——體積、內表面吸音係數與擴散體配置三者互相牽動，任何造型調整都會改變聲學結果，這就是建築師與聲學顧問通常要打架的原因。',
 t:'La Source Vive：森林裡的銅皮音樂廳',
