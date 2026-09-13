@@ -281,7 +281,7 @@ a{color:inherit}
       <div id="fairlist"></div>
     </div>
     <div id="galrail" hidden>
-      <h2 class="galhead">台灣藝廊線 <span class="railnote" id="railnote2"></span><span class="formula">具名提及台灣藝廊或藝術空間的報導</span></h2>
+      <h2 class="galhead">台灣藝廊線 <span class="railnote" id="railnote2"></span><span class="formula">媒體報導中具名的台灣藝廊，加上六家畫廊官網的直接動向</span></h2>
       <ol id="gallist"></ol>
     </div>
   </div>
@@ -342,7 +342,8 @@ a{color:inherit}
     <p><b>點左上角的「arts wall」標題可以一鍵重設</b>：清掉所有篩選、搜尋與熱度依據，同時把已讀過的卡片全部恢復成未讀的原色，回到近一週的預設畫面並捲回頂端。</p>
     <p><b>預設只顯示近一週</b>：卡片區預設濾掉七天前的內容，按一下「近一週」即可看全部；用「日期」下拉挑年、月、日時會自動解除。下拉鈕上顯示的是你目前選了什麼（例如「日期　2026.8月.7日」）；選單裡每個選項後面的小數字，是該選項有幾則。上方三條軌道（藝術線熱度榜、設計線熱度榜、台灣藝廊線）永遠顯示全部區間，不受這個篩選影響，點進去一定開得了。</p>
     <p><b>每一則都有重點整理</b>：點卡片標題或右下角「重點整理」開側欄。面板依序是重點、技術與材料、我的判斷、原文連結；兩家以上同報的事件另有細節條列與全部來源。有材料或工法可談的則會在卡片標上「技術・材料」徽章，沒有的就不會硬寫。開過即自動標為已讀。</p>
-    <p><b>上方三條軌道只看近兩週</b>：熱度榜（藝術線、設計線）與台灣藝廊線都以資料中最新日期往回推十四天，避免一個月前的事件長期佔據版面。想看全區間的累積，用篩選列的「熱度依據」下拉——它同時篩選上方軌道與下方卡片，且不受兩週或近一週限制（選了會自動解除「近一週」）。卡片區平常則是近一週：軌道看趨勢，卡片看新訊。</p>
+    <p><b>台灣畫廊動向</b>：除了媒體報導中具名的藝廊，另直接追蹤六家畫廊官網——耿畫廊／TKG+、誠品畫廊、安卓藝術、采泥藝術、Bluerider ART、白石畫廊。收錄重點是藝博會參展、代理異動與海外展出，展訊只列不深談。按第一排的「台灣藝廊」鈕可一次看全部。Instagram 無法自動抓取，那條線需要另外處理。</p>
+    <p><b>上方三條軌道只看近兩週</b>：熱度榜（藝術線、設計線）以資料中最新日期往回推十四天；台灣藝廊線因畫廊更新頻率低，放寬為四週，避免一個月前的事件長期佔據版面。想看全區間的累積，用篩選列的「熱度依據」下拉——它同時篩選上方軌道與下方卡片，且不受兩週或近一週限制（選了會自動解除「近一週」）。卡片區平常則是近一週：軌道看趨勢，卡片看新訊。</p>
     <p><b>兩種熱度</b>：上方「熱度榜」分藝術線與設計線兩軌，是我的加權計分，預設只顯示 6 分以上。用篩選列的「熱度依據」下拉可依單一計分條件檢視，此時會列出所有符合的項目、不受 6 分門檻限制；再點一次同一個條件即可取消。卡片上的深藍徽章「站內熱門 N」則是該媒體自家公開的點閱排名，是真實數據，兩者不要混為一談。站內熱門只收設計、工藝、建築、藝術相關，非主題的即使點閱高也不列入。國際媒體標題已譯為中文，原文以斜體附在下方。</p>
     <p><b>連結原則</b>：只有我實際在來源頁面上看到的網址才做直連。其餘一律指向該站的站內搜尋（卡片上有「連結為站內搜尋」標記），關鍵字取自原文標題，第一筆通常就是本文。我不用推測的網址冒充直連——先前這麼做過，結果是一批點不到的死連結，已全數改正。</p>
     <p><b>日期前有「?」的</b>，代表我沒能查證發佈日期——該則來自站方首頁的推薦模組，那裡會混入舊文，日期僅供排序參考。<b>日期前有「~」的</b>，代表該站列表頁沒有公開發佈日期，我依文章編號推估，僅供排序參考。<b>標記已讀</b>存在瀏覽器本機，覆蓋檔案不會清掉。</p>
@@ -369,11 +370,18 @@ a{color:inherit}
 
 const SHOW_FAIRS=false;   /* 藝博會軌道開關：改成 true 就會顯示 */
 
-const BUILT='2026.09.11　12:10　台北';
+const BUILT='2026.09.12　17:30　台北';
 
 const SOURCES={
   artouch :{name:'典藏 ARTouch',      region:'tw',   domain:'artouch.com'},
   cans    :{name:'CANS 藝術新聞',      region:'tw',   domain:'cansarts.com'},
+  /* ── 台灣畫廊動向（官網直抓）── */
+  tkg     :{name:'耿畫廊 / TKG+',      region:'tw',   domain:'tinakenggallery.com', gal:1},
+  eslite  :{name:'誠品畫廊',           region:'tw',   domain:'eslitegallery.com',   gal:1},
+  mindset :{name:'安卓藝術',           region:'tw',   domain:'mindsetart.com',      gal:1},
+  chini   :{name:'采泥藝術',           region:'tw',   domain:'chinigallery.com',    gal:1},
+  bluerider:{name:'Bluerider ART',    region:'tw',   domain:'blueriderart.com',    gal:1},
+  whitestone:{name:'白石畫廊',         region:'tw',   domain:'whitestoneart.com',   gal:1},
   emperor :{name:'非池中藝術網',       region:'tw',   domain:'artemperor.tw'},
   verse   :{name:'VERSE',             region:'tw',   domain:'verse.com.tw'},
   artnet  :{name:'Artnet News',       region:'intl', domain:'news.artnet.com'},
@@ -583,6 +591,18 @@ const ITEMS=[
 /* Shopping Design */
 {s:'sdesign',batch:'2026-08-31',d:'2026-08-28',approx:1,c:['設計','展覽','品牌'],t:'2026 台灣文博會商展落幕：總交易額 16.5 億元，年成長 22%',b:'文化部公布數字：交易總額約 16.5 億元，較去年 13.5 億成長 22%，並創下使用坪數、參與品牌、攤位數多項新高。IP 授權作為主軸的策略見效。',id:'sdesign-07e4fc8b',u:'https://www.shoppingdesign.com.tw/post/view/13718'},
 {s:'sdesign',batch:'2026-08-31',d:'2026-08-27',approx:1,c:['設計','展覽','產品'],t:'2025–2026 紅點設計獎台灣得獎作品特展登場：194 件作品全覽',b:'涵蓋產品設計、品牌與傳達設計、設計概念三大類別，實體作品 137 件、數位作品 57 件。台灣設計在國際獎項的年度成績單。',id:'sdesign-464bc812',u:'https://www.shoppingdesign.com.tw/post/view/13715'},
+
+/* ═════ 台灣畫廊動向（7/1–9/12）═════ */
+{s:'tkg',batch:'2026-09-12',d:'2026-07-18',sx:1,id:'tkg-1284714e',c:['展覽'],t:'郭思敏個展｜7/18–9/19，耿畫廊',b:'耿畫廊本季主檔。展期近兩個月，屬畫廊給代理藝術家的標準規格。',u:'https://www.tinakenggallery.com/exhibitions/'},
+{s:'tkg',batch:'2026-09-12',d:'2026-07-04',sx:1,id:'tkg-e09eb0b0',c:['展覽','機構'],t:'Mit Jai Inn 個展｜5/23–7/4，TKG+',b:'泰國藝術家。TKG+ 創意總監吳悅宇長期經營東南亞藝術，這是該路線的代表檔期。',u:'https://www.tkgplus.com/exhibitions/'},
+{s:'tkg',batch:'2026-09-12',d:'2026-07-04',sx:1,id:'tkg-0fc364c1',c:['展覽'],t:'Enrico Isamu Oyama 個展｜3/14–7/4，TKG+ Projects',b:'日裔美籍藝術家，由東京 Takuro Someya Contemporary Art 協辦。日台畫廊互相協辦展覽，是近年常見的成本分攤模式。',u:'https://www.tkgplus.com/exhibitions/'},
+{s:'tkg',batch:'2026-09-12',d:'2026-02-05',sx:1,id:'tkg-65f76d08',c:['收藏','機構','市場'],t:'大英博物館典藏三件台灣當代作品：薛保瑕、陳浚豪、李若玫',b:'承續文化部「文化黑潮」補助，耿畫廊攜手策展人楊佳玲、陳建今與 Frieze 合作，2025 年 10–11 月於倫敦梅費爾 No.9 Cork Street 推出「抒情．暴：倫敦當代臺灣藝術展」。大英博物館確認典藏展出的三件作品，且與其往後的策展研究計劃有明確關聯。',u:'https://www.tinakenggallery.com/events/'},
+{s:'eslite',batch:'2026-09-12',d:'2026-08-01',sx:1,id:'eslite-e5428ef5',c:['展覽'],t:'桑拿大可個展「一件內褲，一雙襪子」｜8 月，誠品畫廊',b:'34 件全新繪畫與 6 件陶藝。繼 2024 年「Don’t BUG me」後的第二次個展，以日常衣物延伸至身體感知與情慾想像。',u:'https://www.eslitegallery.com/最新消息/'},
+{s:'chini',batch:'2026-09-12',d:'2026-06-28',sx:1,id:'chini-4289e156',c:['展覽'],t:'生生之境：陳承衛個展｜6/28–8/23，采泥藝術',b:'采泥的夏季主檔。',u:'https://www.chinigallery.com/'},
+{s:'chini',batch:'2026-09-12',d:'2026-08-21',sx:1,id:'chini-5175b06c',c:['展覽'],t:'蔡孟閶個展《嚮往與距離》：從鐵路、車站與工廠之間凝視城市縫隙',b:'采泥藝術。非池中同期報導。采泥是三月香港巴塞爾「亞洲視野」單元的參展畫廊之一。',u:'https://www.chinigallery.com/'},
+{s:'mindset',batch:'2026-09-12',d:'2026-09-01',sx:1,id:'mindset-efd1730e',c:['展覽'],t:'安卓藝術 2026 秋季檔期進行中',b:'安卓以中生代代理最活躍著稱，是觀察台灣畫廊在挖誰的主要指標。本檔為自由參觀。',u:'https://www.mindsetart.com/'},
+{s:'whitestone',batch:'2026-09-12',d:'2026-09-01',sx:1,id:'whitestone-a36786aa',c:['展覽','市場'],t:'白石畫廊台北 2026 秋季檔期進行中',b:'日系國際畫廊在台北的據點，自由參觀。白石是少數在台北設點的日本大型畫廊，其選件可看出日方對台灣市場的判斷。',u:'https://www.whitestoneart.com/'},
+{s:'bluerider',batch:'2026-09-12',d:'2026-08-25',sx:1,id:'bluerider-6145ceb7',c:['徵件','市場'],t:'2026 臺灣青年藝術家徵件展：王薇薇談徵件背後的動機',b:'Bluerider ART 是台灣少數自辦青年藝術家徵件的商業畫廊。在畫廊生態全球收縮的背景下，它反而在往前找新人。',u:'https://www.blueriderart.com/'},
 
 /* ═════ BATCH 2026-09-11（9/10–9/11）═════ */
 /* ── 非池中 ── */
@@ -1316,6 +1336,16 @@ const TECH={
 };
 
 const NOTES={
+'bluerider-6145ceb7':'Bluerider ART 是台灣少數自辦青年藝術家徵件的商業畫廊。在全球畫廊收縮、市場進入「重新校準」的背景下，它反而在往前找新人——這個逆勢動作要嘛是長線布局，要嘛是低成本填檔期，看它後續有沒有真的簽下代理就知道。',
+'whitestone-a36786aa':'白石是少數在台北設點的日本大型畫廊，其選件可看出日方對台灣市場的判斷。這條線特別值得追：台灣畫廊幾乎沒去首爾，但日韓畫廊持續往台北來（ART TAIPEI 韓國畫廊參展也在攀升）——人流是單向的。',
+'mindset-efd1730e':'安卓以中生代代理最活躍著稱，是觀察台灣畫廊在挖誰的主要指標。它也是三月香港巴塞爾「藝廊薈萃」單元的八家台灣畫廊之一。',
+'chini-5175b06c':'畫廊在本地推什麼、去香港推什麼，兩者的差異往往透露它對兩個市場的判斷。采泥在香港巴塞爾帶的是許雨仁（水墨），在台北推蔡孟閶（城市風景）——同一家畫廊的兩張面孔。',
+'chini-4289e156':'采泥的夏季主檔，展期近兩個月。采泥是三月香港巴塞爾「亞洲視野」單元的參展畫廊，在台北的檔期安排可對照它的國際策略。',
+'eslite-e5428ef5':'繼 2024 年「Don’t BUG me」後的第二次個展，34 件全新繪畫與 6 件陶藝。兩年內兩檔個展，代表誠品在認真經營這位藝術家——商業畫廊給同一人連續檔期的頻率，比任何代理聲明都準確。',
+'tkg-65f76d08':'這是本軌道最重要的一則，也是台灣當代藝術進入世界頂級研究典藏機構的里程碑。三個層次值得分開看：一、路徑——文化部「文化黑潮」補助 → 畫廊出資策劃 → 與 Frieze 合作在倫敦梅費爾辦展 → 大英博物館典藏。這條完整的鏈條證明了公部門補助＋民間執行的模式可以走到頂端。二、典藏而非展出——館方確認這三件與其往後的策展研究計劃有明確關聯，代表不是禮貌性收藏。三、時間差——展覽在 2025 年 10 月，典藏 2026 年 2 月確認，中間隔了三個多月。想複製這條路徑的畫廊要有這個耐心。',
+'tkg-0fc364c1':'由東京 Takuro Someya Contemporary Art 協辦。日台畫廊互相協辦展覽，是近年常見的成本分攤模式——在市場校準期，這種合作會更多。',
+'tkg-e09eb0b0':'TKG+ 創意總監吳悅宇長期經營東南亞藝術，這是該路線的代表檔期。Mit Jai Inn 生於文化交界的東南亞、成長於冷戰地緣條件下，創作語言持續從區域、歷史與張力中生成——這正是 TKG+ 想在台灣建立的東南亞論述。',
+'tkg-1284714e':'耿畫廊本季主檔，展期近兩個月，屬畫廊給代理藝術家的標準規格。檔期長度本身就是訊號：兩個月以上通常代表畫廊願意為該藝術家承擔較高的空間機會成本。',
 'emperor-1eb8631e':'台灣書法界的世代交替與當代化問題，長期缺乏論述關注。書法在台灣的處境特殊：實踐人口不少，但幾乎不進入當代藝術的討論框架——與同期鄭宇宏那檔處理筆順的個展並看，兩種進路的差別很清楚。',
 'emperor-1affd44c':'聲音藝術在台灣的機構支持主要來自 C-LAB，這個音樂節是該領域年度規模最大的場合。130 位表演者的量體不小——與池田亮司獲白南準獎、蘇郁心在 e-flux 發表並看，聲音與資料類創作今年的能見度明顯提升。',
 'emperor-8656e06b':'以身體平衡為隱喻的跨域作品。這類把物理狀態轉為社會隱喻的創作，成敗在於隱喻有沒有超出字面——「傾斜」與「跌倒」的對應太直接時，作品會被自己的標題說完。',
@@ -2292,6 +2322,8 @@ const RECENT=cutD.toISOString().slice(0,10);
 /* 上方三條軌道（熱度榜、台灣藝廊線）只看近兩週，避免舊事件長期占據 */
 const RAIL_DAYS=14;
 const RAIL_FROM=new Date(maxD.getTime()-(RAIL_DAYS-1)*864e5).toISOString().slice(0,10);
+/* 台灣藝廊線改為近四週：畫廊官網與展訊的更新頻率遠低於新聞媒體 */
+const GAL_FROM=new Date(maxD.getTime()-27*864e5).toISOString().slice(0,10);
 const mA=dates[0].slice(0,7).replace('-','.'), mB=dates[dates.length-1].slice(0,7).replace('-','.');
 document.getElementById('built').textContent=BUILT;
 document.getElementById('span').textContent=(mA===mB?mA:mA+'–'+mB);
@@ -2367,7 +2399,7 @@ function buildHot(from){
   const regions=new Set([...outlets].map(s=>(SOURCES[s]||{}).region));
   const leads=arr.filter(x=>x.L).length;
   const cross=regions.size>1;
-  const gal=arr.some(x=>TWG[x.id]);
+  const gal=arr.some(x=>TWG[x.id]||((SOURCES[x.s]||{}).gal));
   const grp=arr.some(x=>(SOURCES[x.s]||{}).g==='design')?'design':'art';
   return{k,arr,outlets,leads,cross,gal,grp,score:outlets.size*3+arr.length+leads*2+(cross?3:0)+(gal?1:0)};
  }).sort((a,b)=>b.score-a.score||(a.arr[0].d<b.arr[0].d?1:-1));
@@ -2407,7 +2439,9 @@ function hfPass(o){
 function railLabel(){
   const f=d=>d.slice(5).replace('-','.');
   const t='近兩週　'+f(RAIL_FROM)+'–'+f(dates[dates.length-1]);
-  ['railnote','railnote2'].forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=t;});
+  const el1=document.getElementById('railnote'); if(el1) el1.textContent=t;
+  const el2=document.getElementById('railnote2');
+  if(el2) el2.textContent='近四週　'+f(GAL_FROM)+'–'+f(dates[dates.length-1]);
 }
 railLabel();
 function renderHeat(){
@@ -2467,13 +2501,13 @@ function syncClears(){
 
 /* 台灣藝廊線：依藝廊分組，出現次數多的排前面 */
 const galGroups={};
-ITEMS.forEach(i=>{ const g=TWG[i.id]; if(g&&i.d>=RAIL_FROM){ (galGroups[g]=galGroups[g]||[]).push(i); } });
+ITEMS.forEach(i=>{ const g=TWG[i.id]||((SOURCES[i.s]||{}).gal?SOURCES[i.s].name:null); if(g&&i.d>=GAL_FROM){ (galGroups[g]=galGroups[g]||[]).push(i); } });
 const galList=Object.entries(galGroups)
   .map(([g,arr])=>({g,arr:arr.slice().sort((a,b)=>a.d<b.d?1:-1)}))
   .sort((a,b)=> b.arr.length-a.arr.length || (a.arr[0].d<b.arr[0].d?1:-1));
 document.getElementById('galrail').hidden=false;
 if(!galList.length){
-  document.getElementById('gallist').innerHTML='<li class="hfnone">近兩週沒有具名台灣藝廊的報導。這條線本來就低頻，把上方「熱度依據」切到「台灣藝廊」可以看全區間的累積。</li>';
+  document.getElementById('gallist').innerHTML='<li class="hfnone">近四週沒有台灣藝廊的動向。把上方「熱度依據」切到「台灣藝廊」可以看全區間的累積。</li>';
 }
 if(galList.length){
   document.getElementById('gallist').innerHTML=galList.map(o=>{
@@ -2494,7 +2528,7 @@ function visible(){
       if(!o||!hfPass(o)) return false;
     }
     if(state.recent&&i.d<RECENT) return false;
-    if(state.onlyGal&&!TWG[i.id]) return false;
+    if(state.onlyGal&&!(TWG[i.id]||(src||{}).gal)) return false;
     if(state.groups.size&&!state.groups.has(src.g||'art')) return false;
     if(state.regions.size&&!state.regions.has(src.region)) return false;
     if(state.sources.size&&!state.sources.has(i.s)) return false;
@@ -2532,7 +2566,8 @@ function render(){
     if(i.du) badges.push('<span class="badge sx">日期未確認</span>');
     if(i.rank) badges.push('<span class="badge hot">站內熱門 '+i.rank+'</span>');
     if(i.L) badges.push('<span class="badge lead">首頁頭條</span>');
-    if(TWG[i.id]) badges.push('<span class="badge gal">'+esc(TWG[i.id])+'</span>');
+    const galName=TWG[i.id]||(src.gal?src.name:null);
+    if(galName) badges.push('<span class="badge gal">'+esc(galName)+'</span>');
     (i.c||[]).forEach(c=>badges.push('<span class="badge">'+esc(c)+'</span>'));
     const ev=(i.k&&EVENTS[i.k])?i.k:null;
     const pkey=ev?('k:'+ev):('u:'+i.u);
@@ -2575,7 +2610,8 @@ function openSingle(u){
   if(i.b) h+='<span class="plabel">重點</span><p class="txt">'+esc(i.b)+'</p>';
   if(TECH[i.id]) h+='<span class="plabel tm">技術與材料</span><p class="txt">'+esc(TECH[i.id])+'</p>';
   if(NOTES[i.id]) h+='<span class="plabel">為什麼值得注意</span><p class="txt">'+esc(NOTES[i.id])+'</p>';
-  if(TWG[i.id]) h+='<span class="plabel">台灣藝廊</span><p class="txt">'+esc(TWG[i.id])+'</p>';
+  const gn=TWG[i.id]||(src.gal?src.name:null);
+  if(gn) h+='<span class="plabel">台灣藝廊</span><p class="txt">'+esc(gn)+'</p>';
   if(i.du) h+='<p class="thin" style="margin-top:20px">這則的發佈日期我沒能查證。它出現在該站首頁的推薦模組，那裡會混入舊文，所以卡片上的日期僅供排序參考，實際可能早於八月。</p>';
   if(i.sx) h+='<p class="thin" style="margin-top:20px">這則我沒能取得文章直連網址，下方按鈕會開啟該站的站內搜尋結果頁，第一筆通常就是本文。</p>';
   h+='<a class="srcbtn" href="'+esc(i.u)+'" target="_blank" rel="noopener">'+(i.sx?'到 ':'前往原文　')+esc(src.domain)+(i.sx?' 搜尋本文':'')+'</a>';
