@@ -72,6 +72,8 @@ a{color:inherit}
 .subhead{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--pigment);margin:0 0 10px;
   padding-bottom:5px;border-bottom:1px solid var(--rule)}
 #h2{margin-top:22px;color:var(--gulf-d)}
+#g1{color:var(--pigment)}
+#g2{margin-top:22px;color:var(--botticelli)}
 .heat button:hover{color:var(--pigment)}
 .heat ol{list-style:none;margin:0;padding:0;display:grid;gap:9px}
 .heat li{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;font-size:14px}
@@ -93,6 +95,48 @@ a{color:inherit}
 .drop{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--dim);float:right;font-weight:400}
 .hotol a:hover{color:var(--pigment)}
 @media (max-width:640px){#sitehotlist{grid-template-columns:1fr}}
+.heathead{margin:0!important;padding:0 0 4px}
+.formula-block{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim);
+  margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.railfold>summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.railfold>summary::-webkit-details-marker{display:none}
+.railfold>summary:hover .foldcue{color:var(--pigment);border-color:var(--pigment)}
+.foldname{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--frame)}
+#fairrail{position:relative}
+#galrail{position:relative}
+.heat-in{position:relative}
+.foldsum{position:absolute;top:3px;right:74px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.05em;color:var(--dim);pointer-events:none;user-select:text;text-align:right;max-width:60%}
+@media (max-width:900px){
+  .railfold>summary{min-height:46px;align-content:start}
+  .foldsum{top:28px;right:auto;left:0;text-align:left;max-width:100%}
+}
+.foldcue{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--dim);
+  border:1px solid var(--rule);padding:2px 9px;margin-left:auto}
+.railfold[open]>summary .foldcue::after{content:'';}
+.railfold[open]>summary .foldcue{color:var(--frame);border-color:var(--frame)}
+.foldbody{padding-top:18px}
+.fairfilter{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.statbox{border:1px solid var(--rule);background:var(--label);padding:18px 20px;margin:0 0 16px}
+.stathead{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--frame);margin:0 0 14px}
+.statnote{font-size:9.5px;letter-spacing:.04em;color:var(--dim);margin-left:8px;text-transform:none}
+.statnums{display:flex;flex-wrap:wrap;gap:26px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.statnums span{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em}
+.statnums b{font-family:var(--display);font-size:26px;color:var(--pigment);margin-right:6px;font-weight:400}
+.statlegend{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--dim);margin:0 0 10px}
+.statlist{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.statlist li{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:baseline}
+.statn{font-family:var(--mono);font-size:11px;color:#F4FAF8;background:var(--frame);text-align:center;line-height:19px;height:19px}
+.statg{font-family:var(--serif);font-size:16px;font-weight:600}
+.statf{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.04em;text-align:right}
+.statfoot{font-size:13px;line-height:1.75;color:#22333B;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--rule)}
+details.fair summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:baseline;padding:13px 16px}
+details.fair summary::-webkit-details-marker{display:none}
+details.fair summary:hover{background:rgba(37,61,73,.04)}
+details.fair .fair-when{grid-column:1;font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+details.fair .twn{grid-row:1/3;grid-column:2;align-self:center}
+details.fair .fair-body{padding:0 16px 16px}
+details.fair[open] summary{border-bottom:1px solid var(--rule)}
 #fairlist{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
 .fair{background:var(--label);padding:16px 18px}
 .fair.pending{background:transparent}
@@ -271,18 +315,57 @@ a{color:inherit}
 
 <section class="heat wrap" id="heat" hidden>
   <div class="heat-in">
-    <h2>熱度榜 <span class="railnote" id="railnote"></span><span class="formula">加權計分：跨媒體家數 ×3　＋　總篇數 ×1　＋　首頁頭條 ×2　＋　台灣國際同報 +3　＋　具名台灣藝廊 +1</span></h2>
-    <p class="subhead" id="h1">藝術線</p>
-    <ol id="heatlist"></ol>
-    <p class="subhead" id="h2">設計線</p>
-    <ol id="heatlist2"></ol>
+    <details class="railfold" id="heatfold" open>
+      <summary class="heathead">
+        <span class="foldname">熱度榜</span>
+        <span class="railnote" id="railnote"></span>
+        <span class="foldcue">收合</span>
+      </summary>
+      <div class="foldbody">
+        <p class="formula formula-block">加權計分：跨媒體家數 ×3　＋　總篇數 ×1　＋　首頁頭條 ×2　＋　台灣國際同報 +3　＋　具名畫廊 +1</p>
+        <p class="subhead" id="h1">藝術線</p>
+        <ol id="heatlist"></ol>
+        <p class="subhead" id="h2">設計線</p>
+        <ol id="heatlist2"></ol>
+      </div>
+    </details>
+    <span class="foldsum" id="heatsum"></span>
     <div id="fairrail" hidden>
-      <h2 class="galhead">藝博會 · 台灣畫廊參展 <span class="formula">逐屆比對誰進誰退</span></h2>
-      <div id="fairlist"></div>
+      <details class="railfold" id="fairfold">
+        <summary class="galhead">
+          <span class="foldname">藝博會 · 台灣畫廊參展</span>
+          <span class="railnote" style="background:var(--barley-d)">統計資料</span>
+          <span class="foldcue">展開</span>
+        </summary>
+        <div class="foldbody">
+          <div id="fairstat"></div>
+          <div class="fairfilter" id="fairfilter">
+            <button class="chip" data-ff="all" aria-pressed="true">全部</button>
+            <button class="chip" data-ff="hastw" aria-pressed="false">有台灣畫廊</button>
+            <button class="chip" data-ff="asia" aria-pressed="false">亞洲</button>
+            <button class="chip" data-ff="other" aria-pressed="false">歐美與其他</button>
+            <button class="chip" data-ff="upcoming" aria-pressed="false">尚未舉行</button>
+          </div>
+          <div id="fairlist"></div>
+        </div>
+      </details>
+      <span class="foldsum" id="fairsum"></span>
     </div>
     <div id="galrail" hidden>
-      <h2 class="galhead">台灣藝廊線 <span class="railnote" id="railnote2"></span><span class="formula">媒體報導中具名的台灣藝廊，加上六家畫廊官網的直接動向</span></h2>
-      <ol id="gallist"></ol>
+      <details class="railfold" id="galfold">
+        <summary class="galhead">
+          <span class="foldname">畫廊動向</span>
+          <span class="railnote" id="railnote2"></span>
+          <span class="foldcue">展開</span>
+        </summary>
+        <div class="foldbody">
+          <p class="subhead" id="g1">台灣藝廊</p>
+          <ol id="gallist"></ol>
+          <p class="subhead" id="g2">海外藝廊</p>
+          <ol id="gallisti"></ol>
+        </div>
+      </details>
+      <span class="foldsum" id="galsum"></span>
     </div>
   </div>
 </section>
@@ -294,10 +377,11 @@ a{color:inherit}
     <button class="chip" data-group="art" aria-pressed="false">藝術<span class="freq">每日</span></button>
     <button class="chip dsg" data-group="design" aria-pressed="false">設計<span class="freq">每週</span></button>
     <span class="sep"></span>
-    <button class="chip pig" data-region="tw" aria-pressed="false">台灣</button>
-    <button class="chip" data-region="intl" aria-pressed="false">國際</button>
+    <button class="chip pig" data-region="tw" aria-pressed="false">台灣媒體</button>
+    <button class="chip" data-region="intl" aria-pressed="false">國際媒體</button>
     <span class="sep"></span>
     <button class="chip pig" id="onlygal" aria-pressed="false">台灣藝廊</button>
+    <button class="chip" id="onlygali" aria-pressed="false">海外藝廊</button>
     <button class="chip" id="hideread" aria-pressed="false">隱藏已讀</button>
     <input id="q" type="search" placeholder="搜尋標題、摘要、重點整理…" aria-label="搜尋">
     <span class="count" id="count"></span>
@@ -318,7 +402,7 @@ a{color:inherit}
           <button class="chip" data-hf="cross" aria-pressed="false">台灣國際同報</button>
           <button class="chip" data-hf="lead" aria-pressed="false">首頁頭條</button>
           <button class="chip" data-hf="deep" aria-pressed="false">多篇追蹤</button>
-          <button class="chip pig" data-hf="gal" aria-pressed="false">台灣藝廊</button>
+          <button class="chip pig" data-hf="gal" aria-pressed="false">畫廊動向</button>
         </div></div>
       <button class="chip clr" id="clrall" hidden>清除篩選</button>
     </div>
@@ -332,21 +416,54 @@ a{color:inherit}
     <p class="k">使用說明</p>
     <h3>一個檔，放著就好</h3>
     <p>整個網站就是這一個 <code>index.html</code>，資料也在裡面。每天更新時我會給你一份新的 <code>index.html</code>，下載後放進 <b>桌面／藝訊</b> 覆蓋舊的即可。檔名固定不變，所以書籤永遠有效；更新時間看頁首那行。舊資料不會消失，新的一批會加在最前面並標上「本批新增」。</p>
-    <p><b>兩家以上媒體同報的事件</b>，卡片右下角會出現「重點整理」，點開是我整合各家報導後的一句話重點、細節條列、我的判斷，最下面列出全部來源連結。<b>其餘各則</b>點標題直接開原文，不繞路。</p>
-    <p><b>色條分區</b>：紅土色是台灣媒體，深綠是國際。<b>熱度榜</b>不是點閱數（各家不公開），而是加權計分：跨媒體家數、總篇數、當天是否在該站首頁頭條、台灣與國際是否同時報，以及是否具名台灣藝廊（+1，只作同分時的排序依據，單一來源不會因此進榜）。標了「重點整理」的可以點開，其餘直接開原文。</p>
-    <p><b>Art Spell 是雷達，不是來源</b>：它是一份免費的每日藝術新聞彙整電子報，把 Artnet、ARTnews、The Art Newspaper、Artforum、Hyperallergic、ArtReview 等十餘家掃成一份連結清單。我用它找出漏掉或未追蹤的媒體，但收錄時一律回歸原出處標示，不會掛在 Art Spell 名下。經此管道新增了 ARTnews、ArtReview、Hyperallergic 三家。</p>
-    <p><b>Sotheby’s 抓的是 Articles 編輯線，不是新聞稿</b>：它的「新聞稿」專區跟著拍賣季走，8 月幾乎空白（唯一一則是 8/12 的紐約酒類拍賣 NIGHTCAP，不符合篩選條件）。真正有內容的是編輯線，本期收錄 2 則。要注意這些文章都綁定即將上拍的標的，本質是賣方觀點，我在判斷欄會標明哪些該照單全收、哪些要打折。</p>
-    <p><b>收錄起點為 2026 年 8 月 1 日</b>，更早的內容不列入。</p>
-    <p><b>台灣設計線去重</b>：Shopping Design、MOT TIMES 與 La Vie 三家的展訊重疊度高，同一件事只留一則，以 MOT TIMES 為主。La Vie 只收它獨有的建築案例、空間改造與產品設計，不收與他家重複的展訊。</p>
-    <p><b>兩條線、兩種節奏</b>：藝術線十家（含每週更新的 Art Basel 與 Sotheby’s）；設計線五家（Designboom、Sight Unseen、Dezeen Furniture、MOT TIMES、Shopping Design）每週更新一次。用篩選列最左邊的「藝術／設計」切換，或用「媒體」下拉單選某一家。設計線卡片是藍灰色條，台灣媒體為赭色。</p>
-    <p><b>點左上角的「arts wall」標題可以一鍵重設</b>：清掉所有篩選、搜尋與熱度依據，同時把已讀過的卡片全部恢復成未讀的原色，回到近一週的預設畫面並捲回頂端。</p>
-    <p><b>預設只顯示近一週</b>：卡片區預設濾掉七天前的內容，按一下「近一週」即可看全部；用「日期」下拉挑年、月、日時會自動解除。下拉鈕上顯示的是你目前選了什麼（例如「日期　2026.8月.7日」）；選單裡每個選項後面的小數字，是該選項有幾則。上方三條軌道（藝術線熱度榜、設計線熱度榜、台灣藝廊線）永遠顯示全部區間，不受這個篩選影響，點進去一定開得了。</p>
-    <p><b>每一則都有重點整理</b>：點卡片標題或右下角「重點整理」開側欄。面板依序是重點、技術與材料、我的判斷、原文連結；兩家以上同報的事件另有細節條列與全部來源。有材料或工法可談的則會在卡片標上「技術・材料」徽章，沒有的就不會硬寫。開過即自動標為已讀。</p>
-    <p><b>台灣畫廊動向</b>：除了媒體報導中具名的藝廊，另直接追蹤六家畫廊官網——耿畫廊／TKG+、誠品畫廊、安卓藝術、采泥藝術、Bluerider ART、白石畫廊。收錄重點是藝博會參展、代理異動與海外展出，展訊只列不深談。按第一排的「台灣藝廊」鈕可一次看全部。Instagram 無法自動抓取，那條線需要另外處理。</p>
-    <p><b>上方三條軌道只看近兩週</b>：熱度榜（藝術線、設計線）以資料中最新日期往回推十四天；台灣藝廊線因畫廊更新頻率低，放寬為四週，避免一個月前的事件長期佔據版面。想看全區間的累積，用篩選列的「熱度依據」下拉——它同時篩選上方軌道與下方卡片，且不受兩週或近一週限制（選了會自動解除「近一週」）。卡片區平常則是近一週：軌道看趨勢，卡片看新訊。</p>
-    <p><b>兩種熱度</b>：上方「熱度榜」分藝術線與設計線兩軌，是我的加權計分，預設只顯示 6 分以上。用篩選列的「熱度依據」下拉可依單一計分條件檢視，此時會列出所有符合的項目、不受 6 分門檻限制；再點一次同一個條件即可取消。卡片上的深藍徽章「站內熱門 N」則是該媒體自家公開的點閱排名，是真實數據，兩者不要混為一談。站內熱門只收設計、工藝、建築、藝術相關，非主題的即使點閱高也不列入。國際媒體標題已譯為中文，原文以斜體附在下方。</p>
-    <p><b>連結原則</b>：只有我實際在來源頁面上看到的網址才做直連。其餘一律指向該站的站內搜尋（卡片上有「連結為站內搜尋」標記），關鍵字取自原文標題，第一筆通常就是本文。我不用推測的網址冒充直連——先前這麼做過，結果是一批點不到的死連結，已全數改正。</p>
-    <p><b>日期前有「?」的</b>，代表我沒能查證發佈日期——該則來自站方首頁的推薦模組，那裡會混入舊文，日期僅供排序參考。<b>日期前有「~」的</b>，代表該站列表頁沒有公開發佈日期，我依文章編號推估，僅供排序參考。<b>標記已讀</b>存在瀏覽器本機，覆蓋檔案不會清掉。</p>
+
+    <details class="doc">
+      <summary><span class="dn">怎麼看</span><span class="ds">卡片、重點整理、已讀、重設</span></summary>
+      <div class="db">
+        <p><b>每一則都有重點整理</b>：點卡片標題或右下角「重點整理」開側欄。面板依序是重點、技術與材料、我的判斷、原文連結；兩家以上同報的事件另有細節條列與全部來源。有材料或工法可談的則會在卡片標上「技術・材料」徽章，沒有的就不會硬寫。開過即自動標為已讀。</p>
+        <p><b>色條分區</b>：紅土色是台灣媒體，深綠是國際，藍灰是設計線。</p>
+        <p><b>點左上角的「arts wall」標題可以一鍵重設</b>：清掉所有篩選、搜尋與熱度依據，同時把已讀過的卡片全部恢復成未讀的原色，回到近一週的預設畫面並捲回頂端。<b>標記已讀</b>存在瀏覽器本機，覆蓋檔案不會清掉。</p>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span class="dn">篩選怎麼運作</span><span class="ds">聯集與交集、日期、熱度依據</span></summary>
+      <div class="db">
+        <p><b>同一排的鈕是「或」不是「而且」</b>：台灣媒體／國際媒體、藝術／設計、台灣藝廊／海外藝廊，同時按兩顆等於兩邊都要（聯集）。不同排之間才是交集——例如「設計」＋「工藝」是設計線裡的工藝類。</p>
+        <p><b>預設只顯示近一週</b>：卡片區預設濾掉七天前的內容，按一下「近一週」即可看全部；用「日期」下拉挑年、月、日時會自動解除。下拉鈕上顯示的是你目前選了什麼；選單裡每個選項後面的小數字，是該選項有幾則。</p>
+        <p><b>熱度依據</b>下拉同時篩選上方軌道與下方卡片，且不受兩週或近一週限制（選了會自動解除「近一週」）。再點一次同一個條件即可取消。</p>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span class="dn">上方三條軌道</span><span class="ds">熱度榜、藝博會統計、畫廊動向</span></summary>
+      <div class="db">
+        <p><b>都可收合</b>，只有熱度榜預設展開。標題列右側的淺色摘要是純文字，點它不會展開，要點左邊的標題或右邊的「展開」鈕。</p>
+        <p><b>熱度榜</b>不是點閱數（各家不公開），而是加權計分：跨媒體家數 ×3、總篇數 ×1、首頁頭條 ×2、台灣國際同報 +3、具名畫廊 +1。預設只顯示 6 分以上。藝術線看近兩週、設計線看近四週（設計媒體是週更，兩週內的跨媒體事件太少）。卡片上的深藍徽章「站內熱門 N」則是該媒體自家公開的點閱排名，是真實數字。</p>
+        <p><b>藝博會 · 台灣畫廊參展</b>是統計資料，不受日期篩選——逐屆累積的參展紀錄，需要跨年度比對誰進誰退。排行左側的數字＝該畫廊當年參與的國際藝博會場次；「N / M 場有台灣畫廊」的分母不含 ART TAIPEI 主場。</p>
+        <p><b>畫廊動向</b>分台灣藝廊九家（耿畫廊／TKG+、誠品、采泥、安卓、索卡、双方、Bluerider、白石、亞洲藝術中心）與海外藝廊兩家（Pace、Gagosian），窗口為近一個月。白石是日本畫廊，因其台北空間的經營而列在台灣線。</p>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span class="dn">收錄規則</span><span class="ds">起點、去重、各家節奏</span></summary>
+      <div class="db">
+        <p><b>三種收錄規則</b>：一、藝術線與設計線的媒體新聞，從 2026 年 6 月 1 日起。二、台灣與海外藝廊的官網動向，同樣從 6 月起。三、藝博會參展紀錄不受日期篩選。</p>
+        <p><b>兩條線、兩種節奏</b>：藝術線每日更新；設計線（Designboom、Sight Unseen、Dezeen Furniture、MOT TIMES、Shopping Design、La Vie）每週更新一次。</p>
+        <p><b>台灣設計線去重</b>：Shopping Design、MOT TIMES 與 La Vie 三家的展訊重疊度高，同一件事只留一則，以 MOT TIMES 為主。La Vie 只收它獨有的建築案例、空間改造與產品設計。</p>
+        <p><b>畫廊資料一律取自官網</b>的展覽與最新消息頁，不採用搜尋引擎摘要（那會撈到舊文並誤判日期）。</p>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span class="dn">來源與連結的可信度</span><span class="ds">直連、站內搜尋、日期標記</span></summary>
+      <div class="db">
+        <p><b>連結原則</b>：只有我實際在來源頁面上看到的網址才做直連。其餘一律指向該站的站內搜尋（卡片上有「連結為站內搜尋」標記），關鍵字取自原文標題，第一筆通常就是本文。我不用推測的網址冒充直連——先前這麼做過，結果是一批點不到的死連結，已全數改正。</p>
+        <p><b>日期前有「?」的</b>，代表我沒能查證發佈日期，該則來自站方首頁的推薦模組（那裡會混入舊文），日期僅供排序參考。<b>日期前有「~」的</b>，代表該站列表頁沒有公開發佈日期，我依文章編號推估。</p>
+        <p><b>Art Spell 是雷達，不是來源</b>：它是一份免費的每日藝術新聞彙整電子報，把十餘家掃成連結清單。我用它找出漏掉的媒體，但收錄時一律回歸原出處標示。</p>
+        <p><b>Sotheby’s 抓的是 Articles 編輯線</b>，不是新聞稿——後者跟著拍賣季走，淡季幾乎空白。要注意這些文章都綁定即將上拍的標的，本質是賣方觀點。</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -368,20 +485,25 @@ a{color:inherit}
    ══════════════════════════════════════════════════════════ */
 
 
-const SHOW_FAIRS=false;   /* 藝博會軌道開關：改成 true 就會顯示 */
+const SHOW_FAIRS=true;   /* 藝博會軌道開關：改成 true 就會顯示 */
 
-const BUILT='2026.09.12　17:30　台北';
+const BUILT='2026.09.13　20:20　台北';
 
 const SOURCES={
   artouch :{name:'典藏 ARTouch',      region:'tw',   domain:'artouch.com'},
   cans    :{name:'CANS 藝術新聞',      region:'tw',   domain:'cansarts.com'},
   /* ── 台灣畫廊動向（官網直抓）── */
-  tkg     :{name:'耿畫廊 / TKG+',      region:'tw',   domain:'tinakenggallery.com', gal:1},
-  eslite  :{name:'誠品畫廊',           region:'tw',   domain:'eslitegallery.com',   gal:1},
-  mindset :{name:'安卓藝術',           region:'tw',   domain:'mindsetart.com',      gal:1},
-  chini   :{name:'采泥藝術',           region:'tw',   domain:'chinigallery.com',    gal:1},
-  bluerider:{name:'Bluerider ART',    region:'tw',   domain:'blueriderart.com',    gal:1},
-  whitestone:{name:'白石畫廊',         region:'tw',   domain:'whitestoneart.com',   gal:1},
+  tkg     :{name:'耿畫廊 / TKG+',      region:'tw',   domain:'artemperor.tw', gal:1},
+  chini   :{name:'采泥藝術',           region:'tw',   domain:'artemperor.tw',    gal:1},
+  eslite  :{name:'誠品畫廊',           region:'tw',   domain:'artemperor.tw',    gal:1},
+  bluerider:{name:'Bluerider ART',    region:'tw',   domain:'artemperor.tw',    gal:1},
+  whitestone:{name:'白石畫廊',         region:'tw',   domain:'whitestone-gallery.com', gal:1},
+  msac    :{name:'安卓藝術',           region:'tw',   domain:'art-msac.com',     gal:1},
+  aac     :{name:'亞洲藝術中心',        region:'tw',   domain:'asiaartcenter.org', gal:1},
+  soka    :{name:'索卡藝術',           region:'tw',   domain:'soka-art.com',     gal:1},
+  dsq     :{name:'双方藝廊',           region:'tw',   domain:'doublesquare.com.tw', gal:1},
+  pace    :{name:'Pace Gallery',      region:'intl', domain:'pacegallery.com',  gal:1},
+  gago    :{name:'Gagosian',          region:'intl', domain:'gagosian.com',     gal:1},
   emperor :{name:'非池中藝術網',       region:'tw',   domain:'artemperor.tw'},
   verse   :{name:'VERSE',             region:'tw',   domain:'verse.com.tw'},
   artnet  :{name:'Artnet News',       region:'intl', domain:'news.artnet.com'},
@@ -394,7 +516,6 @@ const SOURCES={
   artnews :{name:'ARTnews',           region:'intl', domain:'artnews.com'},
   artreview:{name:'ArtReview',        region:'intl', domain:'artreview.com'},
   hyper   :{name:'Hyperallergic',     region:'intl', domain:'hyperallergic.com'},
-  wapo    :{name:'Washington Post',    region:'intl', domain:'washingtonpost.com'},
   /* ── 設計線 ── */
   dboom   :{name:'Designboom',        region:'intl', domain:'designboom.com',    g:'design'},
   sunseen :{name:'Sight Unseen',      region:'intl', domain:'sightunseen.com',   g:'design'},
@@ -430,42 +551,70 @@ const TOPICS={
    tw = 該屆確認參展的台灣畫廊（含展位號）
    ══════════════════════════════════════════════════════════ */
 const FAIRS=[
-{name:'Art Basel Hong Kong 2026', when:'2026.03.27–29（預展 3/25–26）', where:'香港會議展覽中心',
+{name:'ART TAIPEI 2026 台北國際藝術博覽會', reg:'tw', st:'upcoming', when:'2026.10.23–26（暫定）', where:'台北世界貿易中心',
+ scale:'主題「共生」與「速度」；台北藝術週同期回歸',
+ twn:'主場，全數台灣畫廊',
+ tw:['韓國畫廊參展數量明顯攀升（具體名單待補）'],
+ note:'台灣的主場藝博會。最值得注意的是韓國畫廊來台攀升，而台灣畫廊在九月首爾幾乎缺席——雙向落差說明韓國把台北當可開發的新市場，台灣卻沒把首爾當必須佈局的戰場。',
+ src:[{n:'典藏 ARTouch · 主題與展商名單',u:'https://artouch.com/?p=213875'},{n:'非池中 · 展商名單公布',u:'https://artemperor.tw/focus/7327'}]},
+
+{name:'Frieze Seoul 2026（現場實況）', reg:'asia', st:'done', when:'2026.09.02–06', where:'首爾 COEX',
+ scale:'與 Kiaf 同場同期的最後一屆；2027 年移師札哈．哈蒂設計的 DDP',
+ twn:'非池中四人編輯團隊現地確認',
+ tw:['台灣畫廊參與狀況見非池中現地報導（公布名單中未見，現場實際情形另有記錄）'],
+ note:'開幕日成交：Thaddaeus Ropac 以 128 萬美元售出 Adrian Ghenie，為當日最高價；White Cube 以逾 72 萬美元售出 Richter《Fuji》。Kiaf 端國際畫廊以 44–53 萬美元售出劉永國 1979 年作。整體交易節奏趨緩，但韓國現代大師刷新紀錄。Frieze 總監派翠克．李把新銳的 Focus 展區放在會場最核心走道，藍籌退居兩側。',
+ src:[{n:'非池中 · 台灣畫廊展什麼',u:'https://artemperor.tw/focus/7345'},{n:'非池中 · 現場直擊 10 間畫廊',u:'https://artemperor.tw/focus/7346'},{n:'非池中 · 銷售報告',u:'https://artemperor.tw/focus/7351'},{n:'典藏 · 綜合報導與台灣畫廊戰報',u:'https://artouch.com/?p=215507'}]},
+
+{name:'Frieze Abu Dhabi 2026（首屆）', reg:'other', st:'upcoming', when:'2026.11', where:'阿布達比',
+ scale:'84 家畫廊 · 64 城 · 37 國',
+ twn:'待查證',
+ tw:[],
+ note:'Frieze 在西亞北非南亞（WANASA）地區的第一場。組成比多數新藝博會分散，是刻意經營轉運型市場的訊號——波灣本地藏家有限，靠的是做成國際買家的中途站。與 12 月開幕的古根漢阿布達比、2030 年的 Gehry 藝術之家並看，機構與市場兩端同步佈建。',
+ src:[{n:'The Art Newspaper · 參展畫廊名單',u:'https://www.theartnewspaper.com/2026/08/27/frieze-abu-dhabi-inaugural-fair-gallery-list'},{n:'Frieze · 首屆組成',u:'https://www.frieze.com/'}]},
+
+{name:'Tokyo Gendai 2026', reg:'asia', st:'done', when:'2026.09.11–13', where:'橫濱 PACIFICO',
+ scale:'日本近年新設的國際藝博會',
+ twn:'待查證',
+ tw:[],
+ note:'與首爾藝術週僅隔一週，藍籌畫廊要在兩週內跑完兩場。Pace 於展位 B03 呈現 Lauren Quin。東亞藝博會的檔期競爭正在加劇：香港三月、首爾九月初、東京九月中、台北十月。',
+ src:[{n:'Pace Gallery · 展位資訊',u:'https://www.pacegallery.com/artfairs/tokyo-gendai-2026/'}]},
+
+{name:'ART SG 2026', reg:'asia', st:'done', when:'2026.01.22–25', where:'新加坡 Marina Bay Sands',
+ scale:'東南亞最大的國際藝博會',
+ twn:'亞洲藝術中心（展位 BC07）',
+ tw:['亞洲藝術中心 Asia Art Center｜BC07（楊英風、朱銘、李真三位華語世界雕塑家）'],
+ note:'亞洲藝術中心以「新東方精神」為策展主軸。朱銘與李真是僅有的兩位曾在不同年代於新加坡美術館舉辦大型個展的台灣雕塑家。展品含楊英風的不鏽鋼《鳳凰》、朱銘《太極系列》罕見木雕《太極拱門》、李真《大氣神遊》系列《眾生》。',
+ src:[{n:'亞洲藝術中心 · 展位資訊',u:'https://asiaartcenter.org/art-fairs/45/overview/'}]},
+
+{name:'Art Basel Hong Kong 2026', reg:'asia', st:'done', when:'2026.03.27–29（預展 3/25–26）', where:'香港會議展覽中心',
  scale:'240 家畫廊 · 41 國 · 32 家首度參展 · 逾半數在亞太設有空間',
  twn:'12 家（歷年最多）',
  tw:['耿畫廊 Tina Keng Gallery｜1D27','TKG+｜1D27','亞洲藝術中心 Asia Art Center｜3E19','丹之寶 TANSBAO｜3D30（首度）','索卡藝術 SOKA ART｜1B01','安卓藝術 Mind Set Art Center｜1D34','尊彩藝術中心 Liang Gallery｜3E15','誠品畫廊 Eslite Gallery｜3D14','采泥藝術 CHINI Gallery｜3D27','大未來林舍畫廊 Lin & Lin｜3E03','亞紀畫廊 Each Modern｜3C35','PTT Space｜1C46（藝術探新）'],
  note:'耿畫廊與 TKG+ 聯合使用 1D27 展位，以「複調」為題聯展。丹之寶首度入選，推出尼泊爾現代藝術之父 Lain Singh Bangdel 的首次亞洲藝博會個展。PTT Space 在「藝術探新」推出泰雅族藝術家林安琪個展。',
  src:[{n:'典藏 ARTouch · 展前指南',u:'https://artouch.com/art-market/content-203925.html'},{n:'典藏 ARTouch · 參展名單公布',u:'https://artouch.com/art-market/art-fair/content-194867.html'}]},
 
-{name:'Art Central 2026', when:'2026.03.25–29', where:'香港中環海濱活動空間',
+{name:'Art Central 2026', reg:'asia', st:'done', when:'2026.03.25–29', where:'香港中環海濱活動空間',
  scale:'香港藝術三月的第二現場',
  twn:'6 家具名',
  tw:['丁丁藝術空間 TING TING｜C35','首都藝術中心 Capital Art Center｜C12','藝星藝術中心 ASTAR｜A5','凱奧藝術 KAI\'S Gallery｜C17','藝術時代畫廊 ARTAGE｜D4（首度）','名典畫廊 Ming Dian｜C06'],
  note:'典藏原文寫「四家畫廊將於 Art Central 登場」，但內文實際列出六家，總計也寫成 16 家（12＋4）。這裡照實際列出的家數記錄，數字待該刊自行更正。',
  src:[{n:'典藏 ARTouch · 展前指南',u:'https://artouch.com/art-market/content-203925.html'}]},
 
-{name:'Kiaf SEOUL 2026', when:'2026.09.02–06', where:'首爾 COEX',
+{name:'Kiaf SEOUL 2026', reg:'asia', st:'done', when:'2026.09.02–06', where:'首爾 COEX',
  scale:'175 家畫廊 · 18 國 · 第 25 屆 · Kiaf Plus 收 19 家年輕畫廊',
- twn:'名單未見台灣畫廊揭露',
+ twn:'公布名單未見台灣畫廊',
  tw:[],
- note:'首度設外部創意總監，由設計師 Kuho Jung 操刀。主題「Coexistence」。已公布名單以韓國本地與日、港、歐美畫廊為主，台灣參與情形待進一步查證。',
- src:[{n:'非池中藝術網 · 完整參展名單',u:'https://artemperor.tw/focus/7301'}]},
+ note:'首度設外部創意總監，由設計師 Kuho Jung 操刀，主題「Coexistence」。與 Frieze Seoul 同場同期的最後一屆——2027 年 Frieze 移師 DDP 後兩者拆夥。現場成交：國際畫廊以 44–53 萬美元售出劉永國 1979 年作；現代畫廊以每件 22–37 萬美元售出數件白南準。',
+ src:[{n:'非池中 · 完整參展名單',u:'https://artemperor.tw/focus/7301'},{n:'非池中 · 銷售報告',u:'https://artemperor.tw/focus/7351'}]},
 
-{name:'Frieze Seoul 2026', when:'2026.09.02–05', where:'首爾 COEX',
- scale:'125＋家畫廊 · 30 國 · 逾七成在亞太 · 50＋家在首爾設常設空間',
- twn:'名單未見台灣畫廊揭露',
- tw:[],
- note:'與 Kiaf 同場同期。新增 Material Practice 與 Spotlight 兩個策展單元；Focus 收 16 家新銳畫廊。日本畫廊陣容強（Anomaly、Nanzuka、SCAI The Bathhouse、Taka Ishii 等逾 20 家），台灣缺席與否值得對照。',
- src:[{n:'Frieze · 首波公布',u:'https://www.frieze.com/article/first-details-frieze-seoul-2026'},{n:'Frieze · 個展單元精選',u:'https://www.frieze.com/article/karin-kneffel-do-ho-suh-solo-presentations-frieze-seoul-2026'}]},
-
-{name:'Frieze London & Frieze Masters 2026', when:'2026.10（Frieze Sculpture 9/16–11/1）', where:'倫敦攝政公園',
+{name:'Frieze London & Frieze Masters 2026', reg:'other', st:'upcoming', when:'2026.10（Frieze Sculpture 9/16–11/1）', where:'倫敦攝政公園',
  scale:'策展單元 50 個展位；Frieze Sculpture 11 位藝術家',
  twn:'待公布',
  tw:[],
  note:'Gray Wielebinski 現地委託、與 ICA 合作影像單元、非營利組織接管 Reading Room。Masters Talks 主題「Breaking the Mould」，講者含 Es Devlin、Grayson Perry、Danh Vō。',
  src:[{n:'Frieze · 節目公布',u:'https://www.frieze.com/article/frieze-london-masters-2026-programming-announcement'}]},
 
-{name:'The Armory Show 2026', when:'2026.09 下旬（移至九月底）', where:'紐約 Javits Center',
+{name:'The Armory Show 2026', reg:'other', st:'upcoming', when:'2026.09 下旬（移至九月底）', where:'紐約 Javits Center',
  scale:'230 家畫廊',
  twn:'待公布',
  tw:[],
@@ -474,10 +623,7 @@ const FAIRS=[
 ];
 
 const TWG={
-'emperor-d8c5a78b':'阿波羅畫廊',
-'emperor-3f2447e3':'形狀藝術',
-'emperor-bdc9ea63':'TAO ART',
-'verse-20d0b9af':'陋室五月小風景'
+
 };
 
 const CATS=['市場','機構','人事','展覽','評論','設計','建築','工藝','家具','產品','品牌','空間','考古','修復','收藏','徵件','文資','政策'];
@@ -498,7 +644,6 @@ const ITEMS=[
 {s:'dezeen',batch:'2026-08-11',d:'2026-08-06',c:['家具','品牌','產品'],t:'Tan France 首度跨足家具，與新加坡品牌 Castlery 推 18 件系列',e:'Tan France launches debut furniture collection with Castlery',b:'《粉雄救兵》主持人的第一個家具系列，18 件從模組沙發、蛋形單椅到亮色檯燈與車枳邊几。他說靈感來自英國與南亞的雙重成長背景，以及親手設計自宅的經驗。名人跨界家具的成敗多半看有沒有真的參與設計，這件值得追後續評價。',id:'dezeen-a5fe661b',u:'https://www.dezeen.com/?s=Tan%20France%20Castlery%20furniture',sx:1},
 {s:'dezeen',batch:'2026-08-11',d:'2026-08-02',c:['家具','產品','設計'],t:'Dezeen 七月家具與燈具精選',e:'Dezeen’s favourite furniture and lighting from July',b:'設計組的月度回顧。本期兩件關鍵：Becca Panter 的 ReFrame 平整包衣櫃只要一支六角板手就能組裝，起因是她發現學生宿舍最常壞、又完全無法維修的就是內建刨花板衣櫃；另有一件用蛤蜊殼做的混凝土長凳。',id:'dezeen-f517a445',u:'https://www.dezeen.com/?s=favourite%20furniture%20lighting%20July',sx:1},
 {s:'dezeen',batch:'2026-08-11',d:'2026-08-05',L:1,rank:4,c:['工藝','產品','設計'],t:'活菌絲織成的洋裝會自我清潔，也能自行修復',e:'Dress made of living mycelium can renew and repair itself',b:'深圳先進技術研究院用活體菌絲做出可自潔、近乎自癒的織物，還能透過「隨插即用」的不同真菌或酵母調整顏色與抗紫外線能力。Dezeen 站內熱門第四名，是生物材料從實驗室走向穿戴的具體一步。',id:'dezeen-a4fb5145',u:'https://www.dezeen.com/?s=dress%20living%20mycelium%20renew%20repair',sx:1},
-{s:'dezeen',batch:'2026-08-11',d:'2026-08-11',approx:1,sx:1,c:['家具','工藝','設計'],t:'Harvest Moon 桌：材料與工具全來自坎特伯里 40 英里內',e:'Harvest Moon table fabricated with materials and tools from within a 40 mile radius',b:'建築師 Charles Holland、學者 Catharine Rossi 與 Local Works 合作，把生產半徑限制在 40 英里內。這種自我設限的做法在談永續時很常見，但真的連工具都算進去的少，因此結果比一般的在地化宣言有說服力。',id:'dezeen-50a61b96',u:'https://www.dezeen.com/?s=Harvest%20Moon%20table%2040%20mile%20radius%20Charles%20Holland'},
 {s:'dezeen',batch:'2026-08-11',d:'2026-08-10',L:1,rank:3,c:['設計','政策','評論'],t:'歐盟 AI 法案要求：擬真的 AI 建築渲染圖必須標示',e:'Realistic AI architectural renderings must be labelled under EU AI Act',b:'Dezeen 站內熱門第三名。建築視覺化是 AI 生成滲透最快的領域之一，一旦強制標示，提案簡報與競圖的呈現方式都得跟著改。這條規範對設計產業的實質影響比多數 AI 討論都直接。',id:'dezeen-3ef3d3c3',u:'https://www.dezeen.com/?s=AI%20architectural%20renderings%20EU%20AI%20Act',sx:1},
 
 {s:'sdesign',batch:'2026-08-11',d:'2026-08-10',approx:1,rank:4,c:['展覽','評論'],t:'松枝悠希台北個展《平面不服》：反向致敬村上隆「超扁平理論」',b:'當逃生指標、撲克牌不再平面。日本藝術家把日常中最扁平的視覺符號重新給出厚度，用反向操作回應村上隆的超扁平論述，是對一個已成定論的理論做結構性的翻案。',id:'sdesign-0307ca3d',u:'https://www.shoppingdesign.com.tw/post/view/13556'},
@@ -539,22 +684,8 @@ const ITEMS=[
 {s:'dboom',batch:'2026-09-10',d:'2026-08-18',sx:1,id:'dboom-ffee2c81',c:['家具','產品','工藝'],t:'Reza Raeisifar 與 Saber Abar 把鋼球堆疊成椅子、燈具與寵物屋',e:'reza raeisifar and saber abar stack steel spheres into chairs, lamps and pet homes',b:'以單一幾何元素（鋼球）的重複堆疊構成不同機能物件。模組化到極致的做法，成敗全看接合方式與重量控制。',u:'https://www.designboom.com/?s=Reza%20Raeisifar%20Saber%20Abar%20steel%20spheres%20chairs%20lamps'},
 
 /* ── VERSE / La Vie ── */
-{s:'verse',batch:'2026-09-10',d:'2026-09-08',approx:1,sx:1,id:'verse-b36cea9c',c:['建築','空間','評論'],t:'大尺建築＋郭旭原聯合建築師事務所：以減法讓空間回歸本質',b:'從環境的訊息、風與光影捕捉空間節奏，主張以減法讓居住者在日常中感受時間與空間的流動。台灣少數持續談「空間哲學」而非案例展示的建築事務所專訪。',u:'https://www.verse.com.tw/search?q=%E5%A4%A7%E5%B0%BA%E5%BB%BA%E7%AF%89%20%E9%83%AD%E6%97%AD%E5%8E%9F%20%E6%B8%9B%E6%B3%95'},
-{s:'verse',batch:'2026-09-10',d:'2026-09-05',approx:1,sx:1,id:'verse-631990ee',c:['設計','工藝','品牌'],t:'山恩 Saiens 攜手汪俐伶：為第一線工程師打造機能工作制服',b:'從基層出發的產業改革，重塑台灣職人文化。工作服設計在台灣少被當成設計議題，這件把「被忽視的一線技術人員」放到核心，是罕見的切入角度。',u:'https://www.verse.com.tw/search?q=%E5%B1%B1%E6%81%A9%20Saiens%20%E6%B1%AA%E4%BF%90%E4%BC%B6%20%E5%B7%A5%E4%BD%9C%E5%88%B6%E6%9C%8D'},
-{s:'verse',batch:'2026-09-10',d:'2026-09-03',approx:1,sx:1,id:'verse-f7d40621',c:['設計','建築','評論'],t:'一隱照明設計《光影過渡之間》作品集出版：以光轉譯空間精神',b:'收錄十三件代表作，含台灣設計研究院廊道、1895 乙未保台紀念公園景觀照明、公共藝術燈光「點亮十三層」。台灣照明設計少數有完整論述的實踐者。',u:'https://www.verse.com.tw/search?q=%E4%B8%80%E9%9A%B1%E7%85%A7%E6%98%8E%E8%A8%AD%E8%A8%88%20%E5%85%89%E5%BD%B1%E9%81%8E%E6%B8%A1%E4%B9%8B%E9%96%93'},
-{s:'verse',batch:'2026-09-10',d:'2026-09-01',approx:1,sx:1,id:'verse-06116f56',c:['展覽','建築','機構'],t:'忠泰美術館《創造即生活：愛諾、艾莉莎與阿爾瓦．阿爾托》：阿爾托台灣首度大型回顧展',b:'與芬蘭阿爾瓦．阿爾托基金會共同策劃，首度聚焦阿爾托與前後兩任建築師妻子的共創歷程。',u:'https://www.verse.com.tw/search?q=%E5%BF%A0%E6%B3%B0%E7%BE%8E%E8%A1%93%E9%A4%A8%20%E9%98%BF%E7%88%BE%E7%93%A6%20%E9%98%BF%E7%88%BE%E6%89%98%20%E5%89%B5%E9%80%A0%E5%8D%B3%E7%94%9F%E6%B4%BB'},
-{s:'verse',batch:'2026-09-10',d:'2026-08-28',approx:1,sx:1,id:'verse-f8d5881e',c:['建築','文資','空間'],t:'廣島的建築與藝術順遊：谷口吉生等大師作品',b:'瀨戶內國際藝術節之外，廣島縣同樣位於瀨戶內海，擁有多座大師建築與藝術景點。',u:'https://www.verse.com.tw/search?q=%E5%BB%A3%E5%B3%B6%20%E8%B0%B7%E5%8F%A3%E5%90%89%E7%94%9F%20%E5%BB%BA%E7%AF%89%20%E8%97%9D%E8%A1%93'},
-{s:'lavie',batch:'2026-09-10',d:'2026-09-09',approx:1,sx:1,id:'lavie-c82f8089',c:['建築','空間','評論'],t:'獨家開箱藤本壯介東京事務所：專訪三十年設計軌跡',b:'La Vie 獨家。從大阪世博「大屋根」到蜿蜒動線與空間堆疊，談建築如何成為連結人與人的存在。今年台灣有忠泰回顧展與台南雙年展《Ring》兩件他的案子，這篇是最直接的第一手說法。',u:'https://www.wowlavie.com/search?keyword=%E8%97%A4%E6%9C%AC%E5%A3%AF%E4%BB%8B%20%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%8B%99%E6%89%80%20%E5%B0%88%E8%A8%AA'},
-{s:'lavie',batch:'2026-09-10',d:'2026-09-05',approx:1,sx:1,id:'lavie-bf6fac24',c:['建築','展覽','機構'],t:'香港 M+ 博物館 2026 展覽六選：坂本龍一展、「設計啊！」展、Herzog & de Meuron 個展',b:'M+ 是亞洲最重要的視覺文化博物館之一。這份選單對規劃香港行程實用，尤其 Herzog & de Meuron 個展與他們近期在卡達、科莫湖的案子可以對照。',u:'https://www.wowlavie.com/search?keyword=%E9%A6%99%E6%B8%AF%20M%2B%202026%20%E5%B1%95%E8%A6%BD%20%E5%85%AD%E9%81%B8'},
-{s:'lavie',batch:'2026-09-10',d:'2026-09-04',approx:1,sx:1,id:'lavie-ee7ace70',c:['展覽','文資','機構'],t:'循著「光」探索嘉義：2026《森林夜遊》9/11 登場',b:'以藝術創作與夜間走讀探索木都的時代記憶。嘉義今年在四家媒體同時獲得關注，這是第四條線。',u:'https://www.wowlavie.com/search?keyword=%E6%A3%AE%E6%9E%97%E5%A4%9C%E9%81%8A%20%E5%98%89%E7%BE%A9%202026'},
 
 /* ── MOT TIMES ── */
-{s:'mottimes',batch:'2026-09-10',d:'2026-09-08',approx:1,sx:1,id:'mottimes-d99befd0',c:['展覽','評論'],t:'跑攤藝術季第七屆：以「時間節點」重新定義觀看',b:'集結 12 位藝術家，作品依循不同的時間強度現身，讓每一次抵達都成為獨一無二的觀看經驗。用時間而非空間當策展軸線，在台灣的藝術季裡少見。',u:'https://www.mottimes.com/search?q=%E8%B7%91%E6%94%A4%E8%97%9D%E8%A1%93%E5%AD%A3%20%E6%99%82%E9%96%93%E7%AF%80%E9%BB%9E'},
-{s:'mottimes',batch:'2026-09-10',d:'2026-09-05',approx:1,sx:1,id:'mottimes-75ee1c7d',c:['建築','空間','文資'],t:'走進嘉義：以步行節奏探訪木都的街區生活',b:'MOT TIMES 的城市街區專題。嘉義近年在餐飲、咖啡與多元生活空間持續萌生，成為備受關注的風格城市。與典藏的津本喫茶部文資專欄、「公共視域」嘉義當代藝術場景並看，嘉義今年被三家媒體同時盯上。',u:'https://www.mottimes.com/search?q=%E5%98%89%E7%BE%A9%20%E6%9C%A8%E9%83%BD%20%E8%A1%97%E5%8D%80%20%E6%AD%A5%E8%A1%8C'},
-{s:'mottimes',batch:'2026-09-10',d:'2026-09-03',approx:1,sx:1,id:'mottimes-d774ea69',c:['設計','家具','評論'],t:'1930 年代之後：北歐設計今日的魅力與新能量',b:'從黃金時期到當代的北歐設計脈絡梳理。「不只有經典設計」是這篇的核心——北歐設計長期被簡化為五、六位大師與幾張名椅。',u:'https://www.mottimes.com/search?q=%E5%8C%97%E6%AD%90%E8%A8%AD%E8%A8%88%201930%20%E5%B9%B4%E4%BB%A3%20%E6%96%B0%E8%83%BD%E9%87%8F'},
-{s:'mottimes',batch:'2026-09-10',d:'2026-09-02',approx:1,sx:1,id:'mottimes-f2a8b02b',c:['空間','設計','品牌'],t:'Maison Vanille 進駐永康街：把台灣風土揉進法式瑪德蓮',b:'以香草、奶油與在地食材重新演繹經典甜點。餐飲品牌的在地轉譯與空間設計，是 MOT TIMES 近年的固定題材。',u:'https://www.mottimes.com/search?q=Maison%20Vanille%20%E6%B0%B8%E5%BA%B7%E8%A1%97%20%E7%91%AA%E5%BE%B7%E8%93%AE'},
-{s:'mottimes',batch:'2026-09-10',d:'2026-09-01',approx:1,sx:1,id:'mottimes-45c666dc',c:['空間','設計','收藏'],t:'Bito 創辦人劉耕名的家：不是一次到位的完美空間，而是隨時間流動的容器',b:'從紐約的收藏喜好到北歐的生活啟發，他用二十年理解「真正的家不在於擁有什麼，而是你與物件的相處和關係」。設計師自宅是理解其美學判斷最直接的樣本。',u:'https://www.mottimes.com/search?q=Bito%20%E5%8A%89%E8%80%95%E5%90%8D%20%E5%AE%B6%20%E7%A9%BA%E9%96%93'},
-{s:'mottimes',batch:'2026-09-10',d:'2026-09-09',approx:1,sx:1,id:'mottimes-a11d9d40',c:['家具','產品','設計'],t:'TILT Chair：布達佩斯 Planbureau 為 Balaton Furniture 設計的傾斜椅',b:'「每把椅子都一樣又不一樣」。以可調整的傾斜角度作為變化來源，在量產框架內製造個別差異。',u:'https://www.mottimes.com/search?q=TILT%20Chair%20Planbureau%20Balaton%20Furniture'},
 
 /* ── Shopping Design ── */
 {s:'sdesign',batch:'2026-08-11',d:'2026-08-11',c:['品牌','設計','機構'],t:'柏林博物館啟用全新品牌名稱與識別：81 個 Logo 隨機使用',b:'成立於 1995 年的柏林城市博物館基金會更名為「柏林博物館」，由柏林設計團隊 Stan Hema 操刀。81 個 Logo 隨機輪替呼應城市的多元性——機構識別敢做成不固定的，這在博物館圈少見。',id:'sdesign-42d8954c',u:'https://www.shoppingdesign.com.tw/post/view/13670'},
@@ -571,10 +702,6 @@ const ITEMS=[
 
 /* ═════ La Vie 行動家（8/1–9/1）═════ */
 /* 註：La Vie 列表頁未提供文章直連網址，除已驗證者外一律指向站內搜尋 */
-{s:'lavie',batch:'2026-08-31',d:'2026-08-25',approx:1,sx:1,du:1,c:['建築','空間','品牌'],t:'粗獷主義建築上長出古典大宅？法國設計酒店「Maison Heler Metz」：Philippe Starck 打造超現實旅宿',b:'在一棟粗獷主義量體頂端直接放一座古典住宅。Starck 把建築當成敘事道具而非結構命題，爭議一直很大，但這件的視覺衝擊確實無可取代。',id:'lavie-8dd48a97',u:'https://www.wowlavie.com/search?keyword=Maison%20Heler%20Metz%20Philippe%20Starck'},
-{s:'lavie',batch:'2026-08-31',d:'2026-08-22',approx:1,sx:1,du:1,c:['建築','文資','空間'],t:'台南「銀月書店」在修復完成的五福商店開幕：近百年空間裡以閱讀、攝影、咖啡與展覽串聯城市記憶',b:'沿中正路的老屋修復後再利用。台南的老屋改造密度全台最高，值得看的是它們怎麼避免同質化——這件用書店＋攝影＋展覽的複合配置區隔。',id:'lavie-24698ee8',u:'https://www.wowlavie.com/search?keyword=%E5%8F%B0%E5%8D%97%20%E9%8A%80%E6%9C%88%E6%9B%B8%E5%BA%97%20%E4%BA%94%E7%A6%8F%E5%95%86%E5%BA%97'},
-{s:'lavie',batch:'2026-08-31',d:'2026-08-18',approx:1,sx:1,du:1,c:['建築','設計'],t:'MVRDV 操刀鹿特丹巨石建築「Shift Embassy」：以生物托邦為概念，結合展覽、旅宿與綠意的垂直生態建築',b:'把展覽、住宿與植栽疊進單一垂直量體。垂直綠化的長期成敗永遠在防水層與土壤深度，概念圖看不出來。',id:'lavie-c6d8f1fa',u:'https://www.wowlavie.com/search?keyword=MVRDV%20Shift%20Embassy%20%E9%B9%BF%E7%89%B9%E4%B8%B9'},
-{s:'lavie',batch:'2026-08-31',d:'2026-08-15',approx:1,sx:1,du:1,c:['產品','設計'],t:'台灣高鐵「N700ST」新列車 8 月抵台：車身更修長纖細，座椅與無障礙空間升級',b:'運輸工具的工業設計在台灣很少被當成設計議題討論。無障礙空間的配置變動比外觀更值得看——那是真正影響使用的部分。',id:'lavie-2d4d427d',u:'https://www.wowlavie.com/search?keyword=%E9%AB%98%E9%90%B5%20N700ST%20%E6%96%B0%E5%88%97%E8%BB%8A'},
 
 /* ═════ CANS 藝術新聞（月刊，8/1–9/1 僅 1 則符合）═════ */
 {s:'cans',batch:'2026-08-31',d:'2026-08-12',k:'ie1935',c:['收藏','市場','展覽','文資'],t:'重現 1935 年倫敦藝展輝煌：佳士得香港呈獻紀念獻禮與六卷學術鉅著《1935 倫敦藝展》',b:'除展售會外，另出版六卷本學術專著。1935 至 36 年倫敦皇家藝術學院的「中國藝術國際展覽會」是西方認識中國藝術的原點，中方送展的故宮文物規模空前，這套鉅著等於把當年的展品與文獻重新整理成可查證的資料庫。',id:'cans-caf1f3d1',u:'https://cansarts.com/antiques/news/1935the-international-exhibition-of-chinese-art/'},
@@ -592,17 +719,47 @@ const ITEMS=[
 {s:'sdesign',batch:'2026-08-31',d:'2026-08-28',approx:1,c:['設計','展覽','品牌'],t:'2026 台灣文博會商展落幕：總交易額 16.5 億元，年成長 22%',b:'文化部公布數字：交易總額約 16.5 億元，較去年 13.5 億成長 22%，並創下使用坪數、參與品牌、攤位數多項新高。IP 授權作為主軸的策略見效。',id:'sdesign-07e4fc8b',u:'https://www.shoppingdesign.com.tw/post/view/13718'},
 {s:'sdesign',batch:'2026-08-31',d:'2026-08-27',approx:1,c:['設計','展覽','產品'],t:'2025–2026 紅點設計獎台灣得獎作品特展登場：194 件作品全覽',b:'涵蓋產品設計、品牌與傳達設計、設計概念三大類別，實體作品 137 件、數位作品 57 件。台灣設計在國際獎項的年度成績單。',id:'sdesign-464bc812',u:'https://www.shoppingdesign.com.tw/post/view/13715'},
 
-/* ═════ 台灣畫廊動向（7/1–9/12）═════ */
-{s:'tkg',batch:'2026-09-12',d:'2026-07-18',sx:1,id:'tkg-1284714e',c:['展覽'],t:'郭思敏個展｜7/18–9/19，耿畫廊',b:'耿畫廊本季主檔。展期近兩個月，屬畫廊給代理藝術家的標準規格。',u:'https://www.tinakenggallery.com/exhibitions/'},
-{s:'tkg',batch:'2026-09-12',d:'2026-07-04',sx:1,id:'tkg-e09eb0b0',c:['展覽','機構'],t:'Mit Jai Inn 個展｜5/23–7/4，TKG+',b:'泰國藝術家。TKG+ 創意總監吳悅宇長期經營東南亞藝術，這是該路線的代表檔期。',u:'https://www.tkgplus.com/exhibitions/'},
-{s:'tkg',batch:'2026-09-12',d:'2026-07-04',sx:1,id:'tkg-0fc364c1',c:['展覽'],t:'Enrico Isamu Oyama 個展｜3/14–7/4，TKG+ Projects',b:'日裔美籍藝術家，由東京 Takuro Someya Contemporary Art 協辦。日台畫廊互相協辦展覽，是近年常見的成本分攤模式。',u:'https://www.tkgplus.com/exhibitions/'},
-{s:'tkg',batch:'2026-09-12',d:'2026-02-05',sx:1,id:'tkg-65f76d08',c:['收藏','機構','市場'],t:'大英博物館典藏三件台灣當代作品：薛保瑕、陳浚豪、李若玫',b:'承續文化部「文化黑潮」補助，耿畫廊攜手策展人楊佳玲、陳建今與 Frieze 合作，2025 年 10–11 月於倫敦梅費爾 No.9 Cork Street 推出「抒情．暴：倫敦當代臺灣藝術展」。大英博物館確認典藏展出的三件作品，且與其往後的策展研究計劃有明確關聯。',u:'https://www.tinakenggallery.com/events/'},
-{s:'eslite',batch:'2026-09-12',d:'2026-08-01',sx:1,id:'eslite-e5428ef5',c:['展覽'],t:'桑拿大可個展「一件內褲，一雙襪子」｜8 月，誠品畫廊',b:'34 件全新繪畫與 6 件陶藝。繼 2024 年「Don’t BUG me」後的第二次個展，以日常衣物延伸至身體感知與情慾想像。',u:'https://www.eslitegallery.com/最新消息/'},
-{s:'chini',batch:'2026-09-12',d:'2026-06-28',sx:1,id:'chini-4289e156',c:['展覽'],t:'生生之境：陳承衛個展｜6/28–8/23，采泥藝術',b:'采泥的夏季主檔。',u:'https://www.chinigallery.com/'},
-{s:'chini',batch:'2026-09-12',d:'2026-08-21',sx:1,id:'chini-5175b06c',c:['展覽'],t:'蔡孟閶個展《嚮往與距離》：從鐵路、車站與工廠之間凝視城市縫隙',b:'采泥藝術。非池中同期報導。采泥是三月香港巴塞爾「亞洲視野」單元的參展畫廊之一。',u:'https://www.chinigallery.com/'},
-{s:'mindset',batch:'2026-09-12',d:'2026-09-01',sx:1,id:'mindset-efd1730e',c:['展覽'],t:'安卓藝術 2026 秋季檔期進行中',b:'安卓以中生代代理最活躍著稱，是觀察台灣畫廊在挖誰的主要指標。本檔為自由參觀。',u:'https://www.mindsetart.com/'},
-{s:'whitestone',batch:'2026-09-12',d:'2026-09-01',sx:1,id:'whitestone-a36786aa',c:['展覽','市場'],t:'白石畫廊台北 2026 秋季檔期進行中',b:'日系國際畫廊在台北的據點，自由參觀。白石是少數在台北設點的日本大型畫廊，其選件可看出日方對台灣市場的判斷。',u:'https://www.whitestoneart.com/'},
-{s:'bluerider',batch:'2026-09-12',d:'2026-08-25',sx:1,id:'bluerider-6145ceb7',c:['徵件','市場'],t:'2026 臺灣青年藝術家徵件展：王薇薇談徵件背後的動機',b:'Bluerider ART 是台灣少數自辦青年藝術家徵件的商業畫廊。在畫廊生態全球收縮的背景下，它反而在往前找新人。',u:'https://www.blueriderart.com/'},
+/* ═════ 國際藍籌畫廊（6/1–9/13，來源：畫廊官網）═════ */
+{s:'pace',batch:'2026-09-13',d:'2026-09-10',id:'pace-f247e37b',c:['市場','機構','收藏'],t:'Pace 與 Emmanuel Di Donna、David Schrader 合創新畫廊 Pace Di Donna Schrader，專攻二級市場',b:'三方合資成立全球型畫廊，定位為二級市場銷售與操作的領導者。藍籌畫廊正式跨進拍賣行的地盤，是本期最重要的市場結構新聞。',u:'https://www.pacegallery.com/journal/pace-gallery-emmanuel-di-donna-and-david-schrader-announce-launch-of-new-global-gallery-devoted-to-secondary-market-sales-and-practices/'},
+{s:'pace',batch:'2026-09-13',d:'2026-09-11',id:'pace-026df074',c:['展覽','工藝'],t:'Lynda Benglis《KNOTTING, TYING, FOLDING》｜9/11–10/24，Pace 紐約',b:'以打結、綁縛、摺疊為題的雕塑個展。Benglis 從 1960 年代末以傾倒乳膠的「pour」系列聞名，材料與身體動作的關係是她一貫的命題。',u:'https://www.pacegallery.com/exhibitions/lynda-benglis-knotting-tying-folding/'},
+{s:'pace',batch:'2026-09-13',d:'2026-09-11',id:'pace-4a0789c4',c:['展覽','評論'],t:'Torkwase Dyson《Seeing in Blue》｜9/11–10/24，Pace 紐約',b:'Pace 同步發布藝術家工作室影片。畫廊自製紀錄片為展覽鋪墊，是藍籌畫廊近年的標準內容操作。',u:'https://www.pacegallery.com/exhibitions/torkwase-dyson-seeing-in-blue/'},
+{s:'pace',batch:'2026-09-13',d:'2026-09-11',id:'pace-9242641c',c:['市場','機構'],t:'Tokyo Gendai 2026｜展位 B03，9/11–9/13，橫濱 PACIFICO',b:'Pace 在東京的藝博會展位，呈現 Lauren Quin。Tokyo Gendai 是日本近年新設的國際藝博會，與首爾、香港形成東亞三角。',u:'https://www.pacegallery.com/artfairs/tokyo-gendai-2026/'},
+{s:'pace',batch:'2026-09-13',d:'2026-09-01',id:'pace-bbcdbaa8',c:['展覽','機構'],t:'Friedrich Kunath《The Nearest Faraway Place》｜9/1–10/24，Pace 首爾',b:'Pace 首爾空間的秋季檔期，與首爾藝術週同期。',u:'https://www.pacegallery.com/exhibitions/friedrich-kunath-the-nearest-faraway-place/'},
+{s:'pace',batch:'2026-09-13',d:'2026-07-06',id:'pace-e05187c0',c:['設計','品牌','評論'],t:'Lynda Benglis 啟發 Dior 2026 秋冬高訂系列',b:'藝術家的形式語言直接進入高訂時裝。藝術與時裝的授權合作近年密度上升，畫廊也在經營這條收入線。',u:'https://www.pacegallery.com/journal/lynda-benglis-dior-haute-couture-2026/'},
+{s:'gago',batch:'2026-09-13',d:'2026-08-07',id:'gago-dccd4cff',c:['展覽','評論','機構'],t:'Michael Craig-Martin《日常之語》：高雄市立美術館回顧展，藝術家於倫敦工作室談展出作品',b:'Gagosian Quarterly 影片。英國概念藝術重要人物的大型回顧展在高美館舉行，是台灣少見的國際級個展規格。',u:'https://gagosian.com/quarterly/2026/08/07/video-michael-craig-martin-the-language-of-everyday/'},
+{s:'gago',batch:'2026-09-13',d:'2026-09-08',id:'gago-88b81cd1',c:['評論','收藏','市場'],t:'Gagosian Quarterly 2026 秋季號出刊',b:'封面為 Brice Marden《The Propitious Garden of Plane Image, Second Version》局部。畫廊自辦季刊且維持學術水準，是 Gagosian 建立論述正當性的長期投資。',u:'https://gagosian.com/quarterly/2026/09/08/gagosian-quarterly-fall-2026/'},
+{s:'gago',batch:'2026-09-13',d:'2026-08-07',id:'gago-da2bb513',c:['收藏','評論','市場'],t:'思考布萊斯．馬登：MoMA 前館長 Glenn Lowry 撰文',b:'配合《Brice Marden: Catalogue Raisonné of Paintings, 1961–2023》今秋出版與紐約同名展。全集編纂是藝術家市場的基礎工程，完成度直接影響往後的定價與鑑定。',u:'https://gagosian.com/quarterly/2026/08/07/essay-thinking-about-brice-marden/'},
+{s:'gago',batch:'2026-09-13',d:'2026-09-01',id:'gago-b063bd68',c:['展覽','機構'],t:'Stanley Whitney《Isn’t Love the Strangest Thing》｜Gagosian 香港畢打行',b:'香港空間的當期檔期。在香港創作與市場空間收縮的討論中，藍籌畫廊仍持續排檔，值得跟倫敦兩家畫廊收攤對照。',u:'https://gagosian.com/exhibitions/2026/stanley-whitney-isnt-love-the-strangest-thing/'},
+{s:'gago',batch:'2026-09-13',d:'2026-07-24',id:'gago-db4f1a51',c:['展覽','建築','評論'],t:'Es Devlin 與 Vladimir Yavachev 談 Christo：《Air Package on a Ceiling》首度實現',b:'1968 年構想卻從未實現的大型室內裝置，於 Gagosian 倫敦 Grosvenor Hill 首次呈現。把不可見之物變成可觸的形體，是 Christo 與 Jeanne-Claude 的核心命題。',u:'https://gagosian.com/quarterly/2026/07/24/video-in-conversation-es-devlin-and-vladimir-yavachev-on-christo/'},
+
+/* ═════ 台灣畫廊動向（6/1–9/13，來源：畫廊官網，展期與網址皆實際讀取）═════ */
+{s:'soka',batch:'2026-09-13',d:'2026-09-12',id:'soka-71987b5d',c:['展覽','機構'],t:'The Daily, Reimagined｜9/12–10/17，索卡藝術（藝術家聯展）',b:'索卡的秋季聯展。它擁有北京、臺北、臺南三個空間，經營範圍橫跨戰後日本、韓國、大中華與東南亞當代藝術，同時深耕二十世紀華人經典。',u:'https://www.soka-art.com/tr/exhibition/details/12616'},
+{s:'soka',batch:'2026-09-13',d:'2026-08-29',id:'soka-d1cfd712',c:['展覽'],t:'起霧了｜羅喬綾個展，8/29–10/3，索卡藝術',b:'台灣中生代畫家個展，展期橫跨 ART TAIPEI 前檔期。',u:'https://www.soka-art.com/tr/exhibition/details/12432'},
+{s:'soka',batch:'2026-09-13',d:'2026-08-22',id:'soka-0a4262a4',c:['展覽','機構'],t:'淡影流光｜王小雙個展，8/22–10/3，索卡藝術',b:'索卡同期排三檔展，密度高於多數台灣畫廊——三地空間讓它能同時運作多條檔期。',u:'https://www.soka-art.com/tr/exhibition/details/12530'},
+{s:'soka',batch:'2026-09-13',d:'2026-09-11',id:'soka-90453845',c:['工藝','展覽','品牌'],t:'《RE: FRAME 再取樣世代》谷敷謙 × 新埜康平聯展：舊衣變江戶工藝，UNIQLO 合作藝術家臺南首展',b:'索卡臺南空間。把舊衣轉為江戶工藝的手法，是材料再生與傳統工法的交集；藝術家曾與 UNIQLO 合作，商業與工藝的雙棲身分值得注意。',u:'https://www.soka-art.com/tr/news/details/12659'},
+{s:'dsq',batch:'2026-09-13',d:'2026-08-15',id:'dsq-a4c29b61',c:['展覽','機構'],t:'Objects of Desire: Where Micro and Macro Open in All Directions｜8/15–9/26，双方藝廊',b:'西班牙藝術家 Ana de Alvear 個展。双方是台灣少數持續引進歐洲當代藝術家的中型畫廊。',u:'https://www.doublesquare.com.tw/en/exhibition/objects-of-desire-where-micro-and-macro-open-in-all-directions'},
+{s:'dsq',batch:'2026-09-13',d:'2026-08-15',id:'dsq-4c2b579d',c:['展覽'],t:'Shelter Island｜張山雪個展，8/15–9/26，双方藝廊',b:'與 Ana de Alvear 同日開幕的雙檔期。台灣與國際藝術家並置，是双方與安卓共同的排檔邏輯。',u:'https://www.doublesquare.com.tw/en/exhibition/shelter-island'},
+{s:'aac',batch:'2026-09-13',d:'2026-06-04',id:'aac-443cfb51',c:['市場','機構'],t:'ART TAICHUNG 2026 台中藝術博覽會｜展位 D02，6/4–6/7',b:'亞洲藝術中心的台中檔期。它同時經營台北與北京兩地空間，是台灣少數在中國長期設點的畫廊。',u:'https://asiaartcenter.org/art-fairs/'},
+{s:'aac',batch:'2026-09-13',d:'2026-06-01',id:'aac-70d20f28',c:['展覽','機構'],t:'陳淑霞「溶解之後」｜5/15–8/9，亞洲藝術中心北京',b:'北京空間的夏季主檔，展期近三個月（5 月開展、8 月 9 日結束，卡片日期以收錄起點 6/1 計）。台北與北京雙軌排檔，可對照兩地市場的選件差異。',u:'https://asiaartcenter.org/exhibitions/'},
+{s:'whitestone',batch:'2026-09-13',d:'2026-08-01',id:'whitestone-2585814e',c:['展覽','設計','市場'],t:'ART OF MIKU 台北展覽｜第一階段 8/1–8/23、第二階段 8/28–9/20，白石畫廊台北空間',b:'以初音未來為題，邀請不同文化背景的當代藝術家以繪畫、雕塑與跨媒材重新詮釋「虛擬歌手」這個文化符號。分兩階段換展。',u:'https://www.whitestone-gallery.com/blogs/gallery-exhibitions/art-of-miku-taipei-exhibition'},
+{s:'whitestone',batch:'2026-09-13',d:'2026-08-20',id:'whitestone-8bb9126c',c:['展覽','市場','評論'],t:'「ART OF MIKU 台北展覽」VIP 貴賓日暨開幕報導',b:'白石官網的開幕報導。虛擬偶像 IP 進入商業畫廊體系，是台北少見的操作。',u:'https://www.whitestone-gallery.com/zh-hant/blogs/articles-post/art-of-miku-taipei-exhibition-opening-report-1'},
+{s:'whitestone',batch:'2026-09-13',d:'2026-07-31',id:'whitestone-256378e7',c:['機構'],t:'白石畫廊 2026 夏季休館通知',b:'全球八個據點（台北、香港、北京、銀座本館與新館、輕井澤、新加坡、首爾）的營運公告。',u:'https://www.whitestone-gallery.com/zh-hant/blogs/news/closing-notice-202607'},
+{s:'whitestone',batch:'2026-09-13',d:'2026-09-05',id:'whitestone-2e4ed21a',c:['展覽','機構'],t:'痕跡：磯邊行久、水島哲雄｜9/5–9/24，白石畫廊香港 M Place',b:'日本戰後藝術家雙人展。白石在亞洲八個據點輪替檔期，台北空間的選件可對照其他據點看出市場分工。',u:'https://www.whitestone-gallery.com/blogs/gallery-exhibitions/hk-isobe-mizu-092026'},
+{s:'whitestone',batch:'2026-09-13',d:'2026-06-20',id:'whitestone-a3f1eb49',c:['展覽','機構'],t:'Neo China Pulse：體驗新世代藝術｜6/20–2027/1/11，輕井澤新藝術美術館',b:'中國新世代藝術家群展，展期長達七個月。白石同時經營畫廊與美術館，這在畫廊集團裡少見。',u:'https://www.whitestone-gallery.com/zh-hant/blogs/museum-exhibitions/kz-museum-neo-china-pulse-062026'},
+{s:'msac',batch:'2026-09-13',d:'2026-08-29',id:'msac-56b66598',c:['展覽','機構'],t:'「相繫之縷⋯⋯」魯伊．米蓋爾．萊陶．費雷拉｜8/29–10/8，安卓藝術',b:'葡萄牙藝術家個展。安卓以推廣台灣、亞洲與國際藝術家為定位，國際代理比重高於多數台灣畫廊。',u:'https://www.art-msac.com/exhibitions/154/overview/'},
+{s:'msac',batch:'2026-09-13',d:'2026-08-29',id:'msac-b8bec360',c:['展覽'],t:'「忘記的那一刻」黃冠鈞｜8/29–10/8，安卓藝術',b:'台灣藝術家個展，與葡萄牙藝術家費雷拉同期開展。台灣與國際藝術家並置排檔，是安卓的慣常做法。',u:'https://www.art-msac.com/exhibitions/155/overview/'},
+{s:'bluerider',batch:'2026-09-13',d:'2026-06-30',id:'bluerider-f63647db',c:['展覽','市場'],t:'【喬瑟普．里埃拉．伊．阿拉貢：生命航線】｜5/23–7/19，Bluerider ART 台北．敦化',b:'西班牙藝術家個展。Bluerider 的代理以歐美藝術家為主，這是它與台灣其他畫廊最大的差異。',u:'https://artemperor.tw/tidbits/19987'},
+{s:'bluerider',batch:'2026-09-13',d:'2026-06-30',id:'bluerider-06d4fa54',c:['展覽','機構'],t:'【光之蝶】漢斯．卡特個展暨 6 國 10 位國際藝術家群展｜4/24–7/15，Bluerider ART',b:'以德國光藝術家 Hans Kotter 為核心的國際群展。六國十位藝術家的組成，是 Bluerider「東西方交流平台」定位的實踐。',u:'https://artemperor.tw/tidbits/19868'},
+{s:'eslite',batch:'2026-09-13',d:'2026-08-15',id:'eslite-a45fbf62',c:['展覽'],t:'【一件內褲，一雙襪子】桑拿大可個展｜8/15–10/10，誠品畫廊',b:'34 件全新繪畫與 6 件陶藝。繼 2024 年「Don’t BUG me」後的第二次個展，以日常衣物延伸至身體感知與情慾想像。展期近兩個月，橫跨 ART TAIPEI 檔期。',u:'https://artemperor.tw/tidbits/20308'},
+{s:'eslite',batch:'2026-09-13',d:'2026-06-13',id:'eslite-5d7d123f',c:['展覽'],t:'【蘭昭形、謝福源雙個展】｜6/13–8/8，誠品畫廊',b:'誠品的夏季雙個展。雙個展是畫廊測試新代理或平衡檔期的常見做法。',u:'https://artemperor.tw/tidbits/20031'},
+{s:'chini',batch:'2026-09-13',d:'2026-08-29',id:'chini-4b9defae',c:['展覽'],t:'【嚮往與距離】蔡孟閶個展｜8/29–10/11，采泥藝術',b:'從鐵路、車站與工廠之間凝視城市的縫隙。展期橫跨 ART TAIPEI 檔期。',u:'https://artemperor.tw/tidbits/20279'},
+{s:'chini',batch:'2026-09-13',d:'2026-06-28',id:'chini-a32013b6',c:['展覽'],t:'【生生之境】陳承衛個展｜6/28–8/23，采泥藝術',b:'采泥的夏季主檔，展期近兩個月。',u:'https://artemperor.tw/tidbits/20063'},
+{s:'chini',batch:'2026-09-13',d:'2026-06-28',id:'chini-13ada993',c:['展覽','機構'],t:'【風中吟遊】李光裕．鄧卜君雙個展｜5/30–7/5，采泥藝術台中',b:'采泥在台中的檔期。李光裕是采泥 2017 年送進威尼斯的雕塑家，長期合作關係。台北與台中雙據點經營，在台灣畫廊裡不算常見。',u:'https://artemperor.tw/tidbits/19982'},
+{s:'tkg',batch:'2026-09-13',d:'2026-08-22',id:'tkg-32b1584d',c:['展覽'],t:'【專業局外人】｜8/22–10/31，TKG+ Projects',b:'TKG+ Projects 檔期，展至 10 月 31 日。',u:'https://artemperor.tw/tidbits/20348'},
+{s:'tkg',batch:'2026-09-13',d:'2026-07-18',id:'tkg-82a584c5',c:['展覽'],t:'【立體詩】郭思敏個展｜7/18–9/19，耿畫廊',b:'耿畫廊夏季主檔，展期兩個月。郭思敏以線性雕塑著稱，「立體詩」是她長期的命題。',u:'https://artemperor.tw/tidbits/20350'},
+{s:'tkg',batch:'2026-09-13',d:'2026-07-18',id:'tkg-eb5f4f17',c:['展覽','機構'],t:'【緩慢的電影配樂】李傑個展｜7/18–8/29，TKG+',b:'香港藝術家李傑。TKG+ 持續經營的亞洲當代路線，與東南亞、日本藝術家的檔期交錯排列。',u:'https://artemperor.tw/tidbits/20349'},
+{s:'tkg',batch:'2026-09-13',d:'2026-06-28',id:'tkg-e997e3db',c:['展覽','市場'],t:'【科羅曼德之花】蘇孟鴻個展｜5/23–7/11，耿畫廊',b:'蘇孟鴻是耿畫廊三月香港巴塞爾的參展藝術家之一。台北個展與國際展位的選件對照，可看出畫廊的分工策略。',u:'https://artemperor.tw/tidbits/19962'},
+{s:'tkg',batch:'2026-09-13',d:'2026-06-28',id:'tkg-dac06a3f',c:['展覽','機構'],t:'【CYCLES】彌載映（Mit Jai Inn）個展｜5/23–7/4，TKG+',b:'泰國藝術家。TKG+ 創意總監吳悅宇長期經營東南亞藝術，這是該路線的代表檔期。',u:'https://artemperor.tw/tidbits/19963'},
 
 /* ═════ BATCH 2026-09-11（9/10–9/11）═════ */
 /* ── 非池中 ── */
@@ -802,7 +959,6 @@ const ITEMS=[
 {s:'tan',batch:'2026-08-31',d:'2026-08-27',sx:1,c:['市場','機構'],t:'Frieze 阿布達比：哪些畫廊參加首屆藝博會？',e:'Frieze Abu Dhabi: which galleries are taking part in the inaugural fair?',b:'Melissa Gronlund 報導。Frieze 在波灣的第一場。與 12 月開幕的古根漢阿布達比、2030 年的 Gehry 藝術之家同屬一條線：波灣正在同時佈建機構與市場兩端。',id:'tan-d4b00fd9',u:'https://www.theartnewspaper.com/search?q=Frieze%20Abu%20Dhabi%3A%20which%20galleries%20are%20taking%20part%20in%20the%20inaugural%20fair%3F'},
 
 /* Wiley 事件延燒 */
-{s:'wapo',batch:'2026-08-31',d:'2026-08-27',sx:1,k:'wiley',c:['政策','機構','評論'],t:'移除一幅「覺醒」畫作，標誌著針對藝術家的新一輪攻擊',e:'Removal of a ‘woke’ painting signals a new line of attack on artists',b:'Philip Kennicott 為華盛頓郵報撰文，Art Spell 首選（付費牆內容）。他指出國務院要賣掉的其實是一幅極為無害的畫，正因如此才是「最響亮的暗哨」——攻擊的門檻已經降到不需要任何實質理由。',id:'wapo-739042e5',u:'https://www.washingtonpost.com/?query=Kehinde%20Wiley%20State%20Department%20woke%20painting%20Kennicott'},
 
 /* 高兟判刑：兩家同報 */
 {s:'tan',batch:'2026-08-31',d:'2026-08-27',sx:1,k:'gaozhen',c:['政策','人事'],t:'中國藝術家高兟因諷刺毛澤東雕塑遭判三年徒刑',e:'Chinese artist Gao Zhen sentenced to three years in prison for satirical sculptures of Mao Zedong',b:'Lisa Movius 報導。與 Hyperallergic 同期報導，TAN 版本補上案件的司法程序細節與國際藝術界的反應。',id:'tan-5b316c1b',u:'https://www.theartnewspaper.com/search?q=Chinese%20artist%20Gao%20Zhen%20sentenced%20to%20three%20years%20in%20prison%20for%20satirical%20sculptures%20of%20Mao%20Zedong'},
@@ -1257,6 +1413,7 @@ const ITEMS=[
    只做「兩家以上媒體同時報導」的事件。key 對應 ITEMS 的 k。
    ══════════════════════════════════════════════════════════ */
 const TECH={
+'soka-90453845':'江戶時期的舊衣再利用有完整的工藝體系：刺子（sashiko）以密集針法加固磨損處、襤褸（boro）把碎布層層疊縫成新布料、襤褸再生後還可拆解為紙撚或繩索。這套「用到不能再用」的物質倫理，正是當代永續設計反覆回頭尋找的參照。',
 'dboom-1f5d31d8':'大理石廢料的再利用難點在於：邊角料尺寸不一、且切割面已有應力。多數做法是碎化後與樹脂或水泥重新黏結成人造石，但那會失去原石的紋理。做成模組化構件則保留原塊體，靠幾何設計吸收尺寸差異——技術上更難，視覺上更誠實。',
 'dezeen-b5a1d7fa':'人手有 27 個自由度，其中拇指單獨佔 5 個，這是抓握多樣性的來源。機械手的設計取捨在於：驅動器越多自由度越高，但體積與重量也越大，且必須塞進手掌內。目前主流做法是用腱驅動（tendon-driven）把馬達移到前臂，以鋼索傳力——代價是精度與反應速度下降。',
 'artouch-6390e706':'宋畫的保存極其脆弱：絹本會隨年代脆化並產生「絹絲斷裂」，墨與礦物顏料在光照下會持續劣化。多數大館的內規是宋元書畫每次展出不超過六至八週、之後入庫休息數年。這也是為什麼這類大展一個世代只有幾次。',
@@ -1293,7 +1450,6 @@ const TECH={
 'dboom-6c7ec02f':'工法核心是「取得—修復—上色」三步：從二手管道蒐集被丟棄的椅子，修補框架，再以高彩度圖案重新上漆與換布。原木框架多半保留，只換坐面與靠背布料，所以每件的結構年代與表面年代是分開的。',
 'dboom-a7cfee50':'再生紙複合材成形，表面刻意保留孔隙與不均勻的骨材分佈，模擬火山岩的氣孔結構。紙基複材的難點在耐濕與尺寸穩定，做成容器等於直接挑戰這兩項弱點。',
 'dboom-cea5b3cf':'Gradient Watch 用兩片漸層圓盤重疊，一片走時、一片走分，靠透光疊加產生連續變化的色帶，取代指針。這是把讀時從「指向刻度」改成「判讀色彩狀態」，機構本身其實比一般三針更簡單。',
-'dezeen-50a61b96':'限制條件是「材料與工具都在坎特伯里 40 英里內取得」。工具也算進去這點很少見——多數在地化只管材料，但機具往往是碳足跡與供應鏈依賴的大宗，把它納入等於逼設計去適應在地既有的加工能力。',
 'dezeen-a5fe661b':'18 件裡的邊几採傳統木車枳（wood turning）成形，其餘為模組化沙發與蛋形單椅。車枳是少數難以用 CNC 完全取代的工法，用在量產商品線上通常是成本與辨識度的取捨。',
 'dezeen-f517a445':'兩件材料實驗值得看：ReFrame 平整包衣櫃只用單一支六角板手完成組裝，等於把五金種類壓到最低以換取可維修性；另一件是把蛤蜊殼作為骨材摻入混凝土的長凳，用廢殼取代部分砂石。',
 'dezeen-a4fb5145':'活體菌絲織物，關鍵是「隨插即用」的模組——換上不同真菌或酵母就能改變顏色、抗紫外線或自潔能力，等於把功能做成可替換的生物模組而非固定配方。難點在含水率與存活條件，這決定它能不能離開實驗室。',
@@ -1309,7 +1465,6 @@ const TECH={
 'sdesign-42d8954c':'81 個 Logo 隨機使用，技術上需要一套可程式化的識別系統與資產管理機制，而非傳統的固定 logo 檔案。變動式識別的維護成本遠高於固定式，這是很多機構想做卻做不下去的原因。',
 'sdesign-b859531e':'新一代改札機整合了非接觸感測與行為辨識，通行效率的提升來自預測而非加速——系統在你靠近前已判斷是否放行。這正是它同時是效率工具與監控裝置的技術原因。',
 'mottimes-71d2caff':'安藤 1984 年的 TIME’S 是清水混凝土早期代表作之一，值得現場看的是模板拼縫與繫件孔的排列——那個時期的施工精度標準與現在不同，實物比照片能讀到的訊息多得多。',
-'lavie-c6d8f1fa':'「能往上走的公園」意味著屋頂即地面，結構得同時承受覆土、植栽與人流載重，並處理排水與根系防護。立體綠化的長期成敗多半不在設計而在防水層與土壤深度這兩項工程細節。',
 'verse-f87deaeb':'把紅磚、貨櫃與海浪光影抽象成「牆面立體紋理」，實作上是靠模具或雕刻做出深淺起伏，再靠燈光角度顯現。這類浮雕式牆面的成敗全在光源位置——設計圖看不出來，要現場才知道。',
 'verse-f9293f9d':'百年老屋改造的技術限制在結構補強與管線更新：老屋多為木構或磚木混合，要塞進烘焙設備的排煙、排熱與載重，往往得先做隱藏式鋼構補強。看空間時留意天花與地坪的高差，通常藏著答案。',
 'verse-06a0eb2d':'旋轉圓盤配中央動力儲存指示，機構上等於把顯示與傳動整合在同一軸線。動力儲存指示需要從發條盒取出剩餘扭力資訊，做在中央比做在偏心位置更難，這是它值得看的地方。',
@@ -1336,16 +1491,44 @@ const TECH={
 };
 
 const NOTES={
-'bluerider-6145ceb7':'Bluerider ART 是台灣少數自辦青年藝術家徵件的商業畫廊。在全球畫廊收縮、市場進入「重新校準」的背景下，它反而在往前找新人——這個逆勢動作要嘛是長線布局，要嘛是低成本填檔期，看它後續有沒有真的簽下代理就知道。',
-'whitestone-a36786aa':'白石是少數在台北設點的日本大型畫廊，其選件可看出日方對台灣市場的判斷。這條線特別值得追：台灣畫廊幾乎沒去首爾，但日韓畫廊持續往台北來（ART TAIPEI 韓國畫廊參展也在攀升）——人流是單向的。',
-'mindset-efd1730e':'安卓以中生代代理最活躍著稱，是觀察台灣畫廊在挖誰的主要指標。它也是三月香港巴塞爾「藝廊薈萃」單元的八家台灣畫廊之一。',
-'chini-5175b06c':'畫廊在本地推什麼、去香港推什麼，兩者的差異往往透露它對兩個市場的判斷。采泥在香港巴塞爾帶的是許雨仁（水墨），在台北推蔡孟閶（城市風景）——同一家畫廊的兩張面孔。',
-'chini-4289e156':'采泥的夏季主檔，展期近兩個月。采泥是三月香港巴塞爾「亞洲視野」單元的參展畫廊，在台北的檔期安排可對照它的國際策略。',
-'eslite-e5428ef5':'繼 2024 年「Don’t BUG me」後的第二次個展，34 件全新繪畫與 6 件陶藝。兩年內兩檔個展，代表誠品在認真經營這位藝術家——商業畫廊給同一人連續檔期的頻率，比任何代理聲明都準確。',
-'tkg-65f76d08':'這是本軌道最重要的一則，也是台灣當代藝術進入世界頂級研究典藏機構的里程碑。三個層次值得分開看：一、路徑——文化部「文化黑潮」補助 → 畫廊出資策劃 → 與 Frieze 合作在倫敦梅費爾辦展 → 大英博物館典藏。這條完整的鏈條證明了公部門補助＋民間執行的模式可以走到頂端。二、典藏而非展出——館方確認這三件與其往後的策展研究計劃有明確關聯，代表不是禮貌性收藏。三、時間差——展覽在 2025 年 10 月，典藏 2026 年 2 月確認，中間隔了三個多月。想複製這條路徑的畫廊要有這個耐心。',
-'tkg-0fc364c1':'由東京 Takuro Someya Contemporary Art 協辦。日台畫廊互相協辦展覽，是近年常見的成本分攤模式——在市場校準期，這種合作會更多。',
-'tkg-e09eb0b0':'TKG+ 創意總監吳悅宇長期經營東南亞藝術，這是該路線的代表檔期。Mit Jai Inn 生於文化交界的東南亞、成長於冷戰地緣條件下，創作語言持續從區域、歷史與張力中生成——這正是 TKG+ 想在台灣建立的東南亞論述。',
-'tkg-1284714e':'耿畫廊本季主檔，展期近兩個月，屬畫廊給代理藝術家的標準規格。檔期長度本身就是訊號：兩個月以上通常代表畫廊願意為該藝術家承擔較高的空間機會成本。',
+'gago-db4f1a51':'1968 年構想卻從未實現的大型室內裝置。把不可見之物（空氣）變成可觸的形體，是 Christo 與 Jeanne-Claude 的核心命題。Es Devlin 是舞台設計出身——她同期也出現在 Frieze Masters Talks 的名單裡，做設計的人今年在藝術場域的能見度明顯提升。',
+'gago-b063bd68':'在香港創作與市場空間收縮的討論中，藍籌畫廊仍持續排檔。值得跟倫敦兩家獨立畫廊收攤對照——同一個全球市場，頂端穩、中間層垮，這正是「億萬富豪問題」那篇分析的具體樣貌。',
+'gago-da2bb513':'全集編纂（catalogue raisonné）是藝術家市場的基礎工程——它決定哪些作品被認定為真品，完成度直接影響往後的定價與鑑定。找 MoMA 前館長撰文，是用機構權威為出版背書。畫廊主導藝術家全集的編纂，學術獨立性一直有爭議，但實務上多數全集都是這樣做出來的。',
+'gago-88b81cd1':'畫廊自辦季刊且維持學術水準，是 Gagosian 建立論述正當性的長期投資。內容涵蓋藝評、藝術家對談、甚至高級珠寶與時裝——它不只賣作品，也在生產藝術世界的話語。台灣畫廊裡只有双方的 EDITORIAL 在做類似的事，規模差距極大。',
+'gago-dccd4cff':'這是本批跟台灣最相關的一則。Craig-Martin 是英國概念藝術的重要人物（也是 YBA 世代的老師），大型回顧展在高美館舉行，是台灣少見的國際級個展規格。Gagosian 為此製作藝術家工作室影片，等於把畫廊的內容資源投進台灣的機構展——這種藍籌畫廊與台灣美術館的配合，往後值得追是不是會變多。',
+'pace-e05187c0':'藝術家的形式語言直接進入高訂時裝。藝術與時裝的授權合作近年密度上升，畫廊也在經營這條收入線——與同期 Futura × 樂高、樂高複製克林姆《吻》是同一個現象的不同層次。',
+'pace-bbcdbaa8':'Pace 首爾空間的秋季檔期，與首爾藝術週同期。國際藍籌在首爾設點是 2021 至 2023 那波擴張的產物，在市場校準期它們會不會收縮據點，是接下來值得追的問題。',
+'pace-9242641c':'Tokyo Gendai 是日本近年新設的國際藝博會，與首爾、香港形成東亞三角。它跟 Frieze Seoul、Kiaf 幾乎同期（9/11–13 對 9/2–6），藍籌畫廊要在兩週內跑完兩場——這也是為什麼藝博會的檔期競爭越來越激烈。',
+'pace-4a0789c4':'Pace 同步發布藝術家工作室影片。畫廊自製紀錄片為展覽鋪墊，是藍籌畫廊近年的標準內容操作——與白石畫廊把官網當媒體經營是同一套邏輯，只是規模不同。',
+'pace-026df074':'Benglis 從 1960 年代末以傾倒乳膠的 pour 系列聞名，材料與身體動作的關係是她一貫的命題。打結、綁縛、摺疊三個動詞當展名，等於把製作過程直接放到標題——這跟嘉義「公共視域」那句「雕塑成為動詞」是同一個方向。',
+'pace-f247e37b':'這是本期最重要的市場結構新聞。藍籌畫廊正式跨進拍賣行的地盤——二級市場（轉手交易）長期由蘇富比、佳士得主導，畫廊主要做一級市場（首次銷售）。Pace 找來前蘇富比與佳士得的高層合資，等於直接切入對手的核心業務。把它跟本期「市場重新校準」、佳士得調漲買家佣金、富藝斯高層離職放在一起看，訊號很清楚：當一級市場疲軟，藍籌畫廊往二級市場找利潤；而拍賣行的中間層正在被兩頭擠壓。',
+'dsq-4c2b579d':'與 Ana de Alvear 同日開幕的雙檔期。台灣與國際藝術家並置，是双方與安卓共同的排檔邏輯——讓本地藏家在同一次到訪中看見兩種脈絡，也讓國際藝術家的展覽有本地作品當參照。',
+'dsq-a4c29b61':'西班牙藝術家 Ana de Alvear 個展。双方是台灣少數持續引進歐洲當代藝術家的中型畫廊——與 Bluerider 的歐美路線不同的是，双方的規模較小、選件更偏實驗性。它另設有獨立的 EDITORIAL 出版平台，在台灣畫廊裡少見。',
+'soka-90453845':'把舊衣轉為江戶工藝的手法，是材料再生與傳統工法的交集。藝術家曾與 UNIQLO 合作，商業與工藝的雙棲身分值得注意——這條路徑跟日本工藝品牌找時裝品牌轉譯（如山本耀司的竹椅）是同一個方向，只是從藝術家端出發。索卡臺南空間近年在安平的藝文廊帶經營得相當積極。',
+'soka-0a4262a4':'索卡同期排三檔展，密度高於多數台灣畫廊——三地空間讓它能同時運作多條檔期。這也代表它的營運成本與庫存壓力都比單一空間的畫廊高，在市場「重新校準」的當下值得追。',
+'soka-d1cfd712':'展期橫跨 ART TAIPEI 前檔期，是用台北個展為藝博會鋪墊的標準操作。索卡是三月香港巴塞爾「藝廊薈萃」單元的八家台灣畫廊之一。',
+'soka-71987b5d':'索卡擁有北京、臺北、臺南三個空間，經營範圍橫跨戰後日本、韓國、大中華與東南亞當代藝術，同時深耕二十世紀華人經典。這個跨度在台灣畫廊裡最寬——多數畫廊選一條線做，它同時做四條。',
+'aac-70d20f28':'北京空間的夏季主檔，展期近三個月。台北與北京雙軌排檔，可對照兩地市場的選件差異——這也是台灣畫廊在兩岸同時經營時最實際的策略問題。',
+'aac-443cfb51':'亞洲藝術中心同時經營台北與北京兩地空間，是台灣少數在中國長期設點的畫廊。它的長期命題是「新東方精神」——探討華人藝術家如何在東西方範式之外，發展出檢視自身位置的辯證方法。代理藝術家含楊英風、朱銘、李真三位華語世界的重要雕塑家。',
+'msac-b8bec360':'台灣藝術家個展，與葡萄牙藝術家費雷拉同期開展。台灣與國際藝術家並置排檔是安卓的慣常做法——同一檔期兩個空間，讓本地藏家在同一次到訪中看見兩種脈絡。',
+'msac-56b66598':'葡萄牙藝術家個展。安卓以推廣台灣、亞洲與國際藝術家為定位，國際代理比重高於多數台灣畫廊，並透過與各地策展人及美術館的合作計畫落實交流。它也是三月香港巴塞爾「藝廊薈萃」單元的八家台灣畫廊之一。',
+'whitestone-a3f1eb49':'中國新世代藝術家群展，展期長達七個月。白石同時經營畫廊與美術館，這在畫廊集團裡少見——美術館替代理藝術家背書，畫廊負責銷售，兩端互相支撐。這個模式的倫理爭議一直存在。',
+'whitestone-2e4ed21a':'日本戰後藝術家雙人展。白石在亞洲八個據點輪替檔期，台北空間的選件可對照其他據點——香港放戰後日本、台北放初音未來，這個差異透露它對兩地買家的判斷。',
+'whitestone-256378e7':'全球八個據點的營運公告。台北只是其中一站——這是判斷白石對台灣市場投入程度的基準：它的檔期、選件與資源都要跟香港、北京、東京、首爾、新加坡競爭。',
+'whitestone-8bb9126c':'白石官網的自製開幕報導。畫廊做自家的內容產出，在台灣不常見——多數畫廊仍依賴媒體報導。這也是為什麼白石的官網比其他家好抓：它把官網當媒體在經營。',
+'whitestone-2585814e':'虛擬偶像 IP 進入商業畫廊體系，是台北少見的操作。重點不在初音未來本身，而在畫廊用什麼框架接住次文化——邀請不同文化背景的當代藝術家重新詮釋，等於把 IP 當成命題而非商品。分兩階段換展也說明它想留住回訪觀眾。',
+'bluerider-06d4fa54':'六國十位藝術家的組成，是 Bluerider「東西方交流平台」定位的實踐。它同期也在辦台灣青年藝術家徵件——一邊引進西方、一邊挖本地新人，這個雙向策略在台灣畫廊裡少見。',
+'bluerider-f63647db':'Bluerider 的代理以歐美藝術家為主，這是它與台灣其他畫廊最大的差異——多數本地畫廊做華人藝術家，它反過來把西方藝術家引進台灣。創辦人王薇薇是科技創業家出身，畫廊在倫敦梅費爾、洛杉磯、台北、上海四地設有自營空間，這個規模在台灣畫廊裡罕見。',
+'eslite-5d7d123f':'雙個展是畫廊測試新代理或平衡檔期的常見做法——成本與風險都比單人展低，但曝光度也分散。看這兩位之後有沒有拿到單獨檔期，就知道誠品的判斷。',
+'eslite-a45fbf62':'兩年內兩檔個展，代表誠品在認真經營這位藝術家——商業畫廊給同一人連續檔期的頻率，比任何代理聲明都準確。展期近兩個月且橫跨 ART TAIPEI，是用台北檔期為藝博會鋪墊的標準操作。',
+'chini-13ada993':'李光裕是采泥 2017 年透過藏家眾籌送進威尼斯的雕塑家，長期合作關係。台北與台中雙據點經營在台灣畫廊裡不算常見——中部收藏市場的獨立性夠不夠支撐第二個空間，是值得追的問題。',
+'chini-a32013b6':'采泥的夏季主檔，展期近兩個月。畫廊給滿檔期的藝術家通常就是它最想推的，這個訊號比新聞稿誠實。',
+'chini-4b9defae':'展期橫跨 ART TAIPEI 檔期，這是畫廊的標準操作——用台北的展覽為藝博會的展位鋪墊。采泥在三月香港巴塞爾「亞洲視野」單元帶的是許雨仁（水墨），台北推蔡孟閶（城市風景），同一家畫廊的兩張面孔。',
+'tkg-dac06a3f':'TKG+ 創意總監吳悅宇長期經營東南亞藝術，這是該路線的代表檔期。Mit Jai Inn 生於文化交界的東南亞、成長於冷戰地緣條件下，創作語言持續從區域與歷史的張力中生成。',
+'tkg-e997e3db':'蘇孟鴻是耿畫廊三月香港巴塞爾展位的參展藝術家之一（與蘇笑柏、薛保瑕、袁慧莉、Sopheap Pich、彭薇同列）。台北個展與國際展位的選件對照，可看出畫廊如何分配藝術家的曝光資源。',
+'tkg-eb5f4f17':'香港藝術家李傑，曾代表香港參加威尼斯雙年展。TKG+ 持續經營的亞洲當代路線，與東南亞、日本藝術家的檔期交錯排列——在香港創作空間收縮的當下，台灣畫廊接手港台交流是值得追的一條線。',
+'tkg-82a584c5':'耿畫廊夏季主檔，展期兩個月——這個長度是畫廊給代理藝術家的標準規格，本身就是資源投入的訊號。郭思敏以線性雕塑著稱，「立體詩」是她長期的命題。',
+'tkg-32b1584d':'TKG+ Projects 是 TKG+ 的實驗性子空間，檔期通常給較年輕或跨域的創作者。展到 10 月 31 日，橫跨 ART TAIPEI 檔期。',
 'emperor-1eb8631e':'台灣書法界的世代交替與當代化問題，長期缺乏論述關注。書法在台灣的處境特殊：實踐人口不少，但幾乎不進入當代藝術的討論框架——與同期鄭宇宏那檔處理筆順的個展並看，兩種進路的差別很清楚。',
 'emperor-1affd44c':'聲音藝術在台灣的機構支持主要來自 C-LAB，這個音樂節是該領域年度規模最大的場合。130 位表演者的量體不小——與池田亮司獲白南準獎、蘇郁心在 e-flux 發表並看，聲音與資料類創作今年的能見度明顯提升。',
 'emperor-8656e06b':'以身體平衡為隱喻的跨域作品。這類把物理狀態轉為社會隱喻的創作，成敗在於隱喻有沒有超出字面——「傾斜」與「跌倒」的對應太直接時，作品會被自己的標題說完。',
@@ -1374,20 +1557,6 @@ const NOTES={
 'eflux-4e126992':'與 ARTnews 同報，e-flux 版本是機構的第一手發布。白南準藝術中心的獎項有明確的譜系意識——把「資料作為材料」這條路線放進白南準的延長線上，是對錄像藝術史的一次擴張性詮釋。',
 'eflux-43fbc567':'柏林 transmediale 是媒體藝術與數位文化最重要的年度平台之一。策展人公開徵件代表下一屆的方向可能大幅調整——在 AI 議題主導數位藝術討論的當下，誰接手會決定它是往技術批判還是往美學實驗傾斜。',
 'eflux-af058da6':'這是本期最貼近你日常關注的一則。蘇郁心的研究型三部曲把台積電的全球擴張與水資源基礎設施綁在一起看——半導體製程的超純水需求極大，一座先進廠的日用水量以萬噸計，這正是新竹、鳳凰城與德勒斯登三地共同的爭議點。藝術家用影像處理這個題目，切入角度與產業報告完全不同：它問的不是缺不缺水，而是水的分配如何被算力需求重新定義。台灣藝術家在紐約 e-flux 主場發表，本身也是能見度的突破。',
-'lavie-ee7ace70':'嘉義今年在四家媒體同時獲得關注：典藏的文資專欄與「公共視域」當代藝術場景展、MOT TIMES 的街區專題、La Vie 的夜遊走讀。一座中型城市在同一年被四種角度盯上，這種密度通常預示它正在形成自己的敘事——值得追它明年還撐不撐得住。',
-'lavie-bf6fac24':'M+ 是亞洲最重要的視覺文化博物館之一。Herzog & de Meuron 個展與他們近期在卡達、科莫湖的案子可以對照——那間事務所近年往「既有結構再詮釋」傾斜，個展會不會處理這個轉向是看點。香港與台北飛行時間短，這份選單實用性高。',
-'lavie-c82f8089':'今年台灣有忠泰回顧展與台南雙年展《Ring》兩件他的案子，這篇獨家專訪是最直接的第一手說法。「讓建築成為連結人與人的存在」這句可以拿來檢驗《Ring》——那個湯德章公園的環狀結構，究竟是動線還是紀念物。',
-'verse-f8d5881e':'瀨戶內國際藝術節的觀光效應外溢到周邊縣市，是地方文化投資少見的正向循環。想去瀨戶內的人可以把廣島排進去，成本增加有限。',
-'verse-06116f56':'首度聚焦阿爾托與兩任建築師妻子的共創歷程，這個框架很重要——建築史長期把 Aino Aalto 與 Elissa Aalto 寫成助手，實際上 Aino 是 Artek 的共同創辦人與設計總監。與 Lilly Reich 建築平權獎助、Clara Peeters 歸屬翻案同屬一波修正工程。忠泰今年十週年檔期密集，這是繼藤本壯介之後的第二檔國際共製。',
-'verse-f7d40621':'台灣照明設計少數有完整論述的實踐者。照明長期被當成工程項目而非設計專業，出作品集本身就是專業建構的動作——十三件案例累積成可討論的方法，比單案報導有價值。',
-'verse-631990ee':'工作服設計在台灣少被當成設計議題。這件把「被忽視的一線技術人員」放到核心，是罕見的切入角度——制服同時是機能問題與身分問題，後者往往比前者更難處理。',
-'verse-b36cea9c':'台灣少數持續談「空間哲學」而非案例展示的建築事務所專訪。「減法」在台灣住宅市場是逆風的主張——建商與買方普遍偏好可見的配備與裝飾，能靠減法說服業主的事務所不多。',
-'mottimes-a11d9d40':'以可調整的傾斜角度作為變化來源，在量產框架內製造個別差異。這是量產家具想解決的永恆問題：規模經濟要求一致，使用者要求獨特——靠使用者自己完成最後一道設定，是成本最低的解法。',
-'mottimes-45c666dc':'設計師自宅是理解其美學判斷最直接的樣本——沒有業主、沒有預算限制的妥協，剩下的就是真實偏好。「用二十年慢慢理解」這個時間尺度也值得注意：與那些一次到位的樣品屋式住宅報導剛好相反。',
-'mottimes-f2a8b02b':'餐飲品牌的在地轉譯是 MOT TIMES 近年的固定題材。這類報導的實用價值在空間而非食物——永康街的老屋店面如何在有限坪數裡處理製作、展示與內用，是台北餐飲空間的共同課題。',
-'mottimes-d774ea69':'「不只有經典設計」是這篇的核心——北歐設計長期被簡化為五、六位大師與幾張名椅，而那些名椅正在被密集復刻（Fritz Hansen 舌頭椅、Artek Stool 60 聯名）。復刻熱與「新能量」的追問是同一個問題的兩面：當經典被反覆消費，當代的位置在哪。',
-'mottimes-75ee1c7d':'與典藏的津本喫茶部文資專欄、「公共視域：嘉義當代藝術場景 1996–2026」並看，嘉義今年被三家媒體同時盯上。一座中型城市在同一年獲得文資、當代藝術、生活風格三種角度的關注，這種密度通常預示著它正在形成自己的敘事。',
-'mottimes-d99befd0':'用時間而非空間當策展軸線，在台灣的藝術季裡少見。多數藝術季用地理（流域、海岸、公路）串連，這個用「不同時間強度」讓作品各自現身——代價是觀眾很難一次看完，但這正是它想製造的效果。',
 'sdesign-abbc4e83':'台灣少數以商業成效而非美學表現為評判核心的設計獎。這正好對應紅點得獎作品與市場化之間的落差問題——設計獎長期只獎勵作品，不追問它有沒有活下來。',
 'sdesign-33bc5989':'台灣設計媒體少見的主題：不談成功案例，談差點死掉的過程。在畫廊收攤、設計品牌收攤、展會縮頻的當下，這個選題比任何趨勢報導都貼近實況。',
 'sdesign-b916f4fe':'公共雕塑轉為品牌 IP 的完整案例。這件作品原本就是廣告代理商為金融商品做的行銷企劃，十年後正式品牌化，把公共藝術與商業標識的界線徹底抹掉。爭議從未停止——原本《華爾街銅牛》的創作者長期抗議它未經同意就改變了自己作品的意義。',
@@ -1530,10 +1699,6 @@ const NOTES={
 'tan-af2ccd58':'這是整起事件最值得記住的一步——不是雙年展基金會，而是市政府向中國道歉，並重申「一個中國政策」。台灣拿回名稱、中國拿到政治保證，主辦方兩邊都給了。這說明國際文化場域處理台灣議題的實際模式：不是誰贏誰輸，而是雙軌並行的模糊處理。對台灣機構的意義在於：名稱爭取成功不代表定位改變，往後每一次都得重新來過。',
 'abasel-40b4a665':'編輯選單這種格式的價值在於它洩漏了編輯台的關注方向。今年的共同關鍵字是氣候與生態，這通常領先展覽檔期一到兩年——想預判 2027 到 2028 的策展主題，這類文章比新聞有用。',
 'hyper-f7aaccb8':'4,500 這個數字的意義在於它把個案累積成系統性證據。先前那則 300 年木造哥薩克教堂被摧毀是單點，這份統計則指向蓄意破壞文化認同的整體模式——這在國際法上是可追訴的層次，統計本身就是未來訴訟的材料。兩天後 Artforum 的數字已增至 4,615 處。',
-'lavie-2d4d427d':'運輸工具的工業設計在台灣很少被當成設計議題討論。無障礙空間的配置變動比外觀更值得看——那是真正影響使用的部分，也是台灣公共運具長期落後的環節。',
-'lavie-c6d8f1fa':'把展覽、住宿與植栽疊進單一垂直量體。垂直綠化的長期成敗永遠在防水層與土壤深度，概念圖看不出來——MVRDV 的案子視覺說服力強，實際維護成本則常被低估。',
-'lavie-24698ee8':'台南的老屋改造密度全台最高，值得看的是它們怎麼避免同質化——這件用書店＋攝影＋咖啡＋展覽的複合配置區隔。跟草率書店重返西門町一起看，實體書店正在靠複合功能重新找位置。',
-'lavie-8dd48a97':'在粗獷主義量體頂端直接放一座古典住宅。Starck 把建築當成敘事道具而非結構命題，爭議一直很大，但這件的視覺衝擊確實無可取代。設計旅宿用「一句話能講完的畫面」換取傳播力，這是它的商業邏輯。',
 'dezeen-7b39859b':'月度精選比單篇報導有用的地方在於它顯示編輯的排序判斷。Masebo 從畫廊級的 Tubular Chair 走到 IKEA 量產邊几還能被列入年度精選，說明「平價化」沒有稀釋作品的辨識度——這正是 IKEA Konstrunda 那一步想證明的事。Public Parts 的可替換矽膠濾片則是另一種思路：把調光權交給使用者，而非在設計階段決定。',
 'sdesign-464bc812':'台灣設計在國際獎項的年度成績單。194 件的量體不小，但值得追問的是得獎作品有多少真的進入市場——設計獎與商業化之間的落差，是台灣設計產業長期的結構問題。跟同期南國設計沙龍、台灣設計展一起看，九月是台灣設計的密集檢視期。',
 'sdesign-07e4fc8b':'16.5 億交易額、年成長 22%，IP 授權作為主軸的策略見效。但要注意這是「商展」的數字，跟空總那邊的文化策展不是同一件事——文博會的雙軌性格在成效衡量上也是分開的：一邊算交易額，一邊算不出來。台灣文創從賣商品轉向賣角色與世界觀，這份數字是目前最直接的佐證。',
@@ -1555,7 +1720,6 @@ const NOTES={
 'artnews-8ff6d529':'兩大拍賣行爭取單一遺產委託的過程極少被公開報導，這則是難得的市場運作側寫。爭取遺產委託的條件戰（保證金、佣金讓步、行銷承諾）是拍賣行利潤結構的核心，也是外界最不透明的一環。',
 'tan-c3fbb3aa':'出口禁令是英國保留國家級文物的標準工具——給本地機構一段時間籌款買下。7,100 萬英鎊的門檻極高，在英國博物館普遍財務吃緊的當下（25 年關掉 524 家、V&A 勞資爭議、地方館舍求援），實際籌成的機率是看點。這個制度的極限正在被測試。',
 'artnet-c8ed251e':'長期私藏的作品在市場回溫時進場，時機判斷值得注意——這通常代表賣方（或其顧問）判斷已接近週期高點。跟同期高古軒談「大規模財富轉移」放在一起看：供給端的釋出速度，本身就是市場情緒的指標。',
-'wapo-739042e5':'Kennicott 的論點很銳利：國務院要賣的其實是一幅極為無害的畫，正因如此才是「最響亮的暗哨」——當攻擊的門檻降到不需要任何實質理由，任何作品都可能成為目標。這比爭論單一作品的去留重要得多，因為它改變的是整個公共委託體系的風險計算。',
 'tan-d4b00fd9':'Frieze 在波灣的第一場。與 12 月開幕的古根漢阿布達比、2030 年的 Gehry 藝術之家同屬一條線：波灣正在同時佈建機構與市場兩端，而且速度很快。這對亞洲畫廊是新的參展選項，但要注意波灣市場的買家結構與亞洲差異極大——本地藏家少、國際藏家多，實際上是另一個轉運型市場。',
 'artnews-5d9281ae':'對台灣畫廊評估首爾佈局的時機，這是最直接的參考。從爆發期進入成熟期意味著三件事：投機性買盤退場、藏家更挑剔、以及進入門檻反而降低（因為競爭者變少）。台灣畫廊過去兩年幾乎缺席首爾，如果現在進場，成本比 2023 至 2024 那波低得多——但也代表要靠作品而非熱度說服買家。搭配 Frieze Seoul 2027 移師 DDP、與 Kiaf 拆夥一起評估。',
 'artnews-f9505f30':'蒙古的雙年展是近年新興的中亞藝術節點。雙年展版圖持續往非傳統中心擴散，對亞洲藝術家的參展路徑是新選項——這類新興雙年展的入場門檻低於威尼斯或光州，但能見度未必差，尤其在特定策展網絡裡。',
@@ -1704,7 +1868,6 @@ const NOTES={
 'abasel-a305dd20':'飯店收藏從裝飾升級為策展，實質上是私人收藏公開展示的另一條路徑——不用蓋美術館、不用非營利登記，就能讓作品被看見。跟同期 Artforum 那則巴西藏家自建美術館對照，是兩種相反的資本邏輯。',
 'abasel-8590ec6c':'機構用夜間活動換觀眾與贊助，是全球美術館在補助縮減下的共同解法。但這篇追問的是更根本的問題：當展場變成舞池，藝術是內容還是背景。台灣的 C-LAB、空總這幾年也走同一條路。',
 'abasel-ea8eb2fb':'親子策展從「附屬設施」升格為主檔期，是機構在做長線的觀眾培養。值得對照台灣：北美館兒藝中心與高美館的做法屬同一路線，但論述深度與國際案例仍有落差，這篇可以當參照庫。',
-'dezeen-50a61b96':'該則我只取得標題與導言，沒抓到文章直連，連結會開到 Dezeen 設計版首頁。自我設限的生產半徑在談永續時很常見，但真的連工具都算進去的少，因此結果比一般的在地化宣言有說服力。',
 'dboom-60baf3a3':'工藝進入日常物件的難處在於：保留製程痕跡容易變成觀光紀念品，磨掉痕跡又失去意義。這件用統一的紅色把四種工藝拉到同一個視覺系統下，讓材料差異成為細節而非賣點，是解法之一。',
 'dboom-6c7ec02f':'切入去殖民設計史與材料再用兩個當前討論。把被丟棄的舊椅視為社會史載體，這個框架讓「upcycling」從環保議題變成敘事方法——這是它跟一般再生設計的差別。',
 'dboom-a7cfee50':'材料實驗這條線在 Designboom 這幾週特別密集，回收物轉高值化是共同命題。難點永遠是：材料敘事講完之後，物件本身撐不撐得住。',
@@ -2294,7 +2457,7 @@ w:'重心從「賣商品」轉向「賣 IP 與世界觀」，這跟日韓文創�
 /* ══════════════════════ 以下為程式，不用改 ══════════════════════ */
 
 let hfMode='all';
-const state={groups:new Set(),regions:new Set(),sources:new Set(),cats:new Set(),selY:'',selM:'',selD:'',q:'',hideRead:false,onlyGal:false,recent:true};
+const state={groups:new Set(),regions:new Set(),sources:new Set(),cats:new Set(),selY:'',selM:'',selD:'',q:'',hideRead:false,onlyGal:false,onlyGalI:false,recent:true};
 let read=new Set(), storageOK=false;
 const batches=[...new Set(ITEMS.map(i=>i.batch))].sort().reverse();
 const latestBatch=batches[0];
@@ -2323,7 +2486,9 @@ const RECENT=cutD.toISOString().slice(0,10);
 const RAIL_DAYS=14;
 const RAIL_FROM=new Date(maxD.getTime()-(RAIL_DAYS-1)*864e5).toISOString().slice(0,10);
 /* 台灣藝廊線改為近四週：畫廊官網與展訊的更新頻率遠低於新聞媒體 */
-const GAL_FROM=new Date(maxD.getTime()-27*864e5).toISOString().slice(0,10);
+const GAL_FROM=new Date(maxD.getTime()-29*864e5).toISOString().slice(0,10);
+/* 設計線為週更，跨媒體事件密度低，熱度榜放寬為四週 */
+const DSG_FROM=new Date(maxD.getTime()-27*864e5).toISOString().slice(0,10);
 const mA=dates[0].slice(0,7).replace('-','.'), mB=dates[dates.length-1].slice(0,7).replace('-','.');
 document.getElementById('built').textContent=BUILT;
 document.getElementById('span').textContent=(mA===mB?mA:mA+'–'+mB);
@@ -2407,6 +2572,7 @@ function buildHot(from){
 /* 上方軌道只看近兩週；卡片篩選與「熱度依據」下拉則用全區間 */
 const hotAll=buildHot(null);
 const hotRail=buildHot(RAIL_FROM);
+const hotRailD=buildHot(DSG_FROM);
 const hot=hotRail.filter(o=>o.score>=6);
 
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -2438,39 +2604,117 @@ function hfPass(o){
 }
 function railLabel(){
   const f=d=>d.slice(5).replace('-','.');
-  const t='近兩週　'+f(RAIL_FROM)+'–'+f(dates[dates.length-1]);
+  const t='藝術線 近兩週　設計線 近四週';
   const el1=document.getElementById('railnote'); if(el1) el1.textContent=t;
+  const eh1=document.getElementById('h1'); if(eh1) eh1.textContent='藝術線　近兩週 '+f(RAIL_FROM)+'–'+f(dates[dates.length-1]);
+  const eh2=document.getElementById('h2'); if(eh2) eh2.textContent='設計線　近四週 '+f(DSG_FROM)+'–'+f(dates[dates.length-1]);
   const el2=document.getElementById('railnote2');
-  if(el2) el2.textContent='近四週　'+f(GAL_FROM)+'–'+f(dates[dates.length-1]);
+  if(el2) el2.textContent='近一個月';
 }
 railLabel();
 function renderHeat(){
-  const base = (hfMode==='all') ? hot : hotRail;
+  const base  = (hfMode==='all') ? hot : hotRail;
+  const baseD = (hfMode==='all') ? hotRailD.filter(o=>o.score>=6) : hotRailD;
   const a=base.filter(o=>o.grp==='art'&&hfPass(o)).slice(0,8);
-  const d=base.filter(o=>o.grp==='design'&&hfPass(o)).slice(0,8);
+  const d=baseD.filter(o=>o.grp==='design'&&hfPass(o)).slice(0,8);
   document.getElementById('heat').hidden=!(a.length||d.length);
   document.getElementById('heatlist').innerHTML=a.length?a.map(heatRow).join(''):'<li class="hfnone">此條件下沒有項目</li>';
   document.getElementById('heatlist2').innerHTML=d.length?d.map(heatRow).join(''):'<li class="hfnone">此條件下沒有項目</li>';
   document.getElementById('h1').hidden=false;
   document.getElementById('h2').hidden=false;
+  const hs=document.getElementById('heatsum');
+  railLabel();
+  if(hs) hs.textContent='藝術線 '+a.length+' 則　·　設計線 '+d.length+' 則'
+    +(a[0]?'　·　最高 '+a[0].score+' 分':'');
 }
+(function(){const f=document.getElementById('heatfold');
+  if(f) f.addEventListener('toggle',()=>{const c=f.querySelector('.foldcue'); if(c) c.textContent=f.open?'收合':'展開';});})();
 renderHeat();
 
-/* 藝博會軌道 */
+/* ═══ 藝博會軌道：統計 + 篩選 + 收合 ═══ */
 if(SHOW_FAIRS&&FAIRS.length){
   document.getElementById('fairrail').hidden=false;
-  document.getElementById('fairlist').innerHTML=FAIRS.map(f=>{
-    const has=f.tw&&f.tw.length;
-    return '<div class="fair'+(has?'':' pending')+'">'
-      +'<div class="fair-top"><span class="fair-name">'+esc(f.name)+'</span>'
-      +'<span class="fair-when">'+esc(f.when)+'　·　'+esc(f.where)+'</span></div>'
-      +'<p class="fair-scale">'+esc(f.scale)+'</p>'
-      +'<p class="fair-tw"><span class="twn'+(has?'':' none')+'">台灣 '+esc(f.twn)+'</span></p>'
-      +(has?'<div class="twchips">'+f.tw.map(g=>'<span class="twchip">'+esc(g)+'</span>').join('')+'</div>':'')
-      +(f.note?'<p class="fair-note">'+esc(f.note)+'</p>':'')
-      +'<p class="fair-src">'+f.src.map(x=>'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.n)+'</a>').join('　')+'</p>'
-      +'</div>';
-  }).join('');
+
+  /* 2026 年台灣畫廊參與國際藝博的統計 */
+  const galCount={}, fairOf={};
+  FAIRS.forEach(f=>{
+    if(f.reg==='tw') return;                       /* 主場不計入國際 */
+    (f.tw||[]).forEach(g=>{
+      let nm=g.split('｜')[0].replace(/\s+[A-Za-z&'. ]+$/,'').trim();
+      if(!nm||nm.length>12) return;                /* 濾掉說明性文字 */
+      if(nm==='PTT') nm='PTT Space';
+      if(nm==='TKG+') nm='耿畫廊 / TKG+';          /* 聯合展位，併為同一家 */
+      if(nm==='耿畫廊') nm='耿畫廊 / TKG+';
+      galCount[nm]=(galCount[nm]||0)+1;
+      (fairOf[nm]=fairOf[nm]||[]).push(f.name.replace(/\s*20\d\d.*$/,'').replace('（首屆）','').replace('（現場實況）','').trim());
+    });
+  });
+  const ranked=Object.entries(galCount).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'zh-Hant'));
+  const intlFairs=FAIRS.filter(f=>f.reg!=='tw');
+  const withTw=intlFairs.filter(f=>(f.tw||[]).some(g=>g.includes('｜'))).length;
+  const totalSlots=ranked.reduce((n,x)=>n+x[1],0);
+
+  document.getElementById('fairsum').textContent=
+    ranked.length+' 家台灣畫廊　·　'+totalSlots+' 個展位　·　'+withTw+' / '+intlFairs.length+' 場國際展會有台灣參展';
+  document.getElementById('fairstat').innerHTML=
+    '<div class="statbox">'
+    +'<p class="stathead">2026 台灣畫廊參與國際藝博統計 '
+      +'<span class="statnote">計入 '+intlFairs.length+' 場國際展會（不含 ART TAIPEI 主場）</span></p>'
+    +'<div class="statnums">'
+      +'<span><b>'+ranked.length+'</b> 家台灣畫廊</span>'
+      +'<span><b>'+totalSlots+'</b> 個展位</span>'
+      +'<span><b>'+withTw+' / '+intlFairs.length+'</b> 場有台灣畫廊</span>'
+    +'</div>'
+    +'<p class="statlegend">左側數字＝該畫廊 2026 年參與的國際藝博會場次</p>'
+    +'<ol class="statlist">'
+      +ranked.map(([g,n])=>'<li><span class="statn">'+n+'</span><span class="statg">'+esc(g)+'</span>'
+        +'<span class="statf">'+esc([...new Set(fairOf[g])].join('、'))+'</span></li>').join('')
+    +'</ol>'
+    +'<p class="statfoot">多數台灣畫廊只出現在香港三月。首爾、東京、阿布達比的公布名單裡幾乎沒有台灣畫廊，而韓國畫廊來台參加 ART TAIPEI 的數量正在攀升——這個單向流動是 2026 年最值得注意的結構。</p>'
+    +'</div>';
+
+  /* 展會清單：預設收合，只顯示標題列 */
+  let ffMode='all';
+  function ffPass(f){
+    switch(ffMode){
+      case 'hastw':    return (f.tw||[]).some(g=>g.includes('｜'));
+      case 'asia':     return f.reg==='asia';
+      case 'other':    return f.reg==='other';
+      case 'upcoming': return f.st==='upcoming';
+      default:         return true;
+    }
+  }
+  function renderFairs(){
+    const list=FAIRS.filter(ffPass);
+    document.getElementById('fairlist').innerHTML = list.length ? list.map(f=>{
+      const named=(f.tw||[]).filter(g=>g.includes('｜'));
+      const has=named.length;
+      return '<details class="fair'+(has?'':' pending')+'">'
+        +'<summary>'
+        +'<span class="fair-name">'+esc(f.name)+'</span>'
+        +'<span class="fair-when">'+esc(f.when)+'　·　'+esc(f.where)+'</span>'
+        +'<span class="twn'+(has?'':' none')+'">'+(has?'台灣 '+has+' 家':'台灣 '+esc(f.twn))+'</span>'
+        +'</summary>'
+        +'<div class="fair-body">'
+        +'<p class="fair-scale">'+esc(f.scale)+'</p>'
+        +(has?'<div class="twchips">'+named.map(g=>'<span class="twchip">'+esc(g)+'</span>').join('')+'</div>':'')
+        +(f.note?'<p class="fair-note">'+esc(f.note)+'</p>':'')
+        +'<p class="fair-src">'+f.src.map(x=>'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.n)+'</a>').join('　')+'</p>'
+        +'</div></details>';
+    }).join('') : '<p class="hfnone">此條件下沒有展會。</p>';
+  }
+  renderFairs();
+  const ff=document.getElementById('fairfold');
+  ff.addEventListener('toggle',()=>{
+    const c=ff.querySelector('.foldcue');
+    if(c) c.textContent = ff.open ? '收合' : '展開';
+  });
+  document.getElementById('fairfilter').addEventListener('click',e=>{
+    const b=e.target.closest('[data-ff]'); if(!b) return;
+    ffMode=b.dataset.ff;
+    document.querySelectorAll('#fairfilter [data-ff]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+    renderFairs();
+  });
 }
 
 function unRecent(){
@@ -2490,7 +2734,7 @@ function syncClears(){
   const dt=[state.selY, state.selM?parseInt(state.selM,10)+'月':'', state.selD?parseInt(state.selD.slice(8),10)+'日':''].filter(Boolean);
   document.getElementById('nt').textContent=dt.length?'　'+dt.join('.'):'';
   document.getElementById('nc').textContent=lbl(state.cats);
-  const HFN={multi:'跨媒體',cross:'台灣國際同報',lead:'首頁頭條',deep:'多篇追蹤',gal:'台灣藝廊'};
+  const HFN={multi:'跨媒體',cross:'台灣國際同報',lead:'首頁頭條',deep:'多篇追蹤',gal:'畫廊動向'};
   document.getElementById('nh').textContent=HFN[hfMode]?'　'+HFN[hfMode]:'';
   document.querySelector('[data-dd="s"]').setAttribute('aria-pressed',state.sources.size?'true':'false');
   document.querySelector('[data-dd="t"]').setAttribute('aria-pressed',dt.length?'true':'false');
@@ -2500,23 +2744,40 @@ function syncClears(){
 }
 
 /* 台灣藝廊線：依藝廊分組，出現次數多的排前面 */
-const galGroups={};
-ITEMS.forEach(i=>{ const g=TWG[i.id]||((SOURCES[i.s]||{}).gal?SOURCES[i.s].name:null); if(g&&i.d>=GAL_FROM){ (galGroups[g]=galGroups[g]||[]).push(i); } });
-const galList=Object.entries(galGroups)
-  .map(([g,arr])=>({g,arr:arr.slice().sort((a,b)=>a.d<b.d?1:-1)}))
-  .sort((a,b)=> b.arr.length-a.arr.length || (a.arr[0].d<b.arr[0].d?1:-1));
+const galGroups={}, galGroupsI={};
+ITEMS.forEach(i=>{
+  const src=SOURCES[i.s]||{};
+  const g=TWG[i.id]||(src.gal?src.name:null);
+  if(!g||i.d<GAL_FROM) return;
+  const bucket = (src.region==='intl'&&src.gal) ? galGroupsI : galGroups;
+  (bucket[g]=bucket[g]||[]).push(i);
+});
+function galSort(o){
+  return Object.entries(o)
+    .map(([g,arr])=>({g,arr:arr.slice().sort((a,b)=>a.d<b.d?1:-1)}))
+    .sort((a,b)=> b.arr.length-a.arr.length || (a.arr[0].d<b.arr[0].d?1:-1));
+}
+const galList=galSort(galGroups), galListI=galSort(galGroupsI);
+function galRow(o){
+  const top=o.arr[0], src=SOURCES[top.s];
+  return '<li><span class="galname">'+esc(o.g)+'</span>'
+    +'<a href="'+esc(top.u)+'" target="_blank" rel="noopener">'+esc(top.t)+'</a>'
+    +'<span class="who">'+(o.arr.length>1?o.arr.length+' 則 · ':'')+esc(src.name)+' · '+top.d.slice(5).replace('-','.')+'</span></li>';
+}
 document.getElementById('galrail').hidden=false;
-if(!galList.length){
-  document.getElementById('gallist').innerHTML='<li class="hfnone">近四週沒有台灣藝廊的動向。把上方「熱度依據」切到「台灣藝廊」可以看全區間的累積。</li>';
-}
-if(galList.length){
-  document.getElementById('gallist').innerHTML=galList.map(o=>{
-    const top=o.arr[0], src=SOURCES[top.s];
-    return '<li><span class="galname">'+esc(o.g)+'</span>'
-      +'<a href="'+esc(top.u)+'" target="_blank" rel="noopener">'+esc(top.t)+'</a>'
-      +'<span class="who">'+(o.arr.length>1?o.arr.length+' 則 · ':'')+esc(src.name)+' · '+top.d.slice(5).replace('-','.')+'</span></li>';
-  }).join('');
-}
+(function(){
+  const el=document.getElementById('galsum');
+  if(el) el.textContent=galList.length+' 家台灣藝廊　·　'+galListI.length+' 家海外藝廊　·　'
+    +galList.concat(galListI).reduce((n,o)=>n+o.arr.length,0)+' 則動向';
+  const f=document.getElementById('galfold');
+  if(f) f.addEventListener('toggle',()=>{const c=f.querySelector('.foldcue'); if(c) c.textContent=f.open?'收合':'展開';});
+})();
+document.getElementById('gallist').innerHTML = galList.length
+  ? galList.map(galRow).join('')
+  : '<li class="hfnone">近一個月沒有台灣藝廊的動向。用篩選列的「熱度依據 → 畫廊動向」可看全區間累積。</li>';
+document.getElementById('gallisti').innerHTML = galListI.length
+  ? galListI.map(galRow).join('')
+  : '<li class="hfnone">近一個月沒有海外藝廊的動向。</li>';
 
 const wall=document.getElementById('wall');
 function visible(){
@@ -2528,7 +2789,11 @@ function visible(){
       if(!o||!hfPass(o)) return false;
     }
     if(state.recent&&i.d<RECENT) return false;
-    if(state.onlyGal&&!(TWG[i.id]||(src||{}).gal)) return false;
+        if(state.onlyGal||state.onlyGalI){
+      const isTwGal   = (TWG[i.id]||src.gal) && src.region==='tw';
+      const isIntlGal = src.gal && src.region==='intl';
+      if(!((state.onlyGal&&isTwGal)||(state.onlyGalI&&isIntlGal))) return false;
+    }
     if(state.groups.size&&!state.groups.has(src.g||'art')) return false;
     if(state.regions.size&&!state.regions.has(src.region)) return false;
     if(state.sources.size&&!state.sources.has(i.s)) return false;
@@ -2681,6 +2946,7 @@ document.querySelector('.controls').addEventListener('click',e=>{
     renderHeat();
     document.querySelectorAll('.dd').forEach(d=>d.classList.remove('open'));}
   else if(b.id==='onlygal'){state.onlyGal=!on;}
+  else if(b.id==='onlygali'){state.onlyGalI=!on;}
   else if(b.id==='hideread'){state.hideRead=!on;}
   else if(b.id==='recent'){state.recent=!on;}
   render();
