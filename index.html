@@ -458,7 +458,8 @@ details.fair[open] summary{border-bottom:1px solid var(--rule)}
     <details class="doc">
       <summary><span class="dn">來源與連結的可信度</span><span class="ds">直連、站內搜尋、日期標記</span></summary>
       <div class="db">
-        <p><b>連結原則</b>：只有我實際在來源頁面上看到的網址才做直連。其餘一律指向該站的站內搜尋（卡片上有「連結為站內搜尋」標記），關鍵字取自原文標題，第一筆通常就是本文。我不用推測的網址冒充直連——先前這麼做過，結果是一批點不到的死連結，已全數改正。</p>
+        <p><b>重點與判斷不重複</b>：卡片正面的「重點」是這則在講什麼，面板裡的「為什麼值得注意」是我的判斷。若兩者開頭重疊，系統會自動略過判斷欄裡重複的句子，只留下真正多出來的分析。</p>
+    <p><b>連結原則</b>：只有我實際在來源頁面上看到的網址才做直連。其餘一律指向該站的站內搜尋（卡片上有「連結為站內搜尋」標記），關鍵字取自原文標題，第一筆通常就是本文。我不用推測的網址冒充直連——先前這麼做過，結果是一批點不到的死連結，已全數改正。</p>
         <p><b>日期前有「?」的</b>，代表我沒能查證發佈日期，該則來自站方首頁的推薦模組（那裡會混入舊文），日期僅供排序參考。<b>日期前有「~」的</b>，代表該站列表頁沒有公開發佈日期，我依文章編號推估。</p>
         <p><b>Art Spell 是雷達，不是來源</b>：它是一份免費的每日藝術新聞彙整電子報，把十餘家掃成連結清單。我用它找出漏掉的媒體，但收錄時一律回歸原出處標示。</p>
         <p><b>Sotheby’s 抓的是 Articles 編輯線</b>，不是新聞稿——後者跟著拍賣季走，淡季幾乎空白。要注意這些文章都綁定即將上拍的標的，本質是賣方觀點。</p>
@@ -487,7 +488,7 @@ details.fair[open] summary{border-bottom:1px solid var(--rule)}
 
 const SHOW_FAIRS=true;   /* 藝博會軌道開關：改成 true 就會顯示 */
 
-const BUILT='2026.09.13　20:20　台北';
+const BUILT='2026.09.17　17:00　台北';
 
 const SOURCES={
   artouch :{name:'典藏 ARTouch',      region:'tw',   domain:'artouch.com'},
@@ -722,7 +723,7 @@ const ITEMS=[
 /* ═════ 國際藍籌畫廊（6/1–9/13，來源：畫廊官網）═════ */
 {s:'pace',batch:'2026-09-13',d:'2026-09-10',id:'pace-f247e37b',c:['市場','機構','收藏'],t:'Pace 與 Emmanuel Di Donna、David Schrader 合創新畫廊 Pace Di Donna Schrader，專攻二級市場',b:'三方合資成立全球型畫廊，定位為二級市場銷售與操作的領導者。藍籌畫廊正式跨進拍賣行的地盤，是本期最重要的市場結構新聞。',u:'https://www.pacegallery.com/journal/pace-gallery-emmanuel-di-donna-and-david-schrader-announce-launch-of-new-global-gallery-devoted-to-secondary-market-sales-and-practices/'},
 {s:'pace',batch:'2026-09-13',d:'2026-09-11',id:'pace-026df074',c:['展覽','工藝'],t:'Lynda Benglis《KNOTTING, TYING, FOLDING》｜9/11–10/24，Pace 紐約',b:'以打結、綁縛、摺疊為題的雕塑個展。Benglis 從 1960 年代末以傾倒乳膠的「pour」系列聞名，材料與身體動作的關係是她一貫的命題。',u:'https://www.pacegallery.com/exhibitions/lynda-benglis-knotting-tying-folding/'},
-{s:'pace',batch:'2026-09-13',d:'2026-09-11',id:'pace-4a0789c4',c:['展覽','評論'],t:'Torkwase Dyson《Seeing in Blue》｜9/11–10/24，Pace 紐約',b:'Pace 同步發布藝術家工作室影片。畫廊自製紀錄片為展覽鋪墊，是藍籌畫廊近年的標準內容操作。',u:'https://www.pacegallery.com/exhibitions/torkwase-dyson-seeing-in-blue/'},
+{s:'pace',batch:'2026-09-13',d:'2026-09-11',id:'pace-4a0789c4',c:['展覽','評論'],t:'Torkwase Dyson《Seeing in Blue》｜9/11–10/24，Pace 紐約',b:'展於 540 West 25th Street，9/11–10/24。全新繪畫系列源自 Dyson 作為深海潛水員的探勘經驗，處理距離、光線、知覺、共生與行星變動；她稱之為「水無邊界的狀態改變」。Pace 另於 9/2 發布工作室影片《Seeing in Blue: In the Studio》。',u:'https://www.pacegallery.com/exhibitions/torkwase-dyson-seeing-in-blue/'},
 {s:'pace',batch:'2026-09-13',d:'2026-09-11',id:'pace-9242641c',c:['市場','機構'],t:'Tokyo Gendai 2026｜展位 B03，9/11–9/13，橫濱 PACIFICO',b:'Pace 在東京的藝博會展位，呈現 Lauren Quin。Tokyo Gendai 是日本近年新設的國際藝博會，與首爾、香港形成東亞三角。',u:'https://www.pacegallery.com/artfairs/tokyo-gendai-2026/'},
 {s:'pace',batch:'2026-09-13',d:'2026-09-01',id:'pace-bbcdbaa8',c:['展覽','機構'],t:'Friedrich Kunath《The Nearest Faraway Place》｜9/1–10/24，Pace 首爾',b:'Pace 首爾空間的秋季檔期，與首爾藝術週同期。',u:'https://www.pacegallery.com/exhibitions/friedrich-kunath-the-nearest-faraway-place/'},
 {s:'pace',batch:'2026-09-13',d:'2026-07-06',id:'pace-e05187c0',c:['設計','品牌','評論'],t:'Lynda Benglis 啟發 Dior 2026 秋冬高訂系列',b:'藝術家的形式語言直接進入高訂時裝。藝術與時裝的授權合作近年密度上升，畫廊也在經營這條收入線。',u:'https://www.pacegallery.com/journal/lynda-benglis-dior-haute-couture-2026/'},
@@ -736,7 +737,6 @@ const ITEMS=[
 {s:'soka',batch:'2026-09-13',d:'2026-09-12',id:'soka-71987b5d',c:['展覽','機構'],t:'The Daily, Reimagined｜9/12–10/17，索卡藝術（藝術家聯展）',b:'索卡的秋季聯展。它擁有北京、臺北、臺南三個空間，經營範圍橫跨戰後日本、韓國、大中華與東南亞當代藝術，同時深耕二十世紀華人經典。',u:'https://www.soka-art.com/tr/exhibition/details/12616'},
 {s:'soka',batch:'2026-09-13',d:'2026-08-29',id:'soka-d1cfd712',c:['展覽'],t:'起霧了｜羅喬綾個展，8/29–10/3，索卡藝術',b:'台灣中生代畫家個展，展期橫跨 ART TAIPEI 前檔期。',u:'https://www.soka-art.com/tr/exhibition/details/12432'},
 {s:'soka',batch:'2026-09-13',d:'2026-08-22',id:'soka-0a4262a4',c:['展覽','機構'],t:'淡影流光｜王小雙個展，8/22–10/3，索卡藝術',b:'索卡同期排三檔展，密度高於多數台灣畫廊——三地空間讓它能同時運作多條檔期。',u:'https://www.soka-art.com/tr/exhibition/details/12530'},
-{s:'soka',batch:'2026-09-13',d:'2026-09-11',id:'soka-90453845',c:['工藝','展覽','品牌'],t:'《RE: FRAME 再取樣世代》谷敷謙 × 新埜康平聯展：舊衣變江戶工藝，UNIQLO 合作藝術家臺南首展',b:'索卡臺南空間。把舊衣轉為江戶工藝的手法，是材料再生與傳統工法的交集；藝術家曾與 UNIQLO 合作，商業與工藝的雙棲身分值得注意。',u:'https://www.soka-art.com/tr/news/details/12659'},
 {s:'dsq',batch:'2026-09-13',d:'2026-08-15',id:'dsq-a4c29b61',c:['展覽','機構'],t:'Objects of Desire: Where Micro and Macro Open in All Directions｜8/15–9/26，双方藝廊',b:'西班牙藝術家 Ana de Alvear 個展。双方是台灣少數持續引進歐洲當代藝術家的中型畫廊。',u:'https://www.doublesquare.com.tw/en/exhibition/objects-of-desire-where-micro-and-macro-open-in-all-directions'},
 {s:'dsq',batch:'2026-09-13',d:'2026-08-15',id:'dsq-4c2b579d',c:['展覽'],t:'Shelter Island｜張山雪個展，8/15–9/26，双方藝廊',b:'與 Ana de Alvear 同日開幕的雙檔期。台灣與國際藝術家並置，是双方與安卓共同的排檔邏輯。',u:'https://www.doublesquare.com.tw/en/exhibition/shelter-island'},
 {s:'aac',batch:'2026-09-13',d:'2026-06-04',id:'aac-443cfb51',c:['市場','機構'],t:'ART TAICHUNG 2026 台中藝術博覽會｜展位 D02，6/4–6/7',b:'亞洲藝術中心的台中檔期。它同時經營台北與北京兩地空間，是台灣少數在中國長期設點的畫廊。',u:'https://asiaartcenter.org/art-fairs/'},
@@ -760,6 +760,84 @@ const ITEMS=[
 {s:'tkg',batch:'2026-09-13',d:'2026-07-18',id:'tkg-eb5f4f17',c:['展覽','機構'],t:'【緩慢的電影配樂】李傑個展｜7/18–8/29，TKG+',b:'香港藝術家李傑。TKG+ 持續經營的亞洲當代路線，與東南亞、日本藝術家的檔期交錯排列。',u:'https://artemperor.tw/tidbits/20349'},
 {s:'tkg',batch:'2026-09-13',d:'2026-06-28',id:'tkg-e997e3db',c:['展覽','市場'],t:'【科羅曼德之花】蘇孟鴻個展｜5/23–7/11，耿畫廊',b:'蘇孟鴻是耿畫廊三月香港巴塞爾的參展藝術家之一。台北個展與國際展位的選件對照，可看出畫廊的分工策略。',u:'https://artemperor.tw/tidbits/19962'},
 {s:'tkg',batch:'2026-09-13',d:'2026-06-28',id:'tkg-dac06a3f',c:['展覽','機構'],t:'【CYCLES】彌載映（Mit Jai Inn）個展｜5/23–7/4，TKG+',b:'泰國藝術家。TKG+ 創意總監吳悅宇長期經營東南亞藝術，這是該路線的代表檔期。',u:'https://artemperor.tw/tidbits/19963'},
+
+/* ── 國際媒體補齊至 9/16 ── */
+{s:'artforum',batch:'2026-09-17',d:'2026-09-17',sx:1,id:'artforum-0cffcce5',c:['機構','政策','人事'],t:'紐約三大美術館工會員工表決罷工',e:'Unionized Staff at Three Major NYC Museums Vote to Strike',b:'三館工會同時表決罷工。與 V&A East Storehouse 的勞資爭議、聖地牙哥兩館財務危機並看，美術館勞動條件正在成為全球性的爭點。',u:'https://www.artforum.com/?s=Unionized%20Staff%20Three%20Major%20NYC%20Museums%20Vote%20Strike'},
+{s:'artforum',batch:'2026-09-17',d:'2026-09-17',sx:1,id:'artforum-500109ef',c:['展覽','市場','機構'],t:'國家藝廊雷諾瓦特展預售票破 2.2 萬張，創該館紀錄',e:'National Gallery Renoir Exhibition Ticket Sales Set Record',b:'超越 2024 年〈梵谷：詩人與愛人〉的 15,654 張。印象派的票房號召力在機構端仍是最穩的保證。',u:'https://www.artforum.com/?s=National%20Gallery%20Renoir%20exhibition%20ticket%20sales%20record'},
+{s:'artforum',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'artforum-94b791b2',c:['建築','機構'],t:'大都會博物館現當代新館動土',e:'The Met Breaks Ground on New Modern and Contemporary Wing',b:'與 The Art Newspaper 同報。大都會的現當代收藏長期弱於 MoMA 與惠特尼，新館是補課的關鍵。',u:'https://www.artforum.com/?s=Met%20Breaks%20Ground%20New%20Modern%20Contemporary%20Wing'},
+{s:'artforum',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'artforum-14669ee6',c:['修復','文資','機構'],t:'魯布列夫聖像因空調系統失效而變形',e:'Andrei Rublev Icon Warped After Climate-Control Failure',b:'與 The Art Newspaper 同報。2023 年從特列季亞科夫美術館移交教會後，專業界的警告成真。',u:'https://www.artforum.com/?s=Andrei%20Rublev%20Icon%20Warped%20Climate-Control%20Failure'},
+{s:'artforum',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'artforum-67f5e1b7',c:['人事','徵件','工藝'],t:'Pem Lham 獲 3 萬美元魯賓美術館喜馬拉雅藝術獎',e:'Pem Lham Wins $30k Rubin Museum Himalayan Art Prize',b:'魯賓美術館 2024 年關閉實體館舍轉為無牆機構，仍持續發獎。喜馬拉雅藝術在西方機構體系裡的位置很特殊——宗教物件與當代創作並存。',u:'https://www.artforum.com/?s=Pem%20Lham%20Rubin%20Museum%20Himalayan%20Art%20Prize'},
+{s:'artforum',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'artforum-d370ac86',c:['人事','機構','收藏'],t:'王靜靈出任史密森尼國家亞洲藝術博物館首位 Nancy Chang Lee 中國藝術策展人',e:'Ching-Ling Wang Named Nancy Chang Lee Curator of Chinese Art at Smithsonian',b:'首任冠名策展人。在史密森尼受政治壓力、院長請辭的同期，新設冠名職位的訊號值得注意。',u:'https://www.artforum.com/?s=Ching-Ling%20Wang%20Nancy%20Chang%20Lee%20Curator%20Chinese%20Art%20Smithsonian'},
+{s:'artforum',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'artforum-416dd11d',c:['機構','政策'],t:'紐約視覺藝術學院將於 2027–28 學年結束攝影、錄像與相關媒體 MFA 學程',e:'SVA to End Photography, Video, and Related Media MFA Program',b:'繼註冊人數掉三分之一、赤字 2,200 萬美元、突襲式砍課之後的又一步。攝影 MFA 是 SVA 的招牌學程之一，收掉它代表縮編已進入核心。',u:'https://www.artforum.com/?s=SVA%20ending%20photography%20video%20related%20media%20MFA%20program'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'artnews-f55d3a49',c:['文資','市場','機構'],t:'失竊的十六世紀法蘭德斯木板畫歸還西班牙拉科魯尼亞美術館',e:'Stolen 16th-century Flemish Panel Given to Spain’s Fine Arts Museum of La Coruña',b:'Morning Links 9/15。同期另有：英國家庭數十年來的花園擺飾竟是十九世紀美國首位職業女雕塑家 Harriet Hosmer 的大理石作品；羅浮宮為 10 億歐元整建案轉向亞洲找贊助，仍缺 3.6 億歐元。',u:'https://www.artnews.com/?s=Stolen%2016th-century%20Flemish%20Panel%20Fine%20Arts%20Museum%20La%20Coruna'},
+{s:'eflux',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'eflux-265d68d1',c:['展覽','機構','徵件'],t:'e-flux 九月公告：機構展覽、駐村與徵件',e:'e-flux announcements: September 2026',b:'e-flux 的機構公告平台。徵件與駐村資訊的密度是全球最高的單一來源，九月正值多數國際獎助的開放期。',u:'https://www.e-flux.com/search/?q=e-flux%20announcements%20September%202026'},
+{s:'frieze',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'frieze-7e2cc5d0',c:['市場','展覽','建築'],t:'Frieze Sculpture 2026 於攝政公園開展：9/16–11/1',e:'Frieze Sculpture 2026 opens in The Regent’s Park',b:'11 位國際藝術家的免費戶外展，先於 Frieze London 開幕。免費且開放的戶外展是藝博會建立公共正當性的標準做法。',u:'https://www.frieze.com/search?keys=Frieze%20Sculpture%202026%20opens%20Regent%20Park'},
+{s:'frieze',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'frieze-83d351dc',c:['評論','展覽','市場'],t:'Frieze London 2026 展前：十月倫敦藝術週看點',e:'Frieze London 2026 preview',b:'十月倫敦檔期的展前整理。與巴黎藝術週（十月）、ART TAIPEI（10 月下旬）、台南雙年展（10/31）撞在同一個月。',u:'https://www.frieze.com/search?keys=Frieze%20London%202026%20preview%20October'},
+{s:'abasel',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'abasel-2cc6b848',c:['市場','機構','評論'],t:'Art Basel Paris 2026 展前：十月巴黎藝術週的市場觀察',e:'Art Basel Paris 2026: what to expect',b:'十月巴黎檔期。與佳士得杜宏–魯埃 4,300 萬歐元印象派收藏、梵谷自畫像大展同期，巴黎十月會很密集。',u:'https://www.artbasel.com/search?query=Art%20Basel%20Paris%202026%20what%20to%20expect%20October'},
+
+/* ── 非池中 ── */
+{s:'emperor',batch:'2026-09-17',d:'2026-09-14',k:'tnbiennale',id:'emperor-7f5dfe8a',c:['展覽','建築','機構'],t:'2026 第一屆臺南藝術雙年展《迴圈．超展開》解鎖完整藝術家名單：12 國 93 位藝術家組成七大迴圈，10 月 31 日登場',b:'完整名單公布，藝術家人數從首波的 81 位增至 93 位。以湯德章公園圓環及放射狀道路為核心，七大策展路徑串連主展館與衛星展區，藤本壯介打造環狀建築《Ring》。',u:'https://artemperor.tw/focus/7362'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-16',id:'emperor-6a11aa22',c:['市場','收藏'],t:'李希特、趙無極與曾梵志力作領銜，富藝斯香港現代及當代藝術晚拍 9 月 30 日舉槌',b:'富藝斯香港秋拍。在該行高層離職潮與策略轉向的背景下，這場的成績是判斷它亞洲定位的直接指標。',u:'https://artemperor.tw/focus/7364'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-14',id:'emperor-d3e6d4b8',c:['展覽','機構','評論'],t:'東京都現代美術館《共時的星叢》9 月 5 日開展：以影像蒙太奇思維打造展場，重構臺日藝文百年交會',b:'台日藝文百年交會的大型梳理，在東京都現代美術館展出。台灣藝術史議題進入日本國立級館舍的主檔期，規格罕見。',u:'https://artemperor.tw/focus/7360'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-11',id:'emperor-c2fc4e5e',c:['展覽','機構','人事'],t:'北美館《王雅慧：旅行者》9 月 12 日開展：回顧 20 年創作歷程，生前最後作品《一一》首度在臺發表',b:'王雅慧回顧展。台灣中生代錄像與裝置藝術家的完整梳理，含她生前最後的作品。',u:'https://artemperor.tw/focus/7356'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-12',id:'emperor-75164bd5',c:['設計','政策','機構'],t:'文化平權的路上，設計可以幫什麼忙？臺北市文化館所「易讀」計畫',b:'楊傑懷撰文。「易讀」（Easy Read）是把展覽資訊轉為淺白圖文，讓認知障礙者也能理解。設計介入文化平權的實際案例，台灣的討論還很少。',u:'https://artemperor.tw/focus/7334'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-15',id:'emperor-aedb93ea',c:['機構','政策','評論'],t:'藝術走進醫療場域：臺大醫院健康大樓啟用暨公共藝術《重啟對話》9 月 22 日揭幕',b:'帝門藝術教育基金會。醫療場域的公共藝術有特殊條件——觀眾多在焦慮或病痛中，作品的介入尺度與一般公共空間完全不同。',u:'https://artemperor.tw/focus/7363'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-14',id:'emperor-1882c8d0',c:['評論','政策','機構'],t:'AI 與案例成為書法評論的夥伴：橫山書法藝術館「2026 書法藝術評論工作坊」的創新做法',b:'桃園市立美術館。把 AI 導入書法評論的訓練，是台灣書法界少見的方法論實驗。與鄭宇宏處理筆順的個展並看，書法的當代化正在兩端同時發生。',u:'https://artemperor.tw/focus/7358'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-14',id:'emperor-7781e84d',c:['文資','政策'],t:'從保存到共生：臺東縣政府深耕無形文化資產守護土地記憶',b:'國立高雄師範大學。無形文資的保存從「凍結」轉向「共生」，這個轉向與花蓮豐年節的「祭」與「節」爭議是同一組問題。',u:'https://artemperor.tw/focus/7354'},
+{s:'emperor',batch:'2026-09-17',d:'2026-09-14',id:'emperor-80beadfc',c:['展覽','機構','政策'],t:'桃園藝術亮點：從回望十年到展望 2026「自在藝遊」特展',b:'桃園市政府文化局。桃園今年是台灣設計展主辦城市（9/24 開展），文化局的展覽佈局可對照其城市品牌工程。',u:'https://artemperor.tw/focus/7361'},
+
+/* ── 典藏 ARTouch ── */
+{s:'artouch',batch:'2026-09-17',d:'2026-09-16',id:'artouch-acf60c33',c:['市場','人事','建築','機構'],t:'藝聞摘要：高松宮世界文化獎揭曉、威尼斯影展得主、卡達迎來李希特首座常設展館、畢卡索博物館「雕塑花園」設計入圍、史密森尼秘書長 Lonnie G. Bunch III 宣布退休、霍克尼生前最後大展刷新參觀人次',b:'典藏的雙週國際摘要，一次覆蓋六則。其中霍克尼生前最後大型展刷新參觀人次是本站其他來源沒報的一則。',u:'https://artouch.com/?p=215927'},
+{s:'artouch',batch:'2026-09-17',d:'2026-09-15',id:'artouch-e6eecc39',c:['文資','展覽','機構'],t:'故宮揭密「江西箱」身世：塵封 75 年文物遷徙史終見天日——臺北故宮「匯流 1950：新入藏文物風華」特展',b:'國立故宮博物院新入藏文物特展。「江西箱」的身世牽動的是 1949 年前後文物遷徙的完整路徑，這批材料在台灣的近代史研究裡極為關鍵。',u:'https://artouch.com/art-news/content-215908.html'},
+{s:'artouch',batch:'2026-09-17',d:'2026-09-12',id:'artouch-a5ef83f7',c:['市場','工藝','收藏'],t:'「岡田美術館藏亞洲藝術珍品」第二拍 1.75 億港元，吉州窰天目茶盞 1062 萬港元創世界紀錄',b:'蘇富比香港。吉州窰天目茶盞以 1062 萬港元刷新世界紀錄。八月本站曾收錄該收藏的 20 件精選預告，如今有了成交結果。',u:'https://artouch.com/?p=215765'},
+{s:'artouch',batch:'2026-09-17',d:'2026-09-13',id:'artouch-90280c8b',c:['評論','展覽'],t:'從《大象來了……》看街頭劇場的發展：街道也可以是劇場？',b:'台北藝術節的三頭機械巨象遊行引發的討論。街頭劇場在台灣的法規與場域限制一直是難題，這篇處理的是根本問題。',u:'https://artouch.com/?p=215700'},
+{s:'artouch',batch:'2026-09-17',d:'2026-09-14',id:'artouch-dd61fe69',c:['評論','藝術史','機構'],t:'【亞洲的多重時區】福島近：遠方的故鄉，以線條與留白書寫遷徙的記憶',b:'專題系列文。日本畫家福島近的遷徙經驗如何轉為形式語言。',u:'https://artouch.com/asias-multiple-time-zones/content-215667.html'},
+{s:'artouch',batch:'2026-09-17',d:'2026-09-12',id:'artouch-50573500',c:['評論','藝術史'],t:'【亞洲的多重時區】方向光：以東方哲思為徑，譜寫食人主義的靜默詩意',b:'專題系列文。巴西現代主義的「食人主義」（Antropofagia）主張吸收外來文化再轉化為己用，這篇把它接上東方哲思。',u:'https://artouch.com/asias-multiple-time-zones/content-215598.html'},
+{s:'artouch',batch:'2026-09-17',d:'2026-09-11',id:'artouch-68da61dc',c:['評論','藝術史'],t:'【亞洲的多重時區】大竹富江：盲畫、不完美的幾何與城市',b:'專題系列文。日裔巴西藝術家大竹富江（Tomie Ohtake）晚年因視力衰退發展出「盲畫」，幾何的不完美成為方法。',u:'https://artouch.com/asias-multiple-time-zones/content-215592.html'},
+{s:'artouch',batch:'2026-09-17',d:'2026-09-10',id:'artouch-e918e304',c:['評論','藝術史','文資'],t:'防空洞中的女人：陳進《眺望》與戰時女性藝術家',b:'以陳進的《眺望》切入戰爭時期臺灣女性藝術家的處境。台灣美術史裡戰爭期的女性創作幾乎沒有專門研究，這篇補的是雙重空白。',u:'https://artouch.com/art-views/content-215370.html'},
+
+/* ═════ 海外藝廊更新（Pace / Gagosian 官網）═════ */
+{s:'pace',batch:'2026-09-17',d:'2026-09-11',id:'pace-06a0e2c8',c:['展覽','評論'],t:'Arlene Shechet《She Said She Said》｜9/11–10/24，Pace 紐約',b:'與 Benglis、Dyson 同日開幕的第三檔。三位藝術家同時在相鄰空間開展，共同命題是「材料被預設能做什麼，與一雙練過的手能逼它承認什麼」之間的落差。Shechet 明春在巴塞爾美術館有大型回顧，秋季巡迴至泰特現代。',u:'https://www.pacegallery.com/exhibitions/arlene-shechet-she-said-she-said/'},
+{s:'pace',batch:'2026-09-17',d:'2026-09-18',id:'pace-5dc762cc',c:['展覽'],t:'Asher Liftin《Recent Work》｜9/18–10/31，Pace 125 Newbury',b:'125 Newbury 是 Arne Glimcher 主導的獨立品牌空間，選件比 Pace 主線更偏年輕與實驗。',u:'https://www.pacegallery.com/exhibitions/asher-liftin-recent-work/'},
+{s:'pace',batch:'2026-09-17',d:'2026-08-28',id:'pace-61a76ed1',c:['展覽','機構'],t:'Nigel Cooke《Night Ruins》｜8/28–10/10，Pace 東京',b:'東京空間的秋季檔期，與 Tokyo Gendai 藝博會（9/11–13）同期。Pace 在東京設點是近年亞洲擴張的一環。',u:'https://www.pacegallery.com/exhibitions/nigel-cooke-night-ruins/'},
+{s:'pace',batch:'2026-09-17',d:'2026-09-19',id:'pace-1c64aa04',c:['展覽','評論'],t:'David Lynch《LA》｜9/19–10/24，Pace 洛杉磯',b:'大衛．林區的視覺作品個展。導演的美術創作進入藍籌畫廊體系，與 Alice Diop 執掌 Miu Miu 藝博會委託是同一個現象：電影與當代藝術的邊界正在消融。',u:'https://www.pacegallery.com/exhibitions/david-lynch-la/'},
+{s:'pace',batch:'2026-09-17',d:'2026-09-10',id:'pace-ba554004',c:['展覽','評論'],t:'《Exquisite Corpse》｜9/10–11/11，Pace 柏林',b:'以超現實主義的「精緻屍體」接龍遊戲為題的群展，含 Kiki Kogelnik 作品。柏林空間的策展路線比紐約更偏歷史與觀念。',u:'https://www.pacegallery.com/exhibitions/exquisite-corpse/'},
+{s:'pace',batch:'2026-09-17',d:'2026-09-01',id:'pace-d321bfc7',c:['展覽','機構'],t:'Pace 藝術家在第 61 屆威尼斯雙年展的專題頁',b:'Pace 為旗下藝術家在威尼斯的參展另建專題。畫廊把雙年展參展整理成自家內容，是把機構背書轉為行銷資產的標準操作。',u:'https://www.pacegallery.com/journal/our-artists-in-venice-2026/'},
+{s:'gago',batch:'2026-09-17',d:'2026-09-10',id:'gago-14fd9e24',c:['展覽','收藏','市場'],t:'Brice Marden《I Am Plane Image》｜Gagosian 紐約 522 West 21st Street',b:'配合《Brice Marden: Catalogue Raisonné of Paintings, 1961–2023》今秋出版的同名展。全集與展覽同步推出，是藝術家遺產經營的完整配置。',u:'https://gagosian.com/exhibitions/2026/brice-marden-i-am-plane-image/'},
+{s:'gago',batch:'2026-09-17',d:'2026-09-10',id:'gago-fe8498ec',c:['展覽','評論'],t:'Deana Lawson 個展｜Gagosian 紐約 541 West 24th Street',b:'美國攝影家個展。Lawson 以精心搬演的家庭肖像處理非裔美國人的親密與階級，是近十年最受討論的攝影創作者之一。',u:'https://gagosian.com/exhibitions/2026/deana-lawson/'},
+{s:'gago',batch:'2026-09-17',d:'2026-09-10',id:'gago-2729028d',c:['展覽','評論','機構'],t:'《Seeing Through：賈藹力的平行繪畫》｜Gagosian 比佛利山',b:'中國藝術家賈藹力個展。他是中國七〇後繪畫最具國際能見度的代表之一，在藍籌畫廊的洛杉磯空間辦展，是華人藝術家進入西方主場的少數案例。',u:'https://gagosian.com/exhibitions/2026/seeing-through-jia-ailis-parallel-paintings/'},
+{s:'gago',batch:'2026-09-17',d:'2026-09-10',id:'gago-964c2afb',c:['展覽','評論'],t:'Jennifer Guidi《Waterfall》｜Gagosian 巴黎',b:'九月巴黎檔期，配合十月巴塞爾藝術展巴黎展會。Quarterly 另有 Marjolaine Lévy 專文追索她近作的發展。',u:'https://gagosian.com/exhibitions/2026/jennifer-guidi-waterfall/'},
+{s:'gago',batch:'2026-09-17',d:'2026-08-28',id:'gago-624c14ad',c:['評論','展覽'],t:'Jennifer Guidi：風景的祕密生活',b:'Marjolaine Lévy 為 Gagosian Quarterly 撰文。畫廊自製的深度藝評為自家展覽鋪墊，學術獨立性有爭議但內容品質通常不差。',u:'https://gagosian.com/quarterly/2026/08/28/essay-jennifer-guidi-the-secret-life-of-landscape/'},
+{s:'gago',batch:'2026-09-17',d:'2026-08-21',id:'gago-08254d23',c:['評論','收藏','市場'],t:'關於 Cady Noland《The Clip-On Method》的連結與敘事',b:'Martin Germann 撰文，談 Cady Noland 2021 年自費出版的藝術家書。Noland 以極端控制作品展示條件著稱，是藝術家權利討論裡最激進的案例。',u:'https://gagosian.com/quarterly/2026/08/21/essay-connections-and-narratives-on-cady-nolands-the-clip-on-method/'},
+
+/* ═════ BATCH 2026-09-17（9/11–9/16）═════ */
+/* ── 設計線 ── */
+{s:'dezeen',batch:'2026-09-17',d:'2026-09-03',id:'dezeen-46061801',c:['展覽','設計','建築'],t:'倫敦設計節 2026 十四場必看展覽與裝置',e:'Fourteen must-see exhibitions and installations at London Design Festival 2026',b:'里奇蒙 Ham House 與花園的接管計畫、Wapping 水力發電站的聲音裝置、Aram 的 102 位新銳設計師聯展。含米蘭設計週竄起的新星 Jabez Bartlett（舞台設計轉行）。',u:'https://www.dezeen.com/2026/09/03/london-design-festival-2026-highlights/'},
+{s:'dezeen',batch:'2026-09-17',d:'2026-09-14',sx:1,id:'dezeen-e0f60bd0',c:['建築','工藝','政策'],t:'倫敦設計節地標計畫《穿山甲之盾》：以竹格柵展亭談英印殖民史',e:'This year’s London Design Festival landmark project, The Pangolin Shield',b:'Studio Saar 與工程公司 Atelier One 合作。以竹構格柵覆蓋的展亭，藉穿山甲的鱗甲意象處理英國與印度的殖民關係。竹作為結構材與殖民史的雙重載體。',u:'https://www.dezeen.com/?s=Pangolin%20Shield%20London%20Design%20Festival%20landmark%20Studio%20Saar'},
+{s:'dezeen',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'dezeen-93acfff9',c:['設計','人事'],t:'倫敦設計圈六位值得關注的新銳',e:'Six rising talents on London’s design scene',b:'設計節前的人物側寫。新銳名單是判斷下一代語彙走向最直接的材料。',u:'https://www.dezeen.com/?s=Six%20rising%20talents%20London%20design%20scene'},
+{s:'dezeen',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'dezeen-b66ac12a',c:['家具','產品','工藝'],t:'Lozi 推出模組化合板家具系統：訂製櫃體的平價替代',e:'Lozi debuts modular plywood furniture system at London Design Festival',b:'含簡潔線條的衣櫃與折疊床。合板模組化是處理都市小坪數的常見解法，關鍵在五金與接合的耐用度。',u:'https://www.dezeen.com/?s=Lozi%20modular%20plywood%20furniture%20London%20Design%20Festival'},
+{s:'dezeen',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'dezeen-6181432d',c:['設計','品牌','展覽'],t:'Lee Broom 以《The Chant Chambers》裝置重現 1970 年代魅惑',e:'Lee Broom evokes 1970s glamour with The Chant Chambers installation',b:'英國燈具設計師的設計節主題裝置。Lee Broom 的展會裝置向來比產品本身更受注目，這是設計品牌用場景敘事建立辨識度的典型。',u:'https://www.dezeen.com/?s=Lee%20Broom%20Chant%20Chambers%20installation'},
+{s:'dezeen',batch:'2026-09-17',d:'2026-09-15',sx:1,id:'dezeen-62c4db78',c:['設計','機構','徵件'],t:'Dezeen Awards 2026 區域精選：亞太 50 件、美洲 50 件',e:'Dezeen Awards 2026 Regional Showcases: Asia Pacific and Americas',b:'區域精選名單公布。亞太 50 件裡有沒有台灣案子，是觀察台灣設計國際能見度最直接的指標。',u:'https://www.dezeen.com/?s=Dezeen%20Awards%202026%20Regional%20Showcases%20Asia%20Pacific'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-03',sx:1,k:'seoulweek',id:'artnews-f7f07580',c:['市場','機構'],t:'台灣畫廊正在改道',e:'Taiwan’s Gallerists Are Rerouting',b:'Hok-Hang Cheung 報導。台灣畫廊在國際藝博版圖上的路線調整。這是英語媒體少見以台灣畫廊為主題的市場分析，正好補上本站追了兩個月的那條線。',u:'https://www.artnews.com/?s=Taiwan%20Gallerists%20Are%20Rerouting'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-04',sx:1,k:'seoulweek',id:'artnews-77755e10',c:['市場','評論'],t:'Frieze Seoul、Kiaf 與一個走出 FOMO 邁向成熟的市場',e:'Frieze Seoul, Kiaf and a Market Moving Past FOMO into Maturity',b:'Elisa Carollo 報導。「走出 FOMO」是對首爾市場最精準的描述——投機性的錯失恐懼退場，剩下的是真正的收藏行為。',u:'https://www.artnews.com/?s=Frieze%20Seoul%20Kiaf%20Market%20Moving%20Past%20FOMO%20Maturity'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-09',sx:1,k:'gwangju',id:'artnews-16d82564',c:['展覽','評論','機構'],t:'刻意做小、放慢：第 16 屆光州雙年展走出一條改變的路徑',e:'Intentionally Smaller and Slower, the 16th Gwangju Biennale Traces a Path of Change',b:'Elisa Carollo 報導。在名稱爭議與中國退展的喧囂之外，這篇回頭談展覽本身的策展策略：縮小規模、放慢節奏。',u:'https://www.artnews.com/?s=Intentionally%20Smaller%20Slower%2016th%20Gwangju%20Biennale%20Path%20of%20Change'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-03',sx:1,k:'gwangju',id:'artnews-c972992b',c:['政策','機構'],t:'中國因台灣展覽杯葛頂級藝術節',e:'China Boycotts a Top Art Festival Over Taiwan Exhibition',b:'Jin Yu Young 與 Murphy Zhao 為紐約時報報導。此事進入美國主流媒體的版面，代表它已超出藝術圈的範圍。',u:'https://www.artnews.com/?s=China%20Boycotts%20Top%20Art%20Festival%20Over%20Taiwan%20Exhibition'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-03',sx:1,k:'kusama',id:'artnews-b71cd4f5',c:['人事','評論'],t:'草間彌生生命最後十年的神祕與孤獨',e:'The Mysterious and Lonely Final Decade of Yayoi Kusama’s Life',b:'Zachary Small 為紐約時報撰文。補上她晚年的實際生活狀態——這也解釋了為何死訊延遲十三天才公布。',u:'https://www.artnews.com/?s=Mysterious%20Lonely%20Final%20Decade%20Yayoi%20Kusama%20Life'},
+{s:'artnet',batch:'2026-09-17',d:'2026-09-11',sx:1,k:'fairprize',id:'artnet-7eda83fd',c:['市場','機構','政策'],t:'藝博會居間促成的美術館獎項正在增加，原因是什麼',e:'Fair-Brokered Museum Prizes Are Multiplying. Here’s Why',b:'Margaret Carrigan 撰文，Art Spell 9/11 首選。藝博會出資讓美術館買作品對雙方都有利，但也帶來策展決策商業化的疑慮。',u:'https://news.artnet.com/?s=Fair-Brokered%20Museum%20Prizes%20Are%20Multiplying'},
+{s:'tan',batch:'2026-09-17',d:'2026-09-11',sx:1,k:'ukauction',id:'tan-e9620bdf',c:['市場','政策'],t:'英國推動拍賣資料標準化，業界串連支持成立新公會',e:'UK to standardise auction data, as sector rallies support for a new trade body',b:'Riah Pryor 報導。拍賣資料標準化牽動的是整個市場的透明度——資料格式統一之後，價格趨勢才可能被系統性分析。',u:'https://www.theartnewspaper.com/search?q=UK%20standardise%20auction%20data%20new%20trade%20body'},
+{s:'artnet',batch:'2026-09-17',d:'2026-09-14',sx:1,k:'ukauction',id:'artnet-df43819c',c:['市場','政策'],t:'英國推動拍賣資料標準化',e:'U.K. Pushes to Standardize Auction Data—and More Industry Intel',b:'Jo Lawson-Tancred 報導。與 The Art Newspaper 同報，Artnet 版本放進產業情報專欄的脈絡裡。',u:'https://news.artnet.com/?s=UK%20Pushes%20Standardize%20Auction%20Data%20Industry%20Intel'},
+{s:'tan',batch:'2026-09-17',d:'2026-09-11',sx:1,k:'bayeux',id:'tan-9ad06803',c:['政策','文資','機構'],t:'貝葉掛毯特展贊助者肖像在大英博物館展出，其與以色列國防軍的關係受檢視',e:'Portrait of Bayeux Tapestry exhibition sponsor goes on view at British Museum amid scrutiny over ties to IDF',b:'Gareth Harris 報導。展覽贊助者的政治背景成為爭議焦點，這是文化機構贊助倫理的典型案例。',u:'https://www.theartnewspaper.com/search?q=Portrait%20Bayeux%20Tapestry%20sponsor%20British%20Museum%20IDF'},
+{s:'tan',batch:'2026-09-17',d:'2026-09-11',sx:1,id:'tan-09196992',c:['建築','機構'],t:'李希特的馬賽克式杜哈展亭將於十一月開幕',e:'Gerhard Richter’s mosaic-like Doha pavilion will open in November',b:'Jane Morris 報導。與 Frieze Abu Dhabi 首屆、古根漢阿布達比同期，波灣的文化建設密度持續上升。',u:'https://www.theartnewspaper.com/search?q=Gerhard%20Richter%20mosaic%20Doha%20pavilion%20November'},
+{s:'tan',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'tan-85e631ee',c:['修復','文資','機構'],t:'俄羅斯聖像名作《三位一體》因空調系統故障傳出變形',e:'Russia’s revered ‘Trinity’ icon reportedly warped after climate control system breaks down',b:'Sophia Kishkovsky 報導。魯布列夫的《三位一體》是俄羅斯最重要的聖像畫。2023 年從特列季亞科夫美術館移交教會後，保存條件一直受質疑。',u:'https://www.theartnewspaper.com/search?q=Russia%20Trinity%20icon%20warped%20climate%20control'},
+{s:'tan',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'tan-a21b84ea',c:['文資','展覽','政策'],t:'基輔修道院的烏克蘭東正教「珍寶」在倫敦 V&A 展出',e:'Ukrainian Orthodox ‘treasures’ from Kyiv monastery go on view at the V&A in London',b:'Gareth Harris 報導。戰時把文物送往境外展出，同時是保存措施與外交行動。與烏克蘭 4,615 處文化遺產損毀統計並看。',u:'https://www.theartnewspaper.com/search?q=Ukrainian%20Orthodox%20treasures%20Kyiv%20monastery%20V%26A%20London'},
+{s:'tan',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'tan-7bc891c9',c:['建築','機構'],t:'大都會博物館現當代新館動土',e:'Metropolitan Museum breaks ground on long-awaited new wing for Modern and contemporary art',b:'Elena Goukassian 報導。籌備多年的擴建案終於開工。大都會的現當代收藏長期被認為弱於 MoMA 與惠特尼，新館是它補課的關鍵。',u:'https://www.theartnewspaper.com/search?q=Metropolitan%20Museum%20breaks%20ground%20new%20wing%20Modern%20contemporary'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'artnews-6dd73583',c:['市場','收藏','評論'],t:'科技巨頭不在乎藝術？這個定見是真的嗎',e:'The received wisdom is that tech titans don’t care for art. Is it true?',b:'Melanie Gerlis 為金融時報撰文，Art Spell 9/16 首選。科技財富正持續進入藝術界，藏家興趣從當代藝術到歷史作品、慈善與文化計畫都有。',u:'https://www.artnews.com/?s=tech%20titans%20care%20for%20art%20Melanie%20Gerlis'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'artnews-2bab18aa',c:['人事','工藝','評論'],t:'以蠶絲創作的藝術家梁紹基逝世，1945–2026',e:'Liang Shaoji, who made his art with silkworms, 1945–2026',b:'中國藝術家梁紹基以活蠶吐絲為媒材創作近四十年，是纖維藝術與生物媒材交界最重要的實踐者之一。',u:'https://www.artnews.com/?s=Liang%20Shaoji%20silkworms%201945%202026'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'artnews-3768f016',c:['人事','評論'],t:'開創性的巴西藝術史學者 Aracy Amaral 逝世，1930–2026',e:'Aracy Amaral, trailblazing Brazilian art historian, 1930–2026',b:'拉美現代藝術史的奠基者之一。與同期亞洲—拉美藝術交流史的討論並看，這條研究脈絡的第一代正在退場。',u:'https://www.artnews.com/?s=Aracy%20Amaral%20Brazilian%20art%20historian%201930%202026'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-14',sx:1,k:'kennedy',id:'artnews-0896facd',c:['政策','機構'],t:'川普要求以華盛頓雕像取代「奇怪的現代主義」雕塑',e:'Trump Demands ‘Strange Modernist’ Sculpture Be Replaced by George Washington Statue',b:'Tessa Solomon 報導。繼甘迺迪中心移除 Joel Shapiro 雕塑後，公共藝術的替換要求進一步具體化。',u:'https://www.artnews.com/?s=Trump%20Demands%20Strange%20Modernist%20Sculpture%20George%20Washington%20Statue'},
+{s:'artnews',batch:'2026-09-17',d:'2026-09-14',sx:1,id:'artnews-3d5594bd',c:['市場','品牌','展覽'],t:'Alice Diop 執掌 Miu Miu 2026 巴塞爾藝術展巴黎展會委託案',e:'Alice Diop to Take on Miu Miu’s 2026 Art Basel Paris Commission',b:'Maximilíano Durón 報導。精品品牌在藝博會的委託創作已是固定配置，找電影導演而非視覺藝術家是這次的變化。',u:'https://www.artnews.com/?s=Alice%20Diop%20Miu%20Miu%202026%20Art%20Basel%20Paris%20Commission'},
+{s:'artnet',batch:'2026-09-17',d:'2026-09-16',sx:1,id:'artnet-cb3eb4d4',c:['市場','機構'],t:'Ellie Rines 在中國城十年後，於翠貝卡開設新畫廊',e:'Ellie Rines opens new Tribeca gallery after a decade in Chinatown',b:'Carlie Porterfield 報導。56 Henry 的主理人擴張版圖。在畫廊普遍收縮的當下，小型畫廊的升級動作特別值得注意。',u:'https://news.artnet.com/?s=Ellie%20Rines%20new%20Tribeca%20gallery%20decade%20Chinatown'},
+{s:'artnet',batch:'2026-09-17',d:'2026-09-14',sx:1,id:'artnet-7e8b93bf',c:['評論','展覽','收藏'],t:'Thomas Ruff 的 9/11 JPEG 再一次擊碎了我',e:'Thomas Ruff’s 9/11 JPEGs Broke My Heart All Over Again',b:'Katya Kazakina 撰文。Ruff 以低解析度 JPEG 放大處理新聞影像，探討數位時代的記憶質地。',u:'https://news.artnet.com/?s=Thomas%20Ruff%209/11%20JPEGs%20Broke%20My%20Heart'},
 
 /* ═════ BATCH 2026-09-11（9/10–9/11）═════ */
 /* ── 非池中 ── */
@@ -1413,7 +1491,7 @@ const ITEMS=[
    只做「兩家以上媒體同時報導」的事件。key 對應 ITEMS 的 k。
    ══════════════════════════════════════════════════════════ */
 const TECH={
-'soka-90453845':'江戶時期的舊衣再利用有完整的工藝體系：刺子（sashiko）以密集針法加固磨損處、襤褸（boro）把碎布層層疊縫成新布料、襤褸再生後還可拆解為紙撚或繩索。這套「用到不能再用」的物質倫理，正是當代永續設計反覆回頭尋找的參照。',
+'dezeen-e0f60bd0':'竹的結構應用難點在於它是中空、有節、且力學性質沿長度方向變化的天然材：抗拉強度高但接合處易劈裂，傳統做法靠綁紮而非螺栓。格柵式展亭通常用機械夾具搭配彈性襯墊分散應力。竹的含水率變化也大，室外展亭三個月後的尺寸與初裝時不同。',
 'dboom-1f5d31d8':'大理石廢料的再利用難點在於：邊角料尺寸不一、且切割面已有應力。多數做法是碎化後與樹脂或水泥重新黏結成人造石，但那會失去原石的紋理。做成模組化構件則保留原塊體，靠幾何設計吸收尺寸差異——技術上更難，視覺上更誠實。',
 'dezeen-b5a1d7fa':'人手有 27 個自由度，其中拇指單獨佔 5 個，這是抓握多樣性的來源。機械手的設計取捨在於：驅動器越多自由度越高，但體積與重量也越大，且必須塞進手掌內。目前主流做法是用腱驅動（tendon-driven）把馬達移到前臂，以鋼索傳力——代價是精度與反應速度下降。',
 'artouch-6390e706':'宋畫的保存極其脆弱：絹本會隨年代脆化並產生「絹絲斷裂」，墨與礦物顏料在光照下會持續劣化。多數大館的內規是宋元書畫每次展出不超過六至八週、之後入庫休息數年。這也是為什麼這類大展一個世代只有幾次。',
@@ -1491,6 +1569,72 @@ const TECH={
 };
 
 const NOTES={
+'abasel-2cc6b848':'與佳士得杜宏–魯埃 4,300 萬歐元印象派收藏、梵谷自畫像大展同期。巴黎十月的密度會很高，也是觀察歐洲市場是否跟上首爾「量縮但信心在」節奏的關鍵場次。',
+'frieze-83d351dc':'十月是全球藝術市場最密集的月份：倫敦、巴黎、台北、台南同月開展。對台灣畫廊而言，這也是資源分配最尖銳的時刻——去不去倫敦、去不去巴黎，還是留在主場。',
+'frieze-7e2cc5d0':'11 位國際藝術家的免費戶外展，先於 Frieze London 開幕。免費且開放的戶外展是藝博會建立公共正當性的標準做法——賣票的在室內，公益的在公園。這個模式台灣的藝博會還沒有人做。',
+'eflux-265d68d1':'徵件與駐村資訊的密度是全球最高的單一來源，九月正值多數國際獎助的開放期。對台灣創作者而言這是最實際的一條線——多數國際駐村與獎助不限國籍，缺的是資訊管道而非資格。',
+'artnews-f55d3a49':'同期還有兩則值得記：英國家庭數十年的花園擺飾竟是十九世紀美國首位職業女雕塑家 Harriet Hosmer 的大理石作品——女性藝術家作品被誤認為裝飾品，是歸屬錯置的另一種形式；羅浮宮為 10 億歐元整建案轉向亞洲找贊助，仍缺 3.6 億歐元，歐洲頂級機構向亞洲資金伸手的姿態是新的。',
+'artforum-416dd11d':'繼註冊人數掉三分之一、赤字 2,200 萬美元、突襲式砍課之後的又一步。攝影 MFA 是 SVA 的招牌學程之一，收掉它代表縮編已進入核心而非邊緣。這也是台灣藝術院校該注意的先例：需求萎縮時，最先被砍的是設備與師資成本最高的學程。',
+'artforum-d370ac86':'首任冠名策展人。在史密森尼受政治壓力、院長 Lonnie Bunch 請辭的同期，新設冠名職位的訊號值得注意——冠名職位由私人捐贈支撐，不受聯邦預算波動影響。機構在政治壓力下往私人資金傾斜，這是實際的防禦動作。',
+'artforum-67f5e1b7':'魯賓美術館 2024 年關閉實體館舍轉為「無牆機構」，仍持續發獎。這是機構在財務壓力下的另一種轉型路徑——放棄建築、保留功能。與那些硬撐實體空間最後全面收攤的機構對照，值得追它三年後的狀態。',
+'artforum-14669ee6':'2023 年從特列季亞科夫美術館移交教會後，專業界的警告成真。這是文物的宗教歸屬與保存專業衝突最具體的案例：所有權回到信仰社群是政治正確的，但保存能力不會跟著轉移。',
+'artforum-94b791b2':'與 The Art Newspaper 同報。在美國文化機構普遍受政治與財務壓力的當下，還能推進大型擴建案的機構已經不多——這本身就是資源集中化的證據。',
+'artforum-500109ef':'超越 2024 年〈梵谷：詩人與愛人〉的 15,654 張。印象派的票房號召力在機構端仍是最穩的保證——這也解釋了為什麼杜宏–魯埃印象派收藏、梵谷自畫像大展、蒙德里安上拍會集中在這個秋天：供給端與需求端同時判斷這是好時機。',
+'artforum-0cffcce5':'三館工會同時表決罷工，這個規模在美國美術館史上罕見。與 V&A East Storehouse 的勞資爭議、聖地牙哥兩館財務危機、SF Camerawork 結束並看：美術館的勞動條件正在成為全球性爭點，而底層邏輯是同一個——機構承受財務壓力時，第一個被壓縮的永遠是人力成本。',
+'emperor-80beadfc':'桃園今年是台灣設計展主辦城市（9/24 開展），文化局的展覽佈局可對照其城市品牌工程。地方政府在主辦年度會集中資源做自我梳理，這類「回望十年」的展覽多半是為了建立敘事而非呈現成果。',
+'emperor-7781e84d':'無形文資的保存從「凍結」轉向「共生」，這個轉向與花蓮豐年節的「祭」與「節」爭議是同一組問題——當祭儀被登錄為文資，它到底該被保護成原樣，還是該允許它繼續變化。這是無形文資最根本的兩難。',
+'emperor-1882c8d0':'把 AI 導入書法評論的訓練，是台灣書法界少見的方法論實驗。與鄭宇宏處理筆順的個展並看，書法的當代化正在兩端同時發生：創作端拆解程序、論述端引進工具。橫山書法藝術館是台灣唯一的公立書法專館，它做什麼幾乎等於這個領域的官方方向。',
+'emperor-aedb93ea':'醫療場域的公共藝術有特殊條件——觀眾多在焦慮或病痛中，作品的介入尺度與一般公共空間完全不同。太強勢會造成壓力，太退讓又淪為裝飾。這類案子的成敗很難從圖面判斷，得看實際使用者的反應。',
+'emperor-75164bd5':'「易讀」（Easy Read）是把展覽資訊轉為淺白圖文，讓認知障礙者也能理解。設計介入文化平權的實際案例，台灣的討論還很少——多數無障礙討論停在硬體（坡道、電梯），資訊層次的可及性幾乎沒人做。',
+'emperor-c2fc4e5e':'台灣中生代錄像與裝置藝術家的完整梳理。「生前最後作品首度在臺發表」這句要注意——回顧展成為告別展，機構的策展工作因此同時是檔案建立。台灣中生代藝術家的檔案整理長期不足，這類展是少數的補救。',
+'emperor-d3e6d4b8':'台灣藝術史議題進入日本國立級館舍的主檔期，規格罕見。與典藏「亞洲的多重時區」專題、致穎在倫敦海沃德的個展並看，台灣當代藝術與藝術史今年在國際場域的能見度異常密集。「共時的星叢」這個命題也剛好呼應多重時區的框架：不用單一時間軸理解區域關係。',
+'emperor-6a11aa22':'在富藝斯高層離職潮與策略轉向的背景下，這場的成績是判斷它亞洲定位的直接指標。三大拍賣行中規模最小的那家，往往最早反映結構變化——趙無極與曾梵志是亞洲市場的指標標的，成交價會說明很多事。',
+'artouch-e918e304':'台灣美術史裡戰爭期的女性創作幾乎沒有專門研究，這篇補的是雙重空白——性別的空白疊上戰爭期的空白。陳進是台灣第一位女性畫家進入帝展的人，她在戰時的作品長期被當成風格的延續而非處境的回應。',
+'artouch-68da61dc':'日裔巴西藝術家大竹富江晚年因視力衰退發展出「盲畫」，幾何的不完美成為方法而非缺陷。她活到 101 歲、創作到最後，是亞洲—拉美藝術交流史最具體的一個人。與同期巴西藝術史學者 Aracy Amaral 逝世並看，這條研究脈絡正在同時累積與流失。',
+'artouch-50573500':'巴西現代主義的「食人主義」（Antropofagia）主張吸收外來文化再轉化為己用，是拉美對抗文化殖民最重要的理論。這篇把它接上東方哲思，正是「亞洲的多重時區」專題的核心操作：不經過西方，直接連結南方與南方。',
+'artouch-dd61fe69':'專題系列文。遷徙經驗轉為形式語言——留白在東亞繪畫傳統裡是空間手法，被用來處理「不在場的故鄉」時就成了內容。這個專題的方法論在此處特別清楚。',
+'artouch-90280c8b':'街頭劇場在台灣的法規與場域限制一直是難題——路權、集會、噪音三套規範各管一段，實務上幾乎無法完全合法。這篇處理的是根本問題，比報導活動本身有價值。',
+'artouch-a5ef83f7':'八月本站收錄過該收藏的 20 件精選預告，如今有了成交結果。吉州窰天目創世界紀錄值得注意——建窰天目長期價格高於吉州窰，這次翻轉代表市場對宋代黑釉的認識在細化。日本私人美術館的中日工藝收藏成規模釋出，這個世代交替的處分潮還會持續。',
+'artouch-e6eecc39':'「江西箱」的身世牽動的是 1949 年前後文物遷徙的完整路徑。這批材料在台灣的近代史研究裡極為關鍵——文物怎麼來的、經過哪些手、為什麼留在台灣，每一環都是政治史。故宮主動公開新入藏文物的來源考證，在機構透明度上是正面訊號。',
+'artouch-acf60c33':'典藏的雙週國際摘要，一次覆蓋六則且與本站國際線互相印證。「霍克尼生前最後大型展刷新參觀人次」是其他來源沒報的一則——他的市場與觀眾號召力在過世後短期內會維持高點，這對機構排檔是實際的判斷依據。',
+'gago-08254d23':'Noland 以極端控制作品展示條件著稱——她曾因作品被不當修復而公開否認其為自己的創作，引發藝術家是否有權「撤銷」作品的法律爭議。這是藝術家權利討論裡最激進的案例，對理解當代藝術的作者權界線很關鍵。',
+'gago-624c14ad':'畫廊自製的深度藝評為自家展覽鋪墊。學術獨立性有爭議，但內容品質通常不差——Gagosian Quarterly 找的都是實際在寫評論的人。這是藍籌畫廊用論述建立正當性的長期投資，台灣畫廊裡只有双方的 EDITORIAL 在做類似的事。',
+'gago-964c2afb':'九月巴黎檔期，為十月的巴塞爾藝術展巴黎展會鋪墊。與佳士得的杜宏–魯埃 4,300 萬歐元印象派收藏同期，巴黎十月會很密集。',
+'gago-2729028d':'賈藹力是中國七〇後繪畫最具國際能見度的代表之一。在藍籌畫廊的洛杉磯空間辦展，是華人藝術家進入西方主場的少數案例——可對照台灣藝術家的國際路徑：多數仍靠機構展（如 Craig-Martin 那種反向的國際大師來台），而非商業畫廊的西方主場檔期。',
+'gago-fe8498ec':'Lawson 以精心搬演的家庭肖像處理非裔美國人的親密與階級，是近十年最受討論的攝影創作者之一。她的作品看似紀實實為擺拍，這個曖昧性正是爭議與價值的來源。',
+'gago-14fd9e24':'全集（catalogue raisonné）與展覽同步推出，是藝術家遺產經營的完整配置：全集決定哪些作品是真品，展覽建立當下的能見度，兩者互相支撐。Marden 2023 年過世，這是遺產進入市場的標準流程。',
+'pace-d321bfc7':'畫廊把雙年展參展整理成自家內容，是把機構背書轉為行銷資產的標準操作。值得注意的是誰被列進去——藍籌畫廊的雙年展名單本身就是一份市場影響力的清單。',
+'pace-ba554004':'以超現實主義的「精緻屍體」接龍遊戲為題的群展。柏林空間的策展路線比紐約更偏歷史與觀念——藍籌畫廊在不同城市採取不同策展調性，反映的是各地藏家結構的差異。',
+'pace-1c64aa04':'導演的美術創作進入藍籌畫廊體系。與 Alice Diop 執掌 Miu Miu 藝博會委託是同一個現象：電影與當代藝術的邊界正在消融。要注意的是名人效應與作品品質的評價會被混在一起，這類展覽的市場反應通常比評論反應好。',
+'pace-61a76ed1':'與 Tokyo Gendai 藝博會（9/11–13）同期。Pace 在東京設點是近年亞洲擴張的一環——東京、首爾、香港三地並行，可以看出藍籌對東亞市場的分工判斷。',
+'pace-5dc762cc':'125 Newbury 是 Pace 創辦人 Arne Glimcher 主導的獨立品牌空間，選件比主線更偏年輕與實驗。大畫廊用子品牌測試新人、降低主品牌的風險，這個模式跟 TKG+ Projects 之於耿畫廊是同一個邏輯。',
+'pace-06a0e2c8':'三位藝術家（Benglis、Dyson、Shechet）同日在相鄰的三個 Pace 空間開展，這種同步安排在切爾西不算新鮮，但今年的組合刻意得明顯——三人的共同命題是材料的被預設用途與實際可能之間的落差。Shechet 明春在巴塞爾美術館有大型回顧、秋季巡迴泰特現代，畫廊檔期與機構行程的配合是藍籌操作的標準節奏。',
+'dezeen-62c4db78':'亞太 50 件裡有沒有台灣案子，是觀察台灣設計國際能見度最直接的指標。台灣近年在紅點、iF 的得獎數不少，但在 Dezeen Awards 這類以編輯評選為主、而非報名制的名單上能見度明顯偏低——兩者的差別在於前者可以花錢報名，後者不行。',
+'dezeen-6181432d':'Lee Broom 的展會裝置向來比產品本身更受注目，這是設計品牌用場景敘事建立辨識度的典型做法——先讓人記住畫面，再讓人記住產品。',
+'dezeen-b66ac12a':'合板模組化是處理都市小坪數的常見解法，關鍵在五金與接合的耐用度——模組化的弱點永遠在連接處。台灣的小宅市場對這類產品需求高，但本地供應鏈仍以現場木作為主。',
+'dezeen-93acfff9':'新銳名單是判斷下一代語彙走向最直接的材料。這類名單每年出，回頭比對三年前的名單有多少人還在，比看當年的名單更有意義。',
+'dezeen-e0f60bd0':'竹作為結構材與殖民史的雙重載體——這個設定比多數「永續材料」展亭有深度。設計節的地標計畫向來是全場最受矚目的單件，今年選擇處理殖民議題而非純技術展示，方向值得注意。與 Shahar Livne 用橡膠寫剛果殖民暴力是同一條線。',
+'dezeen-46061801':'第 24 屆，9/12–20，橫跨 11 個設計區。102 位新銳設計師的聯展規模不小，是觀察下一代設計語彙最集中的場合。與台灣設計展（9/24 桃園）時間不衝突。',
+'artnet-7e8b93bf':'Ruff 以低解析度 JPEG 放大處理新聞影像，探討數位時代的記憶質地。壓縮失真本身成為內容——這個手法在 AI 生成影像氾濫的今天有了新的閱讀角度：什麼樣的影像損壞才算是證據。',
+'artnet-cb3eb4d4':'56 Henry 的主理人擴張版圖。在畫廊普遍收縮的當下（倫敦兩家收攤、舊金山畫商被控欠款），小型畫廊的升級動作特別值得注意——它靠的是十年累積的藝術家名單而非資本。',
+'artnews-3d5594bd':'精品品牌在藝博會的委託創作已是固定配置，找電影導演而非視覺藝術家是這次的變化。時裝、電影與當代藝術的邊界在藝博會場域正在快速消融。',
+'artnews-0896facd':'繼甘迺迪中心移除 Joel Shapiro 雕塑後，公共藝術的替換要求進一步具體化。從「移除」到「指定替換內容」是質變——前者是否定，後者是主動規定公共空間該長什麼樣。',
+'artnews-3768f016':'拉美現代藝術史的奠基者之一。與同期典藏「亞洲的多重時區」專題談亞洲—拉美藝術交流史並看，這條研究脈絡的第一代正在退場——而第二代的跨區域研究才剛開始。',
+'artnews-2bab18aa':'以活蠶吐絲為媒材創作近四十年，是纖維藝術與生物媒材交界最重要的實踐者之一。他的作品讓生物的時間直接成為創作的時間——蠶吐絲的速度決定作品的完成，藝術家只能設定條件不能控制結果。這條路線在台灣的生物藝術圈有明確影響。',
+'artnews-6dd73583':'科技財富正持續進入藝術界。這篇值得跟「億萬富豪問題正在惡化」對照讀：一邊說新資金進場是好事，一邊說市場過度集中於超富買家是風險。兩者講的是同一件事，差別只在立場。要注意的是這些藏家同時是政治獻金大戶（Andreessen、Griffin），文化影響力與政治影響力是綁在一起的。',
+'tan-7bc891c9':'大都會的現當代收藏長期被認為弱於 MoMA 與惠特尼，新館是它補課的關鍵。在美國文化機構普遍受政治與財務壓力的當下，還能推進大型擴建案的機構已經不多。',
+'tan-a21b84ea':'戰時把文物送往境外展出，同時是保存措施與外交行動。與烏克蘭 4,615 處文化遺產損毀統計、赫爾松美術館遇襲並看：能移動的先移出去，移不動的只能承受。',
+'tan-85e631ee':'魯布列夫的《三位一體》是俄羅斯最重要的聖像畫。2023 年從特列季亞科夫美術館移交教會後，保存條件一直受質疑——這次的變形證實了當初專業界的警告。文物的宗教歸屬與保存專業之間的衝突，這是最具體的案例。',
+'tan-09196992':'與 Frieze Abu Dhabi 首屆、12 月開幕的古根漢阿布達比同期，波灣的文化建設密度持續上升。由在世大師親自設計的永久展亭，是把藝術家品牌直接轉為建築資產。',
+'tan-9ad06803':'展覽贊助者的政治背景成為爭議焦點，這是文化機構贊助倫理的典型案例。在公共預算緊縮、機構越來越依賴私人贊助的當下（彼得．提爾出現在大英博物館、Ken Griffin 出借達文西給大都會），這類爭議只會更多。',
+'artnet-df43819c':'與 The Art Newspaper 同報，Artnet 版本放進產業情報專欄的脈絡裡。兩家同日關注同一議題，代表這在業界已有共識基礎。',
+'tan-e9620bdf':'拍賣資料標準化牽動的是整個市場的透明度——資料格式統一之後，價格趨勢才可能被系統性分析。這跟韓國新藝術市場法是同一個方向：市場成熟化必然伴隨資訊規範。台灣連拍賣成交資料的公開程度都遠低於這兩地。',
+'artnet-7eda83fd':'藝博會出資讓美術館買作品對雙方都有利：畫廊得到藝術家進美術館的背書，藝博會把商業活動包裝成公共貢獻。但策展決策商業化的疑慮是真的——當收藏名單由贊助結構決定，美術館的專業判斷就被稀釋了。軍械庫藝博會九月剛推出兩項同類獎項。',
+'artnews-b71cd4f5':'補上她晚年的實際生活狀態，也解釋了為何死訊延遲十三天才公布。1977 年起自願入住療養院、在對街設工作室持續創作近五十年——晚年的孤立既是選擇也是處境。',
+'artnews-c972992b':'此事進入紐約時報的版面，代表它已超出藝術圈的範圍。英語主流媒體用「boycott」（杯葛）定調，比藝術媒體的「withdraw」（退出）更強烈——措辭的選擇本身就影響國際輿論怎麼理解這件事。',
+'artnews-16d82564':'在名稱爭議與中國退展的喧囂之外，這篇回頭談展覽本身：縮小規模、放慢節奏。雙年展普遍追求規模與話題，反其道而行需要策展上的自信。台灣館《無限副本：灰色地帶》正是在這個框架下呈現的。',
+'artnews-77755e10':'「走出 FOMO」是對首爾市場最精準的描述——投機性的錯失恐懼退場，剩下的是真正的收藏行為。這跟非池中現地報導的「交易節奏趨緩但本土大師刷新紀錄」是同一個現象的兩種語言。對台灣畫廊的意義：進場成本降低，但要靠作品說服人。',
+'artnews-f7f07580':'這是英語媒體少見以台灣畫廊為主題的市場分析，正好補上本站追了兩個月的那條線。「改道」這個字用得準確——台灣畫廊不是退出國際，而是在重新選擇路徑。對照統計數字：2026 年九場國際藝博會裡只有三場有台灣畫廊，且十九個展位有十八個在香港。真正要問的是改道往哪：東南亞、日本，還是回頭鞏固台北主場。',
 'gago-db4f1a51':'1968 年構想卻從未實現的大型室內裝置。把不可見之物（空氣）變成可觸的形體，是 Christo 與 Jeanne-Claude 的核心命題。Es Devlin 是舞台設計出身——她同期也出現在 Frieze Masters Talks 的名單裡，做設計的人今年在藝術場域的能見度明顯提升。',
 'gago-b063bd68':'在香港創作與市場空間收縮的討論中，藍籌畫廊仍持續排檔。值得跟倫敦兩家獨立畫廊收攤對照——同一個全球市場，頂端穩、中間層垮，這正是「億萬富豪問題」那篇分析的具體樣貌。',
 'gago-da2bb513':'全集編纂（catalogue raisonné）是藝術家市場的基礎工程——它決定哪些作品被認定為真品，完成度直接影響往後的定價與鑑定。找 MoMA 前館長撰文，是用機構權威為出版背書。畫廊主導藝術家全集的編纂，學術獨立性一直有爭議，但實務上多數全集都是這樣做出來的。',
@@ -1504,7 +1648,6 @@ const NOTES={
 'pace-f247e37b':'這是本期最重要的市場結構新聞。藍籌畫廊正式跨進拍賣行的地盤——二級市場（轉手交易）長期由蘇富比、佳士得主導，畫廊主要做一級市場（首次銷售）。Pace 找來前蘇富比與佳士得的高層合資，等於直接切入對手的核心業務。把它跟本期「市場重新校準」、佳士得調漲買家佣金、富藝斯高層離職放在一起看，訊號很清楚：當一級市場疲軟，藍籌畫廊往二級市場找利潤；而拍賣行的中間層正在被兩頭擠壓。',
 'dsq-4c2b579d':'與 Ana de Alvear 同日開幕的雙檔期。台灣與國際藝術家並置，是双方與安卓共同的排檔邏輯——讓本地藏家在同一次到訪中看見兩種脈絡，也讓國際藝術家的展覽有本地作品當參照。',
 'dsq-a4c29b61':'西班牙藝術家 Ana de Alvear 個展。双方是台灣少數持續引進歐洲當代藝術家的中型畫廊——與 Bluerider 的歐美路線不同的是，双方的規模較小、選件更偏實驗性。它另設有獨立的 EDITORIAL 出版平台，在台灣畫廊裡少見。',
-'soka-90453845':'把舊衣轉為江戶工藝的手法，是材料再生與傳統工法的交集。藝術家曾與 UNIQLO 合作，商業與工藝的雙棲身分值得注意——這條路徑跟日本工藝品牌找時裝品牌轉譯（如山本耀司的竹椅）是同一個方向，只是從藝術家端出發。索卡臺南空間近年在安平的藝文廊帶經營得相當積極。',
 'soka-0a4262a4':'索卡同期排三檔展，密度高於多數台灣畫廊——三地空間讓它能同時運作多條檔期。這也代表它的營運成本與庫存壓力都比單一空間的畫廊高，在市場「重新校準」的當下值得追。',
 'soka-d1cfd712':'展期橫跨 ART TAIPEI 前檔期，是用台北個展為藝博會鋪墊的標準操作。索卡是三月香港巴塞爾「藝廊薈萃」單元的八家台灣畫廊之一。',
 'soka-71987b5d':'索卡擁有北京、臺北、臺南三個空間，經營範圍橫跨戰後日本、韓國、大中華與東南亞當代藝術，同時深耕二十世紀華人經典。這個跨度在台灣畫廊裡最寬——多數畫廊選一條線做，它同時做四條。',
@@ -1990,6 +2133,35 @@ const NOTES={
 };
 
 const EVENTS={
+tnbiennale:{
+t:'2026 第一屆臺南藝術雙年展《迴圈．超展開》：完整名單公布',
+lead:'12 國 93 位藝術家，七大迴圈路徑，2026 年 10 月 31 日開展。以湯德章公園圓環及其放射狀道路為核心，把舊城變成可漫步觀展的場域。',
+x:['展名《迴圈．超展開（Unfolding Circuits）》，2026 年 10 月 31 日開展',
+'完整名單：12 國、93 位藝術家（首波公布時為 81 位）',
+'核心場域：湯德章公園圓環及放射狀道路，發展七大策展路徑',
+'藤本壯介打造環狀建築《Ring》，承襲大阪世博「大屋根」意象，兼作主要動線與屋頂',
+'LOGO 由蕭佑任操刀，以圓環為發想、七層同心圓加放射線；主視覺由毛毛雨設計以「華蓋」為概念',
+'衛星展區含臺灣首廟天壇、臺南林百貨、竹溪禪寺、德鴻畫廊、海馬迴光畫館等',
+'非池中 9/14 公布完整名單'],
+w:'台灣第一個「可漫步街巷觀展」的城市型雙年展——把整座舊城當展場，這在台灣是第一次。藤本壯介今年在台灣有三件事同步發生：台南《Ring》、忠泰美術館回顧展（8/15–2027/1/3）、福岡明治公園開幕，「可被走上去的結構」這條線的能見度達到高點。真正的挑戰在於台南已經有藝術季、新藝獎、Mattauw 大地藝術季與大量老屋展演——雙年展要怎麼區隔，而不只是把既有資源重新包裝。10 月 31 日開展，與 ART TAIPEI（10 月下旬）錯開，時間安排是對的。'},
+
+
+fairprize:{
+t:'藝博會居間促成的美術館收藏獎正在增加',
+lead:'藝博會出資讓美術館買作品的獎項機制在 2026 年明顯增多。Artnet 的 Margaret Carrigan 指出這對雙方都有利，但也帶來策展決策商業化的疑慮。',
+x:['軍械庫藝博會 2026 推出兩項美術館收藏獎，九月首度啟動',
+'機制：藝博會或贊助者出資，指定美術館在展會中選件購藏',
+'對畫廊的誘因：作品進入美術館典藏等於為藝術家背書',
+'對藝博會的效益：把商業活動包裝成公共貢獻'],
+w:'當收藏名單由贊助結構決定，美術館的專業判斷就被稀釋了。這條線值得跟同期「億萬富豪問題正在惡化」、彼得．提爾出現在大英博物館、Ken Griffin 出借達文西給大都會一起看——公共預算緊縮下，私人與商業資金正從各個角度進入機構的核心決策。台灣的藝博會規模還不足以做這種操作，但 ART TAIPEI 若要提升國際地位，這會是遲早要面對的設計。'},
+
+ukauction:{
+t:'英國推動拍賣資料標準化，業界串連成立新公會',
+lead:'英國拍賣業推動資料格式標準化，並串連支持成立新的產業公會。The Art Newspaper 與 Artnet 同期報導。',
+x:['目標：統一拍賣成交資料的格式與揭露標準','業界同時串連支持成立新的貿易公會'],
+w:'資料格式統一之後，價格趨勢才可能被系統性分析——這是市場從不透明走向可研究的基礎工程。跟韓國《美術品管理法》是同一個方向：市場成熟化必然伴隨資訊規範。台灣連拍賣成交資料的公開程度都遠低於英韓兩地，藝術法學會八月才成立，這條路還很長。'},
+
+
 recalib:{
 t:'藝術市場進入「重新校準」期：兩大媒體同日定調',
 lead:'2026 年 9 月 10 日，Artnet 與 The Art Newspaper 同日刊出市場結構分析，共同指出藝術界正進入一段校準期：畫廊縮減成本、藏家更挑剔、資金轉向已確立的藝術家。',
@@ -2479,7 +2651,12 @@ async function saveRead(){
 }
 
 const dates=ITEMS.map(i=>i.d).sort();
-const maxD=new Date(dates[dates.length-1]+'T00:00:00');
+/* 基準日取「資料中最新日期」與「今天」的較早者——
+   未來開展的檔期不該把近期視窗往前推 */
+const _today=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Taipei'}));
+_today.setHours(0,0,0,0);
+const _latest=new Date(dates[dates.length-1]+'T00:00:00');
+const maxD = _latest>_today ? _today : _latest;
 const cutD=new Date(maxD.getTime()-6*864e5);
 const RECENT=cutD.toISOString().slice(0,10);
 /* 上方三條軌道（熱度榜、台灣藝廊線）只看近兩週，避免舊事件長期占據 */
@@ -2575,6 +2752,20 @@ const hotRail=buildHot(RAIL_FROM);
 const hotRailD=buildHot(DSG_FROM);
 const hot=hotRail.filter(o=>o.score>=6);
 
+function dedupe(note, lead){
+  if(!note||!lead) return note;
+  const norm=x=>x.replace(/[\s，。、：；「」『』（）()—…·]/g,'');
+  const parts=note.split(/(?=[^。！？]*$)|(?<=[。！？])/).filter(x=>x&&x.trim());
+  const L=norm(lead);
+  let i=0;
+  while(i<parts.length){
+    const P=norm(parts[i]);
+    if(P.length>=8 && (L.indexOf(P)>=0 || (P.length>=14 && L.indexOf(P.slice(0,Math.floor(P.length*0.8)))>=0))) i++;
+    else break;
+  }
+  const rest=parts.slice(i).join('').trim();
+  return rest.length>=20 ? rest : note;
+}
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmt(d){const p=d.split('-');return p[1]+'.'+p[2];}
 function slug(u){return 'c'+u.replace(/[^a-z0-9]/gi,'').slice(-24);}
@@ -2604,10 +2795,11 @@ function hfPass(o){
 }
 function railLabel(){
   const f=d=>d.slice(5).replace('-','.');
+  const END=maxD.toISOString().slice(0,10);
   const t='藝術線 近兩週　設計線 近四週';
   const el1=document.getElementById('railnote'); if(el1) el1.textContent=t;
-  const eh1=document.getElementById('h1'); if(eh1) eh1.textContent='藝術線　近兩週 '+f(RAIL_FROM)+'–'+f(dates[dates.length-1]);
-  const eh2=document.getElementById('h2'); if(eh2) eh2.textContent='設計線　近四週 '+f(DSG_FROM)+'–'+f(dates[dates.length-1]);
+  const eh1=document.getElementById('h1'); if(eh1) eh1.textContent='藝術線　近兩週 '+f(RAIL_FROM)+'–'+f(END);
+  const eh2=document.getElementById('h2'); if(eh2) eh2.textContent='設計線　近四週 '+f(DSG_FROM)+'–'+f(END);
   const el2=document.getElementById('railnote2');
   if(el2) el2.textContent='近一個月';
 }
@@ -2874,9 +3066,10 @@ function openSingle(u){
   if(i.e) h+='<p class="orig">'+esc(i.e)+'</p>';
   if(i.b) h+='<span class="plabel">重點</span><p class="txt">'+esc(i.b)+'</p>';
   if(TECH[i.id]) h+='<span class="plabel tm">技術與材料</span><p class="txt">'+esc(TECH[i.id])+'</p>';
-  if(NOTES[i.id]) h+='<span class="plabel">為什麼值得注意</span><p class="txt">'+esc(NOTES[i.id])+'</p>';
+  const _n=dedupe(NOTES[i.id], i.b);
+  if(_n) h+='<span class="plabel">為什麼值得注意</span><p class="txt">'+esc(_n)+'</p>';
   const gn=TWG[i.id]||(src.gal?src.name:null);
-  if(gn) h+='<span class="plabel">台灣藝廊</span><p class="txt">'+esc(gn)+'</p>';
+  if(gn) h+='<span class="plabel">'+(src.region==='intl'?'海外藝廊':'台灣藝廊')+'</span><p class="txt">'+esc(gn)+'</p>';
   if(i.du) h+='<p class="thin" style="margin-top:20px">這則的發佈日期我沒能查證。它出現在該站首頁的推薦模組，那裡會混入舊文，所以卡片上的日期僅供排序參考，實際可能早於八月。</p>';
   if(i.sx) h+='<p class="thin" style="margin-top:20px">這則我沒能取得文章直連網址，下方按鈕會開啟該站的站內搜尋結果頁，第一筆通常就是本文。</p>';
   h+='<a class="srcbtn" href="'+esc(i.u)+'" target="_blank" rel="noopener">'+(i.sx?'到 ':'前往原文　')+esc(src.domain)+(i.sx?' 搜尋本文':'')+'</a>';
