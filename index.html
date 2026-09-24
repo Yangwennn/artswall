@@ -98,6 +98,68 @@ a{color:inherit}
 .heathead{margin:0!important;padding:0 0 4px}
 .formula-block{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim);
   margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+
+#lines{position:relative;margin-top:26px}
+.linelead{font-size:14px;line-height:1.85;color:#22333B;margin:0 0 22px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.linefoot{font-family:var(--mono);font-size:10px;line-height:1.9;letter-spacing:.03em;color:var(--dim);
+  margin:24px 0 0;padding-top:14px;border-top:1px solid var(--rule)}
+.catbar{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 26px;padding-bottom:18px;border-bottom:1px solid var(--rule)}
+.catchip{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:4px 10px;
+  border-left:3px solid;color:#22333B;background:rgba(255,255,255,.5)}
+.catchip b{font-weight:400;color:var(--dim);margin-left:8px;font-size:9.5px}
+.lmeta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+.lcat{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;padding:3px 9px;
+  color:#F4FAF8;border-left:3px solid rgba(255,255,255,.35)}
+.lreg{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;padding:3px 9px;
+  color:var(--dim);border:1px solid var(--rule)}
+.lreg.tw{color:#F4FAF8;background:var(--pigment);border-color:var(--pigment)}
+.cat-mk{border-left-color:#A83E22}   .lcat.cat-mk{background:#A83E22}
+.cat-pol{border-left-color:#253D49}  .lcat.cat-pol{background:#253D49}
+.cat-law{border-left-color:#4E8B85}  .lcat.cat-law{background:#4E8B85}
+.cat-tech{border-left-color:#7D7840} .lcat.cat-tech{background:#7D7840}
+.cat-cons{border-left-color:#345463} .lcat.cat-cons{background:#345463}
+.cat-ind{border-left-color:#8C5A3C}  .lcat.cat-ind{background:#8C5A3C}
+.cat-aca{border-left-color:#5A6E52}  .lcat.cat-aca{background:#5A6E52}
+.line{margin:0 0 30px;padding:0 0 26px;border-bottom:1px dashed var(--rule)}
+.line:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.line h4{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.5;color:var(--frame);
+  margin:0 0 10px;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.lno{font-family:var(--display);font-size:26px;color:var(--pigment);line-height:1;margin-right:2px}
+.lkind{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:#F4FAF8;background:var(--frame);padding:2px 7px}
+.ltag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--dim);border:1px solid var(--rule);padding:2px 7px}
+.lrows{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:8px}
+.lrows li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:baseline;
+  font-size:14px;line-height:1.7;color:#1E2F37}
+.lrows.steps li{grid-template-columns:22px 52px minmax(0,1fr);gap:10px}
+.lstep{font-family:var(--mono);font-size:10px;color:#F4FAF8;background:var(--gulf-d);
+  text-align:center;line-height:18px;height:18px}
+.ld{font-family:var(--mono);font-size:11px;color:var(--pigment);letter-spacing:.02em}
+.fromev{font-size:12px;line-height:1.8;color:var(--dim);margin:-6px 0 18px;
+  padding-left:14px;border-left:2px solid var(--rule)}
+.evgo{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--pigment);
+  background:none;border:none;padding:0 0 0 8px;cursor:pointer}
+.evgo:hover{text-decoration:underline}
+.lt.plain{color:#1E2F37}
+.lgo{font-family:inherit;font-size:14px;line-height:1.7;color:#1E2F37;text-align:left;
+  min-width:0;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word;display:block;
+  background:none;border:none;padding:0;cursor:pointer;
+  border-bottom:1px solid var(--rule);transition:color .15s,border-color .15s}
+.lgo:hover{color:var(--pigment);border-bottom-color:var(--pigment)}
+.lgo::after{content:'　↗';font-family:var(--mono);font-size:9px;color:var(--dim);
+  vertical-align:2px;letter-spacing:0}
+.lgo:hover::after{color:var(--pigment)}
+.lsay{font-size:15px;line-height:1.95;color:#1A2A32;margin:0 0 12px;padding-left:14px;
+  border-left:2px solid var(--gulf)}
+.ltest,.lnext{font-size:13px;line-height:1.8;color:#3C5460;margin:0 0 6px}
+.ltest b,.lnext b{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--dim);
+  font-weight:400;margin-right:8px}
+@media (max-width:700px){
+  .lrows li{grid-template-columns:1fr;gap:3px}
+  .lrows.steps li{grid-template-columns:22px 1fr;gap:4px 10px}
+  .lrows.steps .lstep{grid-row:1}
+  .lrows.steps .ld{grid-column:2;grid-row:1}
+  .lrows.steps .lt,.lrows.steps .lgo{grid-column:2;grid-row:2}
+}
 .railfold>summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
 .railfold>summary::-webkit-details-marker{display:none}
 .railfold>summary:hover .foldcue{color:var(--pigment);border-color:var(--pigment)}
@@ -303,6 +365,22 @@ details.fair[open] summary{border-bottom:1px solid var(--rule)}
   .count{width:100%;margin-left:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+@media (max-width:640px){
+  /* 三欄清單在窄螢幕改為兩列，避免最右欄被壓成一字一行 */
+  .statlist li{grid-template-columns:26px minmax(0,1fr);gap:4px 12px}
+  .statlist .statg{grid-column:2;grid-row:1}
+  .statlist .statf{grid-column:2;grid-row:2;text-align:left}
+  #gallist li,#gallisti li{grid-template-columns:minmax(0,1fr);gap:3px}
+  #gallist .galname,#gallisti .galname{grid-column:1}
+  #gallist .who,#gallisti .who{grid-column:1;text-align:left}
+  .srcrow{grid-template-columns:minmax(0,1fr);gap:3px}
+  .srcrow>*{grid-column:1;text-align:left!important}
+  details.fair summary{grid-template-columns:minmax(0,1fr);gap:5px}
+  details.fair .twn{grid-row:auto;grid-column:1;justify-self:start}
+  .line h4{font-size:17px}
+  .lno{font-size:22px}
+}
 </style>
 
 <header class="masthead wrap">
@@ -366,6 +444,23 @@ details.fair[open] summary{border-bottom:1px solid var(--rule)}
         </div>
       </details>
       <span class="foldsum" id="galsum"></span>
+    </div>
+
+    <div id="lines" hidden>
+      <details class="railfold" id="linefold">
+        <summary class="galhead">
+          <span class="foldname">本季主線</span>
+          <span class="railnote" style="background:var(--barley-d)">月更</span>
+          <span class="foldcue">展開</span>
+        </summary>
+        <div class="foldbody">
+          <p class="linelead">把七週裡分散的報導接起來看。每一條都標明支撐它的事件與日期，以及什麼情況會推翻它。<b>點任一筆事件可開啟當時那則的重點。</b></p>
+          <div class="catbar" id="catbar"></div>
+          <div id="linelist"></div>
+          <p class="linefoot">依據 2026 年 8 月 1 日至 9 月 19 日的 664 則報導整理。這是報導之間的關聯，不是市場數據——沒有成交量、沒有指數，判斷來自事件的並置。</p>
+        </div>
+      </details>
+      <span class="foldsum" id="linesum"></span>
     </div>
   </div>
 </section>
@@ -448,7 +543,8 @@ details.fair[open] summary{border-bottom:1px solid var(--rule)}
     <details class="doc">
       <summary><span class="dn">收錄規則</span><span class="ds">起點、去重、各家節奏</span></summary>
       <div class="db">
-        <p><b>三種收錄規則</b>：一、藝術線與設計線的媒體新聞，從 2026 年 6 月 1 日起。二、台灣與海外藝廊的官網動向，同樣從 6 月起。三、藝博會參展紀錄不受日期篩選。</p>
+        <p><b>本季主線</b>：放在畫廊動向下方，每月更新一次。它把分散的報導接起來看——每條標明支撐的事件與日期、以及什麼情況會推翻它。每條標明<b>議題分類</b>（市場、政治、法制、技術、保存、產業結構、學術與地緣）與<b>地區</b>（台灣／國際），區塊最上方有分類總覽。呈現形式有三種：「對照」把不會被放在一起的事件並置、「判斷」是有立場且可被追蹤的結論、「時間軸」攤開一條線的完整時序。<b>每一筆證據都可以點</b>，直接開啟當時那則的重點面板；若該則的判斷寫在跨媒體事件整理裡，面板會標明出處並提供跳轉。這是報導之間的關聯，不是市場數據，沒有成交量也沒有指數。</p>
+    <p><b>三種收錄規則</b>：一、藝術線與設計線的媒體新聞，從 2026 年 6 月 1 日起。二、台灣與海外藝廊的官網動向，同樣從 6 月起。三、藝博會參展紀錄不受日期篩選。</p>
         <p><b>兩條線、兩種節奏</b>：藝術線每日更新；設計線（Designboom、Sight Unseen、Dezeen Furniture、MOT TIMES、Shopping Design、La Vie）每週更新一次。</p>
         <p><b>台灣設計線去重</b>：Shopping Design、MOT TIMES 與 La Vie 三家的展訊重疊度高，同一件事只留一則，以 MOT TIMES 為主。La Vie 只收它獨有的建築案例、空間改造與產品設計。</p>
         <p><b>畫廊資料一律取自官網</b>的展覽與最新消息頁，不採用搜尋引擎摘要（那會撈到舊文並誤判日期）。</p>
@@ -488,7 +584,7 @@ details.fair[open] summary{border-bottom:1px solid var(--rule)}
 
 const SHOW_FAIRS=true;   /* 藝博會軌道開關：改成 true 就會顯示 */
 
-const BUILT='2026.09.21　12:30　台北';
+const BUILT='2026.09.24　11:40　台北';
 
 const SOURCES={
   artouch :{name:'典藏 ARTouch',      region:'tw',   domain:'artouch.com'},
@@ -552,6 +648,91 @@ const TOPICS={
    逐年比對誰進誰退，比任何報導都誠實。
    tw = 該屆確認參展的台灣畫廊（含展位號）
    ══════════════════════════════════════════════════════════ */
+/* ═══ 本季主線：8/1–9/19 的結構性判斷 ═══
+   kind: 'pair'（對照）｜'claim'（論點，附反證）｜'time'（時間軸） */
+const LINES=[
+{n:1, kind:'pair', cat:'保存', reg:'國際',
+ t:'文物災損的性質變了',
+ rows:[['09.18','烏菲茲因驟雨淹灌展廳，撤下著名卡拉瓦喬','u:https://news.artnet.com/?s=Uffizi%20Removes%20Famed%20Caravaggio%20Flash%20Flood%20Soaks%20Gallery'],
+       ['09.16','俄羅斯魯布列夫聖像《三位一體》因空調系統故障變形','u:https://www.artforum.com/?s=Andrei%20Rublev%20Icon%20Warped%20Climate-Control%20Failure'],
+       ['08.20','莫內吉維尼花園在熱浪中枯萎','u:https://news.artnet.com/?s=Monets%20Giverny%20Gardens%20Wither%20in%20Heatwave%E2%80%94and%20Other%20Art%20World%20Matters']],
+ say:'三件都不是戰爭或竊盜，是氣候與設備。八月烏菲茲才宣布 5,800 萬美元改造要解決降溫，九月就遇上驟雨——環境控制的急迫性已經追上預算週期。',
+ test:'十月之後若重大災損回到人為破壞，這條就不成立。'},
+
+{n:2, kind:'pair', cat:'產業結構', reg:'國際',
+ t:'倫敦的設計在復甦，藝術在收縮',
+ rows:[['09.18','Dezeen 編輯群跑完設計節：今年「出乎意料地強」','u:https://www.dezeen.com/2026/09/18/london-design-festival-2026-dezeen-weekly-podcast/'],
+       ['09.12','倫敦設計節第 24 屆，橫跨 11 個設計區','u:https://www.dezeen.com/2026/09/03/london-design-festival-2026-highlights/'],
+       ['08.12','Sid Motion 與 Beers 兩家倫敦畫廊同週收攤，皆指向成本結構','u:https://news.artnet.com/?s=Two%20Veteran%20London%20Galleries%20Call%20It%20Quits'],
+       ['08.06','White Cube 紐約三位資深總監同時離職','u:https://news.artnet.com/?s=White%20Cube%20Loses%20Three%20Star%20Directors%20in%20New%20York']],
+ say:'同一座城市、同一個租金環境，兩個品類走向相反。設計靠展會與品牌發表撐住現金流，藝術畫廊靠的是單件高價銷售——後者對藏家情緒的敏感度高得多。',
+ test:'十月 Frieze London 的成交若明顯回溫，代表這是季節性而非結構性。'},
+
+{n:3, kind:'pair', cat:'技術', reg:'國際',
+ t:'AI 在藝術界分裂成兩條線，爭議集中在其中一條',
+ rows:[['09.18','AI 公司為訓練模型銷毀百萬冊實體書','u:https://www.artnews.com/?s=AI%20Companies%20Destroying%20Books%20Millions%20What%20Will%20It%20Mean%20Art'],
+       ['08.20','MIT 研究：AI 生成影像往往無法追溯來源','u:https://www.artnews.com/?s=MIT%20Study%20Finds%20that%20AI-Generated%20Images%20Often%20Cant%20Be%20Traced%20Back%20to%20Their%20Sources'],
+       ['08.10','歐盟 AI 法要求標示 AI 生成的建築渲染圖','u:https://www.dezeen.com/?s=AI%20architectural%20renderings%20EU%20AI%20Act'],
+       ['08.14','猶太數位文化復原計畫用 AI 加速納粹掠奪品的來源查證','u:https://www.artnews.com/art-news/news/artificial-intelligence-expands-functionality-jewish-digital-cultural-recovery-projects-provenance-search-tool-1234794876/'],
+       ['09.02','蛇形藝廊延攬四位藝術家研究 AI 對文化的影響','u:https://news.artnet.com/?s=Serpentine%20Four%20Artists%20Tech%20Fellowship']],
+ say:'前三則是「創作端」，爭議不斷；後兩則是「研究端」，幾乎沒人反對。差別在於一個生產作品、一個查找資料。歐盟的標示要求只處理了輸出端，沒碰輸入端——而 MIT 那份研究說的正是輸入端無法追溯。',
+ test:'若出現一套可實際運作的訓練來源揭露機制，這個分裂會開始收斂。'},
+
+{n:4, kind:'pair', cat:'法制', reg:'國際',
+ t:'返還從道德訴求變成法律程序',
+ rows:[['09.17','加州新法降低門檻，洛杉磯納粹掠奪品返還訴訟再起','u:https://www.artnews.com/?s=Bolstered%20New%20Laws%20Lawsuits%20Los%20Angeles%20Renew%20Restitution'],
+       ['09.09','牛津大學博物館將返還 39 具殖民時期人類遺骸','u:https://www.artnews.com/?s=Oxford%20University%20Museum%20Repatriate%2039%20Colonial-Era%20Human%20Remains'],
+       ['09.08','阿根廷法院裁定歸還納粹掠奪的古典大師肖像','u:https://www.theartnewspaper.com/search?q=Argentina%20court%20orders%20return%20Nazi-looted%20Old%20Master%20portrait'],
+       ['08.19','檢方就克里米亞占領區非法考古挖掘展開戰爭罪調查','u:https://www.artnews.com/?s=Prosecutor%20Opens%20War%20Crimes%20Investigation%20For%20Illegal%20Archaeological%20Dig%20in%20Occupied%20Crimea'],
+       ['09.08','希臘拒絕經由大英博物館的帕德嫩雕帶法蘭克福借展','u:https://www.theartnewspaper.com/search?q=Greece%20rejects%20Parthenon%20marbles%20loan%20Frankfurt%20British%20Museum']],
+ say:'過去這類爭議多停在譴責與協商，現在進入法院與立法。最後一則是反向證據：希臘寧可什麼都不要，也不接受「長期外借」這個把所有權爭議永久凍結的框架——而貝葉掛毯 9/16 在大英博物館成功開展，正是希臘拒絕的理由。',
+ test:'若英國把貝葉模式正式提給希臘而希臘接受，這條線的方向會反轉。'},
+
+{n:5, kind:'pair', cat:'學術與地緣', reg:'國際',
+ t:'全球南方開始橫向串連，不經過西方',
+ rows:[['09.18','布宜諾斯艾利斯 Malba 選定擴建建築師，展覽空間倍增','u:https://www.theartnewspaper.com/search?q=Malba%20picks%20architect%20expansion%20double%20exhibition%20space'],
+       ['09.12','典藏專題〈亞洲—拉美藝術交流史再探：既遠且近的彼端〉','u:https://artouch.com/asias-multiple-time-zones/content-215580.html'],
+       ['08.28','MoMA 將推二十世紀中葉非洲現代主義大展，框架為「解放的藝術」','u:https://www.artnews.com/?s=MoMA%20to%20Stage%20Major%20Exhibition%20on%20Mid-Century%20African%20Modernism%2C%20Centered%20on%20the%20Concept%20of%20Emancipatory%20Art'],
+       ['08.19','24 位拉美藝術學者獲選 ISLAA 研究員','u:https://hyperallergic.com/?s=24%20Latin%20American%20Art%20Scholars%20Named%20ISLAA%20Fellows'],
+       ['08.12','Zeitz MOCAA 任命 Elvira Dyangani Ose 為藝術總監（四家同報）','u:https://news.artnet.com/?s=Zeitz%20MOCAA%20Taps%20Elvira%20Dyangani%20Ose%20as%20Artistic%20Director']],
+ say:'過去非西方藝術的國際能見度得靠歐美機構背書，現在出現另一種路徑：亞洲談拉美、拉美擴建自己的館、非洲機構自己換帥。共同點是學術基礎建設先行——先有研究者，才有策展人，才有展覽。',
+ test:'台灣的東南亞藝術研究若也走上這個順序，代表這是方法而非個案。'},
+
+{n:6, kind:'claim', cat:'市場', reg:'台灣',
+ t:'台灣畫廊的國際佈局，等於「三月去香港一趟」',
+ support:[['數據','2026 年九場國際藝博會，只有三場有台灣畫廊；19 個展位裡 18 個在香港'],
+          ['09.02','Kiaf SEOUL 與 Frieze Seoul 的公布名單皆未見台灣畫廊','u:https://artemperor.tw/focus/7345'],
+          ['09.03','ARTnews〈台灣畫廊正在改道〉：台灣畫廊在國際版圖上的路線調整','u:https://www.artnews.com/?s=Taiwan%20Gallerists%20Are%20Rerouting'],
+          ['08.19','ART TAIPEI 2026 展商名單：韓國畫廊參展數量明顯攀升','u:https://artouch.com/?p=213875'],
+          ['02.05','大英博物館典藏薛保瑕、陳浚豪、李若玫——文化部補助＋耿畫廊執行＋Frieze 合作的完整鏈條']],
+ say:'台韓之間的流動是單向的：韓國畫廊往台北來，台灣畫廊沒往首爾去。但大英博物館那案證明另一條路走得通——不靠藝博會展位，靠補助＋策展＋國際機構合作。',
+ test:'ART TAIPEI 十月公布的國際參展數若顯著上升，代表資源是往主場集中而非全面收縮，那結論要改寫。',
+ next:'10/23 ART TAIPEI｜11 月 Frieze Abu Dhabi 名單｜2027 Frieze Seoul 移師 DDP 後與 Kiaf 拆夥'},
+
+{n:7, kind:'claim', cat:'市場', reg:'國際',
+ t:'市場進入校準期：頂端在買，中間層沒人買',
+ support:[['09.10','Artnet 與 The Art Newspaper 同日刊出市場分析，共同定調「重新校準」','u:https://news.artnet.com/?s=Less%20Is%20More%20Art%20World%20New%20Season%20Recalibration%20Kazakina'],
+          ['09.17','紐約秋季開季，市場內部人士訊號分裂：有人「被點燃」、有人「被燒傷」','u:https://www.artnews.com/?s=Some%20Collectors%20Energized%20Some%20Burned%20New%20York%20Fall%20Season%20Mixed%20Signals'],
+          ['09.04','首爾被定調為「走出 FOMO 邁向成熟」','u:https://www.artnews.com/?s=Frieze%20Seoul%20Kiaf%20Market%20Moving%20Past%20FOMO%20Maturity'],
+          ['09.02','TAN：藝術界的億萬富豪問題正在惡化，市場集中於超富買家與少數指標作品','u:https://www.theartnewspaper.com/search?q=art%20world%20billionaire%20problem%20getting%20worse%20research'],
+          ['09.10','Pace 與兩位前拍賣行高層合創新畫廊，專攻二級市場','u:https://www.pacegallery.com/journal/pace-gallery-emmanuel-di-donna-and-david-schrader-announce-launch-of-new-global-gallery-devoted-to-secondary-market-sales-and-practices/'],
+          ['09.04','佳士得與邦瀚斯悄悄調漲買家佣金','u:https://www.artnews.com/?s=Christie%20Bonhams%20Quietly%20Hike%20Buyers%20Fees']],
+ say:'「億萬富豪問題」那篇解釋了為什麼會有兩個相反的現象：拍賣端創紀錄（蘇富比 4.5 億阿根廷收藏、杜宏–魯埃印象派、莫內《鳶尾花》可能破法國紀錄）與畫廊端收攤同時發生。Pace 跨進二級市場、拍賣行調漲買家佣金，都是同一個訊號——一級市場疲軟，利潤往轉手交易移。',
+ test:'若十月巴黎與倫敦的一級市場成交明顯回升，這條要降級為季節性調整。',
+ next:'10 月巴塞爾藝術展巴黎展會與 Frieze London｜11 月紐約秋拍'},
+
+{n:8, kind:'time', cat:'政治', reg:'國際',
+ t:'美國文化機構政治化：史密森尼的六個階段',
+ steps:[['08.06','冷卻系統故障，七座館舍關閉','u:https://www.theartnewspaper.com/search?q=Seven%20Smithsonian%20museums%20shut%20down%20due%20to%20cooling%20system%20failure'],
+        ['08.13','預算刪減，川普 IndyCar 賽事的震動與空污引發館藏受損疑慮','u:https://www.artforum.com/?s=Trump%20IndyCar%20Race%20Sparks%20Fears%20of%20Damage%20to%20Art%20at%20National%20Museums'],
+        ['08.12','國家藝廊前高層指控館方「軟性審查」','u:https://www.artforum.com/?s=Former%20National%20Gallery%20Of%20Art%20Executive%20Accuses%20Museum%20Of%20Soft%20Censorship'],
+        ['08.13','國際博物館協會 ICOM 公開聲援','u:https://www.theartnewspaper.com/search?q=Icom%20defends%20the%20Smithsonian%20amid%20Trumps%20attacks'],
+        ['09.04','白宮以「歧視」為由威脅刪減聯邦補助','u:https://www.artnews.com/?s=White%20House%20Accuses%20Smithsonian%20Discrimination%20Threatens%20Cut%20Federal%20Grants'],
+        ['09.09','院長 Lonnie Bunch 三世請辭——史密森尼首位非裔院長','u:https://news.artnet.com/?s=Smithsonian%20Chief%20Lonnie%20Bunch%20Steps%20Down%20White%20House%20Targets']],
+ say:'六個施力點各不相同：硬體、預算、人事、輿論、法律、最後是首長。這種多面向、非單一議題的施壓，比直接的政策干預難防守得多——任何單一項都不足以致命，合起來才是。同期甘迺迪中心的軌跡幾乎一樣：董事會不顧法官裁定表決閉館並刻上川普之名（8/14）、移除 Joel Shapiro 雕塑（9/03）、川普要求以華盛頓雕像取代「奇怪的現代主義」（9/14）。',
+ test:'新任院長的人選與其首份預算案，會顯示這套施壓是否達成目的。'},
+];
+
 const FAIRS=[
 {name:'ART TAIPEI 2026 台北國際藝術博覽會', reg:'tw', st:'upcoming', when:'2026.10.23–26（暫定）', where:'台北世界貿易中心',
  scale:'主題「共生」與「速度」；台北藝術週同期回歸',
@@ -632,6 +813,35 @@ const TWG={
 const CATS=['市場','機構','人事','展覽','評論','設計','建築','工藝','家具','產品','品牌','空間','考古','修復','收藏','徵件','文資','政策'];
 
 const ITEMS=[
+/* ── 非池中 ── */
+{s:'emperor',batch:'2026-09-24',d:'2026-09-19',id:'emperor-6b8f309d',c:['展覽','機構','評論'],t:'C-LAB 參與釜山市立美術館重啟大展「未來博物館學」：致穎新作探討亞非神經網絡',b:'臺灣當代文化實驗場參與釜山市立美術館的重啟大展。致穎八月才在倫敦海沃德辦個展，九月新作又進釜山——他今年的國際能見度是台灣中生代最高的一位。',u:'https://artemperor.tw/focus/7372'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-18',id:'emperor-dc7bc194',c:['展覽','機構','建築'],t:'MOCA 25 週年，當代館暫別前夕：壓軸展《美術館之後》看見美術館的幕後工作與日常',b:'非池中版本側重「幕後工作與日常」。與典藏的報導互補：典藏談策展命題，非池中談展覽實際呈現什麼。',u:'https://artemperor.tw/focus/7371'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-18',id:'emperor-653d7486',c:['展覽','評論','機構'],t:'尊彩藝術中心推出《鏡之海峽》大展，重探臺灣與新加坡戰後藝術脈絡',b:'尊彩是三月香港巴塞爾的參展畫廊之一。商業畫廊做跨國戰後藝術史的研究型大展，在台灣少見——這通常是美術館的工作。',u:'https://artemperor.tw/focus/7359'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-17',id:'emperor-acf7772b',c:['人事','評論','展覽'],t:'84 歲，還能有多少個「第一次」？江賢二病後首件影像創作《窗》，打開畫布之外的藝術世界',b:'江賢二是台灣抽象繪畫的代表人物，八十四歲首度嘗試影像創作。',u:'https://artemperor.tw/focus/7368'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-17',id:'emperor-e8236e98',c:['展覽','評論'],t:'以水為記憶，循流尋根：阿波羅畫廊推出王綺穗個展《Watershed 分水嶺》，探問身份與歸屬',b:'阿波羅畫廊是台北老牌畫廊之一。以水文隱喻身份歸屬，與台灣近年的流域型藝術季（Mattauw、桃園地景）在命題上呼應。',u:'https://artemperor.tw/focus/7367'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-23',id:'emperor-1ae1b862',c:['展覽','評論'],t:'月臨畫廊推出《通道——邵士銘個展》：巷弄、天橋、地下道，與未完待續的行走',b:'月臨畫廊位於台中。以城市的過渡空間為題，與蔡孟閶的鐵路車站工廠系列是同一路取材。',u:'https://artemperor.tw/focus/7374'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-23',id:'emperor-488d88b3',c:['政策','機構','文資'],t:'臺南 × 熊本《雙城計》跨國網絡的永續發酵，臺日交流的長時經營',b:'陳湛鉉撰文。台日城市層級的長期藝文交流機制。與台澳藝術交流夥伴計畫並看，台灣的雙邊文化合作正在從單次活動轉為長期網絡。',u:'https://artemperor.tw/focus/7177'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-21',id:'emperor-9d3e5cfa',c:['工藝','展覽','評論'],t:'富貴美術館《嚶嚶野物 或出或沒》：胡慧琴創作個展，以土形塑記憶的「野物」',b:'苗栗三義富貴三義美術館。陶土創作的個展，以「野物」處理記憶的形體化。',u:'https://artemperor.tw/focus/7365'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-21',id:'emperor-c2815f21',c:['文資','政策','工藝'],t:'當傳統走入當代：臺東無形文化資產的跨界對話與實踐',b:'國立高雄師範大學。與九月中的「從保存到共生」是同一計畫的續篇，處理無形文資如何進入當代創作。',u:'https://artemperor.tw/focus/7357'},
+{s:'emperor',batch:'2026-09-24',d:'2026-09-18',id:'emperor-e5a46f2c',c:['展覽','評論'],t:'塵三《晉見山明》：氣韻與結構之間，反思人心與社會發展',b:'林侑澂撰文。水墨的氣韻與結構之爭，是台灣當代水墨最核心的分歧點。',u:'https://artemperor.tw/focus/7369'},
+
+/* ═════ BATCH 2026-09-24（9/19–9/23）═════ */
+{s:'artnews',batch:'2026-09-24',d:'2026-09-22',sx:1,k:'museumlabor',id:'artnews-1b1325eb',c:['機構','人事','政策'],t:'「管理不善」正把員工趕出美國美術館',e:'‘Poor Management’ Is Driving Workers from US Art Museums',b:'Imogen Lees 為 Ocula 撰文，Art Spell 9/22 首選。不是薪資、不是預算，而是管理問題造成人才外流。與紐約三館表決罷工、V&A 勞資爭議並看，這條線的核心終於被指名。',u:'https://www.artnews.com/?s=Poor%20Management%20Driving%20Workers%20from%20US%20Art%20Museums'},
+{s:'tan',batch:'2026-09-24',d:'2026-09-21',sx:1,id:'tan-2a4012d6',c:['機構','評論','政策'],t:'評論：美術館為何該謹慎使用展場裡的聲音與影像',e:'Comment: Why museums should tread carefully with audio and video in exhibition spaces',b:'John-Paul Stonard 撰文，Art Spell 9/21 首選。他主張侵入式的聲音與影像會干擾作品，把美術館變成以娛樂驅動的觀光景點。',u:'https://www.theartnewspaper.com/search?q=Why%20museums%20tread%20carefully%20audio%20video%20exhibition%20spaces'},
+{s:'tan',batch:'2026-09-24',d:'2026-09-21',sx:1,id:'tan-76ec5e15',c:['市場','機構'],t:'伊斯坦堡當代藝博會新增 17 家畫廊，擴大國際範圍',e:'Contemporary Istanbul expands international reach with 17 newcomers',b:'Carlie Porterfield 報導。白石畫廊也參展。土耳其在歐亞交界的位置，使其成為另一個轉運型市場。',u:'https://www.theartnewspaper.com/search?q=Contemporary%20Istanbul%20expands%20international%20reach%2017%20newcomers'},
+{s:'tan',batch:'2026-09-24',d:'2026-09-21',sx:1,id:'tan-ddb4ba24',c:['市場','政策','收藏'],t:'英國政府對價值 460 萬英鎊的「稀有」文藝復興雕塑下達出口禁令',e:'UK government places export bar on ‘rare’ Renaissance sculpture worth £4.6m',b:'Gareth Harris 報導。繼 7,100 萬英鎊林布蘭之後的第二起。出口禁令的密度上升，反映的是英國文物外流的速度。',u:'https://www.theartnewspaper.com/search?q=UK%20export%20bar%20rare%20Renaissance%20sculpture%204.6m'},
+{s:'hyper',batch:'2026-09-24',d:'2026-09-21',sx:1,k:'kennedy',id:'hyper-f6c9f259',c:['政策','機構'],t:'數百人聚集甘迺迪中心抗議川普的攻擊',e:'Hundreds gather at Kennedy Center to protest Trump’s attacks',b:'Emma Cieslik 報導。從董事會表決閉館刻名、移除 Joel Shapiro 雕塑到群眾抗議，這條線從機構內部延伸到街頭。',u:'https://hyperallergic.com/?s=Hundreds%20gather%20Kennedy%20Center%20protest%20Trump%20attacks'},
+{s:'tan',batch:'2026-09-24',d:'2026-09-21',sx:1,id:'tan-1b751740',c:['市場','收藏','評論'],t:'霍克尼與吳冠中兩位已故大師在佳士得香港同台展出',e:'Late greats David Hockney and Wu Guanzhong shown together at Christie’s Hong Kong',b:'Lisa Movius 報導。兩位今年相繼過世的大師並置，是拍賣行把逝世效應做成展覽的操作。吳冠中是華人現代繪畫的關鍵人物，這個組合對亞洲藏家有特殊意義。',u:'https://www.theartnewspaper.com/search?q=Hockney%20Wu%20Guanzhong%20Christie%20Hong%20Kong'},
+{s:'artnews',batch:'2026-09-24',d:'2026-09-21',sx:1,k:'mchbasel',id:'artnews-61df14ef',c:['市場','機構'],t:'儘管中東戰事有「顯著影響」，Art Basel 母公司上半年營收成長 12%',e:'Despite ‘Significant Impact’ of Middle East Wars, Art Basel Parent Group’s First Half 2026 Revenue Climbed 12 Percent',b:'Brian Boucher 報導。MCH Group 財報。藝博會業務在市場校準期仍成長，與畫廊端的收縮形成對照——通路的議價力高於供應端。',u:'https://www.artnews.com/?s=Art%20Basel%20Parent%20Group%20First%20Half%202026%20Revenue%20Climbed%2012%20Percent'},
+{s:'artnews',batch:'2026-09-24',d:'2026-09-21',sx:1,id:'artnews-4c539872',c:['修復','文資','機構'],t:'創紀錄降雨造成佛羅倫斯烏菲茲與碧提宮受損',e:'Record Rainfall Causes Damage at the Uffizi Gallery and Palazzo Pitti in Florence',b:'Francesca Aton 報導。損害範圍從烏菲茲擴大到碧提宮。八月才宣布 5,800 萬美元改造，九月連續兩起水損。',u:'https://www.artnews.com/?s=Record%20Rainfall%20Damage%20Uffizi%20Palazzo%20Pitti%20Florence'},
+{s:'artnews',batch:'2026-09-24',d:'2026-09-21',sx:1,id:'artnews-a04e5677',c:['市場','評論'],t:'強尼戴普的前衛藝術在中國首展，能助這位爭議演員復出嗎',e:'Johnny Depp’s Far-Out Art Makes Its China Debut. Will the Show Aid the Controversial Actor’s Comeback?',b:'Brian Boucher 報導。名人藝術的市場邏輯與作品品質無關，這類展覽賣的是話題。',u:'https://www.artnews.com/?s=Johnny%20Depp%20Far-Out%20Art%20China%20Debut%20Comeback'},
+{s:'artnews',batch:'2026-09-24',d:'2026-09-14',sx:1,k:'nonprofit',id:'artnews-11e8219b',c:['機構','政策','市場'],t:'數千家藝術非營利組織掌握數十億資產，紐約會議揭開這個少被研究的領域',e:'Thousands of Art Nonprofits Command Billions in Assets. A New York Conference Sheds Light on an Under-Studied Sector',b:'Brian Boucher 報導，Art Spell 9/14 首選。新報告檢視私人藝術非營利組織的生態，含共同挑戰與在藝術生態中的角色演變。',u:'https://www.artnews.com/?s=Thousands%20Art%20Nonprofits%20Command%20Billions%20Assets%20Under-Studied%20Sector'},
+{s:'tan',batch:'2026-09-24',d:'2026-09-14',sx:1,id:'tan-d3cef9a9',c:['機構','文資','政策'],t:'聚焦加納歷史檔案的新文化中心將在阿克拉開幕',e:'New cultural centre focused on archiving Ghana’s history to open in Accra',b:'Gameli Hamelo 報導。與 MoMA 非洲現代主義大展、Zeitz MOCAA 人事案並看，非洲的文化基礎建設正在同時推進機構與檔案兩端。',u:'https://www.theartnewspaper.com/search?q=New%20cultural%20centre%20archiving%20Ghana%20history%20Accra'},
+{s:'artnet',batch:'2026-09-24',d:'2026-09-14',sx:1,id:'artnet-8e1090b8',c:['市場','機構'],t:'畫商在曼哈頓遷移布局',e:'Dealers make moves around Manhattan',b:'Osman Can Yerebakan 報導。紐約畫廊的地理重組——與 Ellie Rines 從中國城移往翠貝卡是同一條線。租金與藏家動線在重畫畫廊地圖。',u:'https://news.artnet.com/?s=Dealers%20make%20moves%20around%20Manhattan'},
+{s:'artnews',batch:'2026-09-24',d:'2026-09-14',sx:1,id:'artnews-20a16586',c:['評論','展覽','文資'],t:'紀錄片追索 Sara Flores 從亞馬遜到藝術界頂峰的旅程',e:'Documentary traces Sara Flores’s journey from the Amazon to the pinnacle of the art world',b:'Mark Asch 報導。Flores 是希皮波—科尼博族（Shipibo-Conibo）藝術家，以傳統 kené 圖紋創作。原住民藝術家進入國際市場的完整路徑紀錄，對台灣原住民藝術的國際化有參照價值。',u:'https://www.artnews.com/?s=Documentary%20Sara%20Flores%20journey%20Amazon%20pinnacle%20art%20world'},
+{s:'artnews',batch:'2026-09-24',d:'2026-09-02',sx:1,id:'artnews-a6fbfea2',c:['考古','評論','文資'],t:'面對歐洲殖民，澳洲原住民藝術家創造了強大存在的圖像',e:'In the Face of European Colonization, Aboriginal Artists Created Images of Powerful Beings',b:'Anne Doran 報導。研究發現殖民接觸期的岩畫出現新的形象類型。這是把藝術史當成抵抗史讀的實證案例。',u:'https://www.artnews.com/?s=Face%20European%20Colonization%20Aboriginal%20Artists%20Images%20Powerful%20Beings'},
+{s:'artnet',batch:'2026-09-24',d:'2026-09-02',sx:1,id:'artnet-73d4ae0a',c:['文資','政策'],t:'美國移民及海關執法局稱在佛羅里達查扣 2.2 萬件古文物',e:'ICE Unit Says It Seized 22,000 Ancient Artifacts in Florida',b:'Andy Battaglia 報導。具體數字出來了：2.2 萬件。查扣容易，後續的來源鑑定與返還才是難題——這個量體的檔案工作可能要花數年。',u:'https://news.artnet.com/?s=ICE%20Unit%20Seized%2022000%20Ancient%20Artifacts%20Florida'},
+
 /* ── 典藏 ARTouch ── */
 {s:'artouch',batch:'2026-09-21',d:'2026-09-18',id:'artouch-22ae4d59',c:['展覽','機構','建築'],t:'閉館整修前的當代館 25 週年：「美術館之後」與《當代館，晚點見》重新想像美術館',b:'ARTouch 編輯部，展至 12/31。台北當代藝術館成立 25 年後即將閉館整修，以「美術館之後」為題預想自身的未來形態。',u:'https://artouch.com/art-exhibition/content-216346.html'},
 {s:'artouch',batch:'2026-09-21',d:'2026-09-18',id:'artouch-c5a063d5',c:['市場','收藏','工藝'],t:'張群「中行廬」珍藏與《遠涉帖》，在香港邦瀚斯 2026 秋拍預展看見書畫生命力',b:'邦瀚斯香港秋拍預展。張群是民國政要與重要藏家，「中行廬」珍藏釋出是近代書畫來源譜系的重要環節。',u:'https://artouch.com/%e8%97%9d%e8%a1%93%e6%8b%8d%e8%b3%a3/content-216353.html'},
@@ -1607,6 +1817,31 @@ const TECH={
 };
 
 const NOTES={
+'emperor-e5a46f2c':'水墨的氣韻與結構之爭，是台灣當代水墨最核心的分歧點——前者訴諸傳統品評、後者訴諸現代視覺分析，兩套標準幾乎無法通約。這也是水墨難以進入當代藝術主流討論的原因之一。',
+'emperor-c2815f21':'與九月中的「從保存到共生」是同一計畫的續篇。無形文資進入當代創作的核心難題是：一旦被轉化為作品，它還算不算原本那個文化實踐。花蓮豐年節的「祭」與「節」爭議問的是同一件事。',
+'emperor-9d3e5cfa':'苗栗三義的私人美術館。陶土創作在台灣的當代藝術討論裡仍偏邊緣，多被歸為工藝而非當代。這類個展是少數把陶土當創作媒材而非工藝門類來處理的場合。',
+'emperor-488d88b3':'台日城市層級的長期藝文交流機制。與台澳藝術交流夥伴計畫續簽兩年備忘錄並看，台灣的雙邊文化合作正在從單次活動轉為長期網絡——這個轉變的關鍵在於預算能不能跨年度編列，而非策展內容。',
+'emperor-1ae1b862':'以城市的過渡空間為題，與采泥蔡孟閶的鐵路車站工廠系列是同一路取材。台灣中生代對「城市縫隙」的興趣持續，但處理方式從紀實轉向感知。月臨在台中，中部畫廊的當代展覽曝光度偏低，這類報導有助於補上台灣藝術地景的中段。',
+'emperor-e8236e98':'以水文隱喻身份歸屬，與台灣近年的流域型藝術季（Mattauw 曾文溪、桃園地景珍珠海岸）在命題上呼應。水作為台灣藝術的共同語彙，這幾年密度明顯上升——可能跟氣候議題與地方認同兩條線同時升溫有關。',
+'emperor-acf7772b':'江賢二是台灣抽象繪畫的代表人物，八十四歲首度嘗試影像。老年藝術家的媒材轉向通常不是實驗而是被迫——身體條件改變了工作方式。大竹富江晚年因視力衰退發展出「盲畫」是同一類情況，而那反而成了她最重要的方法。',
+'emperor-653d7486':'商業畫廊做跨國戰後藝術史的研究型大展，在台灣少見——這通常是美術館的工作。尊彩是三月香港巴塞爾的參展畫廊之一，它做這種展的動機值得注意：研究型展覽能建立畫廊的學術正當性，也為代理藝術家鋪墊論述。與 Gagosian 辦 Quarterly、双方做 EDITORIAL 是同一套邏輯的不同規模。',
+'emperor-dc7bc194':'非池中側重「幕後工作與日常」，典藏談策展命題——兩家合看才完整。把幕後工作當展覽內容，在閉館整修前這個時機特別合理：即將消失的不只是空間，還有依附這個空間運作的勞動。與同期「管理不善正把員工趕出美國美術館」放在一起讀，角度意外接得上。',
+'emperor-6b8f309d':'致穎八月才在倫敦海沃德辦個展，九月新作又進釜山重啟大展——他今年的國際能見度是台灣中生代最高的一位。「亞非神經網絡」這個命題也值得注意：不經過西方談亞洲與非洲的連結，正是「全球南方橫向串連」那條主線的台灣版本。與釜山雙年展同期，韓國今年對台灣創作者相當開放。',
+'artnet-73d4ae0a':'具體數字出來了：2.2 萬件。查扣容易，後續的來源鑑定與返還才是難題——這個量體的檔案工作可能要花數年，而多數查扣品最後長期滯留倉庫。與洛杉磯返還訴訟、加州新法並看，美國在文物流通的兩端同時加壓：入境查扣、境內訴訟。',
+'artnews-a6fbfea2':'研究發現殖民接觸期的岩畫出現新的形象類型。這是把藝術史當成抵抗史讀的實證案例——不是事後的詮釋，而是圖像本身在接觸當下就改變了。方法論上很有說服力。',
+'artnews-20a16586':'Flores 是希皮波—科尼博族藝術家，以傳統 kené 圖紋創作。原住民藝術家進入國際市場的完整路徑紀錄，對台灣原住民藝術的國際化有直接參照價值——與 Frieze 那篇〈新一代原住民藝術家如何重新定義台灣當代藝術〉、台澳藝術交流夥伴計畫並看，這條線今年在多處同時推進。',
+'artnet-8e1090b8':'紐約畫廊的地理重組——與 Ellie Rines 從中國城移往翠貝卡是同一條線。租金與藏家動線在重畫畫廊地圖。切爾西作為畫廊中心的地位近年持續被翠貝卡與下東區稀釋。',
+'tan-d3cef9a9':'與 MoMA 非洲現代主義大展、Zeitz MOCAA 人事案、英國拒還迦納黃金並看，非洲的文化基礎建設正在同時推進機構與檔案兩端。檔案先行這一點很關鍵——有了自己的檔案，返還談判的論述基礎才穩。',
+'artnews-11e8219b':'這個領域長期缺乏系統性研究——資產規模龐大但分散、且多數不公開財務。新報告的價值在於把它當成一個「產業」來看。與 SF Camerawork 五十年後結束、剛果藝術家自營空間緊急募資並看：非營利部門的脆弱不是個案，而是缺乏制度性支持。台灣的藝文非營利組織同樣沒有整體盤點。',
+'artnews-a04e5677':'名人藝術的市場邏輯與作品品質無關，這類展覽賣的是話題。與 David Lynch 在 Pace 洛杉磯的個展對照有意思：同樣是演藝界人士的視覺創作，一個進藍籌畫廊、一個進中國巡展，兩條路徑的評價機制完全不同。',
+'artnews-4c539872':'損害從烏菲茲擴大到碧提宮。八月才宣布 5,800 萬美元改造要解決人潮與降溫，九月連續兩起水損——氣候的變化速度已經超過機構的預算週期。這是「文物災損性質改變」那條主線最強的證據。',
+'artnews-61df14ef':'MCH Group 財報。藝博會業務在市場校準期仍成長 12%，與畫廊端的收縮形成尖銳對照——通路的議價力高於供應端。這也解釋了 Art-o-rama 低費用模式為什麼有吸引力：當攤位費成為畫廊最大的固定成本，藝博會賺的是租金而非交易。',
+'tan-1b751740':'兩位今年相繼過世的大師並置，是拍賣行把逝世效應做成展覽的操作。吳冠中是華人現代繪畫的關鍵人物，這個組合對亞洲藏家有特殊意義——把西方與華人現代主義放在同一個價格框架裡對話，等於為後者的重估鋪路。同期霍克尼生前最後大展刷新參觀人次。',
+'hyper-f6c9f259':'從董事會表決閉館刻名、移除 Joel Shapiro 雕塑、川普要求以華盛頓雕像取代「奇怪的現代主義」，到群眾抗議——這條線從機構內部延伸到街頭。值得注意的是抗議發生在事件累積一個多月之後，公眾反應的時間差很長。',
+'tan-ddb4ba24':'繼 7,100 萬英鎊林布蘭之後的第二起。出口禁令的密度上升，反映的是英國文物外流的速度——而在博物館普遍財務吃緊的當下（25 年關掉 524 家、羅浮宮向亞洲找贊助），能不能籌到錢買下才是真問題。這個制度的極限正在被連續測試。',
+'tan-76ec5e15':'白石畫廊也參展。土耳其在歐亞交界的位置使其成為另一個轉運型市場——與 Frieze Abu Dhabi 首屆是同一個邏輯：本地藏家有限，靠的是做成國際買家的中途站。',
+'tan-2a4012d6':'侵入式的聲音與影像會干擾作品，把美術館變成以娛樂驅動的觀光景點。這篇跟草間彌生的鏡屋定義了「可拍照的美術館體驗」是同一組問題的兩面——機構為了觀眾數引入沉浸式手法，代價是觀看條件。台灣的特展近年大量使用投影與環繞音，這個提醒很實際。',
+'artnews-1b1325eb':'不是薪資、不是預算，而是管理問題造成人才外流——這條線的核心終於被指名。與紐約三館表決罷工、V&A 勞資爭議、聖地牙哥兩館財務危機並看：先前的報導都停在「財務壓力壓縮人力」，這篇往前一步說是管理能力跟不上。兩種診斷的處方完全不同：前者要錢，後者要換人。',
 'artouch-a0c3d053':'台灣水墨創作者的個案梳理。與同期袁之靜、鄭宇宏、蔡明讚的展評並看，台灣水墨與書法的當代處境今年在典藏與非池中都有較密集的討論。',
 'artouch-97a9564f':'把圖像史料轉為可實地執行的路徑，是文資推廣少見的做法。多數古蹟導覽從建築本體出發，這條從畫作出發——你看到的是百年前畫家選擇記錄的視角，而非今天保存下來的結果。兩者的落差本身就是資訊。',
 'artouch-2aed2307':'以便利商店空間（原 7-11 永康門市）做社會參與式藝術。場域選得準——便利商店是台灣勞動條件最壓縮的場所之一，把它變成展場等於把批判放回現場。社會參與式藝術最常被質疑的是「有沒有真的改變什麼」，這篇評論處理的正是這個問題。',
@@ -2199,6 +2434,18 @@ const NOTES={
 };
 
 const EVENTS={
+museumlabor:{
+t:'美術館的勞動危機：從財務壓力到管理問題',
+lead:'Ocula 的 Imogen Lees 指出，把員工趕出美國美術館的不是薪資或預算，而是管理不善。這條線在九月累積成一個明確的議題。',
+x:['09.22 Ocula：「管理不善」正把員工趕出美國美術館（Art Spell 當日首選）',
+'09.17 紐約三大美術館工會員工表決罷工',
+'09.02 聖地牙哥當代藝術館面臨財務與領導危機',
+'08.28 V&A 工會批館長缺席合約談判「令人震驚」且「不尊重」',
+'08.26 聖地牙哥藝術博物館裁員 11 人',
+'08.14 SF Camerawork 成立五十年後結束營業'],
+w:'先前的報導都停在「財務壓力壓縮人力」，Ocula 這篇往前一步說是管理能力跟不上。兩種診斷的處方完全不同：前者要錢，後者要換人。把兩者放在一起才完整——機構在財務吃緊時，管理決策的品質變得更關鍵，而多數美術館的治理結構是為穩定期設計的，不適用於連續危機。台灣的公立館舍與私人美術館同樣沒有面對過這種強度，但世代交替與預算緊縮已經開始。'},
+
+
 aibooks:{
 t:'AI 公司為訓練模型銷毀百萬冊實體書',
 lead:'AI 公司為建立語言模型的訓練資料而裁切銷毀實體書籍，數量以百萬計。部分藝術家與作者感到警覺，另一些人認為實體與數位書可以並存。',
@@ -2905,6 +3152,58 @@ function renderHeat(){
   if(f) f.addEventListener('toggle',()=>{const c=f.querySelector('.foldcue'); if(c) c.textContent=f.open?'收合':'展開';});})();
 renderHeat();
 
+
+/* ═══ 本季主線 ═══ */
+if(typeof LINES!=='undefined' && LINES.length){
+  document.getElementById('lines').hidden=false;
+  const KIND={pair:'對照',claim:'判斷',time:'時間軸'};
+  const CATC={'市場':'mk','政治':'pol','法制':'law','技術':'tech','保存':'cons','產業結構':'ind','學術與地緣':'aca'};
+  function row(d,txt,key){
+    const body = key
+      ? '<button class="lgo" data-key="'+esc(key)+'">'+esc(txt)+'</button>'
+      : '<span class="lt plain">'+esc(txt)+'</span>';
+    return '<li><span class="ld">'+esc(d)+'</span>'+body+'</li>';
+  }
+  document.getElementById('linelist').innerHTML = LINES.map(L=>{
+    let body='';
+    if(L.kind==='pair')  body='<ol class="lrows">'+L.rows.map(r=>row(r[0],r[1],r[2])).join('')+'</ol>';
+    if(L.kind==='claim') body='<ol class="lrows">'+L.support.map(r=>row(r[0],r[1],r[2])).join('')+'</ol>';
+    if(L.kind==='time')  body='<ol class="lrows steps">'+L.steps.map((r,i)=>
+      '<li><span class="lstep">'+(i+1)+'</span><span class="ld">'+esc(r[0])+'</span>'
+      +(r[2]?'<button class="lgo" data-key="'+esc(r[2])+'">'+esc(r[1])+'</button>':'<span class="lt plain">'+esc(r[1])+'</span>')
+      +'</li>').join('')+'</ol>';
+    return '<section class="line">'
+      +'<h4><span class="lno">'+L.n+'</span>'+esc(L.t)+'</h4>'
+      +'<p class="lmeta">'
+        +'<span class="lcat cat-'+CATC[L.cat]+'">'+esc(L.cat)+'</span>'
+        +'<span class="lreg'+(L.reg==='台灣'?' tw':'')+'">'+esc(L.reg)+'</span>'
+        +'<span class="lkind">'+KIND[L.kind]+'</span>'
+      +'</p>'
+      +body
+      +'<p class="lsay">'+esc(L.say)+'</p>'
+      +'<p class="ltest"><b>什麼會推翻它</b>　'+esc(L.test)+'</p>'
+      +(L.next?'<p class="lnext"><b>下個檢驗點</b>　'+esc(L.next)+'</p>':'')
+      +'</section>';
+  }).join('');
+  const byc={};
+  LINES.forEach(L=>{(byc[L.cat]=byc[L.cat]||[]).push(L.n);});
+  document.getElementById('catbar').innerHTML=
+    Object.entries(byc).map(([c,ns])=>
+      '<span class="catchip cat-'+CATC[c]+'">'+esc(c)+'<b>'+ns.join('·')+'</b></span>').join('');
+  const ls=document.getElementById('linesum');
+  if(ls) ls.textContent=LINES.length+' 條主線　·　依據 08.01–09.19 的 '+ITEMS.length+' 則報導';
+  document.getElementById('pbody').addEventListener('click',e=>{
+  const g=e.target.closest('.evgo'); if(!g) return;
+  openPanel(g.dataset.key);
+});
+document.getElementById('linelist').addEventListener('click',e=>{
+    const b=e.target.closest('.lgo'); if(!b) return;
+    openPanel(b.dataset.key);
+  });
+  const lf=document.getElementById('linefold');
+  if(lf) lf.addEventListener('toggle',()=>{const c=lf.querySelector('.foldcue'); if(c) c.textContent=lf.open?'收合':'展開';});
+}
+
 /* ═══ 藝博會軌道：統計 + 篩選 + 收合 ═══ */
 if(SHOW_FAIRS&&FAIRS.length){
   document.getElementById('fairrail').hidden=false;
@@ -3148,8 +3447,15 @@ function openSingle(u){
   if(i.e) h+='<p class="orig">'+esc(i.e)+'</p>';
   if(i.b) h+='<span class="plabel">重點</span><p class="txt">'+esc(i.b)+'</p>';
   if(TECH[i.id]) h+='<span class="plabel tm">技術與材料</span><p class="txt">'+esc(TECH[i.id])+'</p>';
-  const _n=dedupe(NOTES[i.id], i.b);
-  if(_n) h+='<span class="plabel">為什麼值得注意</span><p class="txt">'+esc(_n)+'</p>';
+  let _n=dedupe(NOTES[i.id], i.b), _from='';
+  if(!_n && i.k && EVENTS[i.k]){            /* 判斷寫在事件整理裡時，接過來顯示 */
+    _n=dedupe(EVENTS[i.k].w, i.b); _from=i.k;
+  }
+  if(_n){
+    h+='<span class="plabel">為什麼值得注意</span><p class="txt">'+esc(_n)+'</p>';
+    if(_from) h+='<p class="fromev">這段判斷來自跨媒體事件整理〈'+esc(EVENTS[_from].t)+'〉'
+      +'<button class="evgo" data-key="k:'+esc(_from)+'">看完整整理　↗</button></p>';
+  }
   const gn=TWG[i.id]||(src.gal?src.name:null);
   if(gn) h+='<span class="plabel">'+(src.region==='intl'?'海外藝廊':'台灣藝廊')+'</span><p class="txt">'+esc(gn)+'</p>';
   if(i.du) h+='<p class="thin" style="margin-top:20px">這則的發佈日期我沒能查證。它出現在該站首頁的推薦模組，那裡會混入舊文，所以卡片上的日期僅供排序參考，實際可能早於八月。</p>';
